@@ -1,12 +1,19 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 export default function GetStarted() {
     
   const navigation = useNavigation();
-  const homepagenvg = () => {
-    navigation.navigate('bottomTab');
+  const homepagenvg = (item) => {
+    navigation.navigate('bottomTab',{
+        screen:'home' ,
+        params: {
+          item: item,
+
+        }
+    });
   };
   return (
     <>

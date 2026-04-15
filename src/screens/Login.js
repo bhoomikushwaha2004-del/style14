@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import UserIcon from 'react-native-vector-icons/FontAwesome6';
 import Lock from 'react-native-vector-icons/Fontisto';
 import EyeIcon from 'react-native-vector-icons/Feather';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -94,136 +95,141 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  headlineTxt:{
-    paddingTop:20,
-    paddingLeft:31,
-    paddingRight:158,
-    
+  headlineTxt: {
+    paddingTop: SPACING.l, // 20
+    paddingLeft: SPACING.xl + 7, // 31 exact
+    paddingRight: 158,
   },
-  wlcTxt:{
-    fontSize:36,
-    fontWeight:'bold',
-    fontFamily:'Montserrat-Bold'
-  },
-  firstInputCont:{
-    paddingTop:35,
-    paddingLeft:32,
-    paddingRight:25,
-    // flexDirection:''
-    // borderWidth:1
-  },
-  firstinput:{
-    borderWidth:1,
-    borderColor:'#A8A8A9',
-    paddingLeft:38,
-    paddingVertical:20,
-    borderRadius:10,
-    fontSize:12,
-    fontWeight:'bold'
-  },
-  scdInputCont:{
-    paddingTop:30,
-    paddingLeft:32,
-    paddingRight:25
-  },
-  scntInput:{
-    borderWidth:1,
-    borderColor:'#A8A8A9',
-    paddingLeft:40,
-    paddingVertical:20,
-    borderRadius:10,
-    fontSize:12,
-    fontWeight:'bold'
-  },
-  frgtCont:{
-    paddingTop:10,
-    paddingRight:25,
-    alignSelf:'flex-end'
-  },
-  frgtTxt:{
-    color:'#F83758',
-    fontSize:12,
-  },
-  btnCont:{
-    paddingTop:52,
-    paddingHorizontal:30,
-    // backgroundColor:'#F83758',
-  },
-  btnOuter:{
-    backgroundColor:'#F83758',
-    borderRadius:4
-  },
-  btnTxt:{
-    paddingVertical:15,
-    paddingHorizontal:130,
-    color:'#FFFFFF',
-    fontSize:20,
-    fontWeight:'bold'
-  },
-  ggleCont:{
-    paddingTop:75,
-    paddingHorizontal:90,
-    
-  },
-  continueWithCont:{
-    paddingHorizontal:30
-  },
-  continueWithTxt:{
-    fontSize:12,
-    color:'#575757'
-  },
-  socialMediaCont:{
-    paddingTop:20,
-    flexDirection:'row'
-  },
-  ggleOuter:{
-    borderWidth:1,
-    borderColor:'#F83758',
-    borderRadius:50,
-    backgroundColor:'#FCF3F6',
-    padding:15,
-    width:54,
-  },
-  appleCont:{
-    padding:15,
-    borderWidth:1,
-    borderColor:'#F83758',
-    backgroundColor:'#FCF3F6',
-    width:55,
-    borderRadius:50
 
+  wlcTxt: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
   },
-  signupCont:{
-    paddingTop:28
+
+  firstInputCont: {
+    paddingTop: 35,
+    paddingLeft: 32,
+    paddingRight: 25,
   },
-  signupTxt:{
-    color:'#575757',
-    fontSize:14
+
+  firstinput: {
+    borderWidth: 1,
+    borderColor: '#A8A8A9',
+    paddingLeft: 38,
+    paddingVertical: 20,
+    borderRadius: RADIUS.md, // 10
+    fontSize: FONT_SIZE.s,
+    fontWeight: 'bold',
   },
-  usericonCont:{
-    // paddingVertical:15,
-    // paddingLeft:10,
-    position:'absolute',
-    paddingLeft:43,
-    paddingTop:52
+
+  scdInputCont: {
+    paddingTop: 30,
+    paddingLeft: 32,
+    paddingRight: 25,
   },
-  usericon:{
-    // paddingVertical:15,
-    // paddingLeft:10
+
+  scntInput: {
+    borderWidth: 1,
+    borderColor: '#A8A8A9',
+    paddingLeft: 40,
+    paddingVertical: 20,
+    borderRadius: RADIUS.md,
+    fontSize: FONT_SIZE.s,
+    fontWeight: 'bold',
   },
-  lockCont:{
-    position:'absolute',
-    paddingLeft:47,
-    paddingTop:48
+
+  frgtCont: {
+    paddingTop: 10,
+    paddingRight: 25,
+    alignSelf: 'flex-end',
   },
-  eyeCont:{
-    // paddingLeft:313,
-    position:'absolute',
-    right:50,
-    bottom:18
-    // paddingTop:49,
-    // alignSelf:''
-  }
+
+  frgtTxt: {
+    color: COLORS.primary,
+    fontSize: FONT_SIZE.s,
+  },
+
+  btnCont: {
+    paddingTop: 52,
+    paddingHorizontal: 30,
+  },
+
+  btnOuter: {
+    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.sm,
+  },
+
+  btnTxt: {
+    paddingVertical: 15,
+    paddingHorizontal: 130,
+    color: COLORS.white,
+    fontSize: FONT_SIZE.xxl, // 20
+    fontWeight: 'bold',
+  },
+
+  ggleCont: {
+    paddingTop: 75,
+    paddingHorizontal: 90,
+  },
+
+  continueWithCont: {
+    paddingHorizontal: 30,
+  },
+
+  continueWithTxt: {
+    fontSize: FONT_SIZE.s,
+    color: '#575757',
+  },
+
+  socialMediaCont: {
+    paddingTop: 20,
+    flexDirection: 'row',
+  },
+
+  ggleOuter: {
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderRadius: 50,
+    backgroundColor: '#FCF3F6',
+    padding: 15,
+    width: 54,
+  },
+
+  appleCont: {
+    padding: 15,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    backgroundColor: '#FCF3F6',
+    width: 55,
+    borderRadius: 50,
+  },
+
+  signupCont: {
+    paddingTop: 28,
+  },
+
+  signupTxt: {
+    color: '#575757',
+    fontSize: FONT_SIZE.m,
+  },
+
+  usericonCont: {
+    position: 'absolute',
+    paddingLeft: 43,
+    paddingTop: 52,
+  },
+
+  lockCont: {
+    position: 'absolute',
+    paddingLeft: 47,
+    paddingTop: 48,
+  },
+
+  eyeCont: {
+    position: 'absolute',
+    right: 50,
+    bottom: 18,
+  },
   
-
 });

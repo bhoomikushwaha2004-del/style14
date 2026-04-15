@@ -1,5 +1,6 @@
 import { Image,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const HomeHeader = ({ handleSearch }) => {
   return (
@@ -7,7 +8,7 @@ const HomeHeader = ({ handleSearch }) => {
     
       <View style={styles.container}>
       
-      {/* hdr line */}
+      {/* LEFT MENU */}
       <TouchableOpacity>
         <Image
           source={require('../assets/hdr-lines.png')}
@@ -15,7 +16,7 @@ const HomeHeader = ({ handleSearch }) => {
         />
       </TouchableOpacity>
 
-      {/* logo */}
+      {/* CENTER LOGO */}
       <View style={styles.center}>
         <Image
           source={require('../assets/stylish-icon.png')}
@@ -24,7 +25,7 @@ const HomeHeader = ({ handleSearch }) => {
         <Text style={styles.logoText}>Stylish</Text>
       </View>
 
-      {/* Profile */}
+      {/* RIGHT PROFILE */}
       <TouchableOpacity>
         <Image
           source={require('../assets/profile-picture.png')}
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', 
-    paddingHorizontal: 16,
-    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    paddingHorizontal: SPACING.m, // 16
+    backgroundColor: COLORS.white,
   },
 
   menuIcon: {
@@ -73,10 +74,10 @@ const styles = StyleSheet.create({
   },
 
   logoText: {
-    fontSize: 18,
+    fontSize: FONT_SIZE.l, // 18
     fontWeight: 'bold',
-    color: '#4392F9',
-    marginLeft: 6,
+    color: COLORS.secondary, // #4392F9
+    marginLeft: SPACING.s, // 6 approx (closest match)
     fontFamily: 'libreCaslonText',
   },
 
@@ -85,15 +86,17 @@ const styles = StyleSheet.create({
     height: 36,
     borderRadius: 18,
   },
-  searchBoxCont:{
-    padding:16
+
+  searchBoxCont: {
+    padding: SPACING.m,
   },
-  searchinput:{
-    borderColor:'#FFFFFF',
-    borderWidth:1,
-    borderRadius:6,
-    backgroundColor:'#FFFFFF',
-    paddingLeft:46,
-    color:'#BBBBBB',
-  }
+
+  searchinput: {
+    borderColor: COLORS.white,
+    borderWidth: 1,
+    borderRadius: RADIUS.sm, // 6
+    backgroundColor: COLORS.white,
+    paddingLeft: 46,
+    color: '#BBBBBB',
+  },
 })

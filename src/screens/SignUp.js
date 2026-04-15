@@ -4,6 +4,7 @@ import UserIcon from 'react-native-vector-icons/FontAwesome6'
 import Lock from 'react-native-vector-icons/Fontisto'
 import EyeIcon from 'react-native-vector-icons/Feather'
 import { useNavigation } from '@react-navigation/native';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 
 const SignUp = () => {
@@ -91,124 +92,135 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  headlineCont:{
-    paddingTop:20,
-    paddingLeft:30,
-    paddingRight:155
+  headlineCont: {
+    paddingTop: SPACING.l, // 20
+    paddingLeft: 30,
+    paddingRight: 155,
   },
-  headlineTxt:{
-    fontSize:36,
-    fontWeight:'bold'
-  },
-  firstinputCont:{
-    paddingTop:33,
-    paddingHorizontal:30
-  },
-  firstinput:{
-    borderWidth:1,
-    borderColor:'#A8A8A9',
-    borderRadius:10,
-    fontSize:12,
-    paddingVertical:20,
-    paddingLeft:40,
-    fontWeight:'bold'
-  },
-  userCont:{
-    position:'absolute',
-    paddingLeft:40,
-    paddingTop:50
-  },
-  scndinputCont:{
-    paddingTop:30,
-    paddingHorizontal:30,
-  },
-  scndinput:{
-    borderWidth:1,
-    borderColor:'#A8A8A9',
-    fontWeight:'bold',
-    borderRadius:10,
-    paddingVertical:20,
-    paddingLeft:42,
 
+  headlineTxt: {
+    fontSize: 36,
+    fontWeight: 'bold',
   },
-  lockCont:{
-    position:'absolute',
-    paddingLeft:44,
-    paddingTop:48
-  },
-  eyeCont:{
-    position:'absolute',
-    // paddingLeft:310,
-    // paddingRight:10,
-    // paddingTop:50
-    // paddingRight:45 
-    right:50,
-    bottom:18
-  },
-  registerCont:{
-    paddingTop:20,
-    paddingLeft:30,
-    paddingRight:87
-  },
-  registerTxt:{
-    color:'#676767',
-    // fontSize:12,
 
+  firstinputCont: {
+    paddingTop: 33,
+    paddingHorizontal: 30,
   },
-  btnCont:{
-    paddingTop:38,
-    paddingHorizontal:30
-  },
-  btn:{
-    backgroundColor:'#F83758',
-    borderRadius:4
-    // pad
-  },
-  btnTxt:{
-    paddingHorizontal:78,
-    paddingVertical:15,
-    color:'#FFFFFF',
-    fontWeight:'bold',
-    fontSize:20
-  },
-   ggleCont:{
-    paddingTop:40,
-    paddingHorizontal:90,
-    
-  },
-  continueWithCont:{
-    paddingHorizontal:30
-  },
-  continueWithTxt:{
-    fontSize:12,
-    color:'#575757'
-  },
-  socialMediaCont:{
-    paddingTop:20,
-    flexDirection:'row'
-  },
-  ggleOuter:{
-    borderWidth:1,
-    borderColor:'#F83758',
-    borderRadius:50,
-    backgroundColor:'#FCF3F6',
-    padding:15,
-    width:54,
-  },
-  appleCont:{
-    padding:15,
-    borderWidth:1,
-    borderColor:'#F83758',
-    backgroundColor:'#FCF3F6',
-    width:55,
-    borderRadius:50
 
+  firstinput: {
+    borderWidth: 1,
+    borderColor: '#A8A8A9',
+    borderRadius: RADIUS.md,
+    fontSize: FONT_SIZE.s,
+    paddingVertical: 20,
+    paddingLeft: 40,
+    fontWeight: 'bold',
   },
-  signupCont:{
-    paddingTop:28
+
+  userCont: {
+    position: 'absolute',
+    paddingLeft: 40,
+    paddingTop: 50,
   },
-  signupTxt:{
-    color:'#575757',
-    fontSize:14
+
+  scndinputCont: {
+    paddingTop: 30,
+    paddingHorizontal: 30,
+  },
+
+  scndinput: {
+    borderWidth: 1,
+    borderColor: '#A8A8A9',
+    fontWeight: 'bold',
+    borderRadius: RADIUS.md,
+    paddingVertical: 20,
+    paddingLeft: 42,
+  },
+
+  lockCont: {
+    position: 'absolute',
+    paddingLeft: 44,
+    paddingTop: 48,
+  },
+
+  eyeCont: {
+    position: 'absolute',
+    right: 50,
+    bottom: 18,
+  },
+
+  registerCont: {
+    paddingTop: 20,
+    paddingLeft: 30,
+    paddingRight: 87,
+  },
+
+  registerTxt: {
+    color: '#676767',
+  },
+
+  btnCont: {
+    paddingTop: 38,
+    paddingHorizontal: 30,
+  },
+
+  btn: {
+    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.sm,
+  },
+
+  btnTxt: {
+    paddingHorizontal: 78,
+    paddingVertical: 15,
+    color: COLORS.white,
+    fontWeight: 'bold',
+    fontSize: FONT_SIZE.xxl,
+  },
+
+  ggleCont: {
+    paddingTop: 40,
+    paddingHorizontal: 90,
+  },
+
+  continueWithCont: {
+    paddingHorizontal: 30,
+  },
+
+  continueWithTxt: {
+    fontSize: FONT_SIZE.s,
+    color: '#575757',
+  },
+
+  socialMediaCont: {
+    paddingTop: 20,
+    flexDirection: 'row',
+  },
+
+  ggleOuter: {
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderRadius: 50,
+    backgroundColor: '#FCF3F6',
+    padding: 15,
+    width: 54,
+  },
+
+  appleCont: {
+    padding: 15,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    backgroundColor: '#FCF3F6',
+    width: 55,
+    borderRadius: 50,
+  },
+
+  signupCont: {
+    paddingTop: 28,
+  },
+
+  signupTxt: {
+    color: '#575757',
+    fontSize: FONT_SIZE.m,
   },
 });

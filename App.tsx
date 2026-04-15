@@ -1,39 +1,38 @@
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/navigation/StackNavigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider, useDispatch } from 'react-redux';
-import store from './src/redux/store'
+import  store  from './src/redux/store';
 
-import  AsyncStorage  from '@react-native-async-storage/async-storage';
-import { setCart } from './src/redux/slice';
-import { useEffect } from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setCart } from "./src/redux/slice";
+import { useEffect } from "react";
 
-const AppContent = ()=> {
-  const dispatch = useDispatch()
+// ✅ NEW COMPONENT
+const AppContent = () => {
+  const dispatch = useDispatch();
 
-  useEffect(()=> {
-    loadCart()
-  }, [])
+  useEffect(() => {
+    loadCart();
+  }, []);
 
-  const loadCart =async ()=> {
-    try{
-      const data = await AsyncStorage.getItem('cart');
-      if(data) {
-        dispatch(setCart(JSON.parse(data)))
+  const loadCart = async () => {
+    try {
+      const data = await AsyncStorage.getItem("cart");
+      if (data) {
+        dispatch(setCart(JSON.parse(data)));
       }
+    } catch (e) {
+      console.log("Load Error", e);
     }
-    catch(e){
-      console.log('load error',e);
-      
-    }
-  }
+  };
 
-  return(
+  return (
     <NavigationContainer>
       <StackNavigation />
     </NavigationContainer>
-  )
-
-}
+  );
+};
 
 
 function App() {
@@ -41,7 +40,6 @@ function App() {
     <Provider store={store}>
       <AppContent />
     </Provider>
-    
   );
 }
 

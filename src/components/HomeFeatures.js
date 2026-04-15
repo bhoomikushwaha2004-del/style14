@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {fontSize} from '../styles/sizes'
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+
 
 const HomeFeatures = ({handleCategory, handleSort}) => {
   const [sortedData,setSortedData] = useState(false)
@@ -15,13 +16,13 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
   return (
     <View style={styles.container}>
 
-      
+      {/* TOP ROW */}
       <View style={styles.topRow}>
         <Text style={styles.title}>All Featured</Text>
 
         <View style={styles.rightBtns}>
           
-          {/* Sort */}
+          {/* SORT BUTTON */}
           <TouchableOpacity onPress={()=> setSortedData(!sortedData)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Sort</Text>
@@ -50,7 +51,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
           )
         }
 
-          {/* Filter */}
+          {/* FILTER BUTTON */}
           <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Filter</Text>
@@ -98,7 +99,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
         </View>
       </View>
 
-      {/* Category */}
+      {/* CATEGORY SECTION */}
       <View style={styles.categoryCont}>
 
         {/* Mens */}
@@ -135,21 +136,20 @@ export default HomeFeatures;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    marginTop: 10,
+    paddingHorizontal: SPACING.m, // 16
+    marginTop: SPACING.s, // 10
   },
 
   topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // paddingBottom: 17,
   },
 
   title: {
-    fontSize: fontSize.xl,
+    fontSize: FONT_SIZE.xl, // 20
     fontWeight: 'bold',
-    color: '#000',
+    color: COLORS.black,
   },
 
   rightBtns: {
@@ -159,24 +159,18 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingHorizontal: 10,
+    backgroundColor: COLORS.white,
+    paddingHorizontal: SPACING.sm, // 10
     paddingVertical: 6,
-    borderRadius: 8,
+    borderRadius: RADIUS.md, // 8
     elevation: 3,
-    marginLeft: 10,
+    marginLeft: SPACING.sm,
   },
 
   btnText: {
-    fontSize: fontSize.xxs,
+    fontSize: FONT_SIZE.s, // 12
     marginRight: 5,
-    color: '#000',
-  },
-
-  categoryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
+    color: COLORS.black,
   },
 
   categoryItem: {
@@ -187,59 +181,57 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    paddingLeft:16
   },
 
   categoryText: {
     marginTop: 6,
-    fontSize: fontSize.xs,
+    fontSize: 13,
     color: '#555',
   },
-  categoryCont:{
-    padding: 16,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 10,
-      flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 20,
-  },
-  sortItem: {
-  paddingVertical: 8,
-  fontSize: fontSize.s,
-  color: '#333',
-},
-filterBox: {
-  position: 'absolute',
-  top: 40,
-  right: 20, 
-  backgroundColor: '#fff',
-  padding: 10,
-  borderRadius: 10,
-  elevation: 8,
-  shadowColor: '#000',
-  shadowOpacity: 0.2,
-  shadowRadius: 5,
-  width: 170,
-  zIndex: 100,
-},
 
-filterItem: {
-  paddingVertical: 10,
-  fontSize: fontSize.s,
-  color: '#333',
-},
-sortBox: {
-  position: 'absolute',
-  top: 50,
-  right: 20,
-  backgroundColor: '#fff',
-  padding: 10,
-  borderRadius: 10,
-  elevation: 8,
-  shadowColor: '#000',
-  shadowOpacity: 0.2,
-  shadowRadius: 5,
-  width: 160,
-  zIndex: 100,
-},
+  categoryCont: {
+    padding: SPACING.m,
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: SPACING.l,
+  },
+
+  sortItem: {
+    paddingVertical: SPACING.s,
+    fontSize: FONT_SIZE.m,
+    color: COLORS.gray,
+  },
+
+  filterItem: {
+    paddingVertical: SPACING.s,
+    fontSize: FONT_SIZE.m,
+    color: COLORS.gray,
+  },
+
+  sortBox: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    backgroundColor: COLORS.white,
+    padding: SPACING.s,
+    borderRadius: 10,
+    elevation: 8,
+    width: 160,
+    zIndex: 100,
+  },
+
+  filterBox: {
+    position: 'absolute',
+    top: 150,
+    right: 20,
+    backgroundColor: COLORS.white,
+    padding: SPACING.s,
+    borderRadius: 10,
+    elevation: 8,
+    width: 170,
+    zIndex: 100,
+  },
+
 });

@@ -12,6 +12,7 @@ import { useRoute } from '@react-navigation/native';
 import { removeCart, handleQuantity } from '../redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from 'react-native-vector-icons/MaterialIcons';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const PlaceOrder = () => {
   const route = useRoute();
@@ -185,132 +186,138 @@ const styles = StyleSheet.create({
   contentCont: {
     paddingTop: 37,
     paddingHorizontal: 17,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     elevation: 20,
-    // bottom:20
   },
+
   row: {
     flexDirection: 'row',
   },
+
   img: {
     height: 153,
     width: 123,
-    borderRadius: 4,
+    borderRadius: RADIUS.sm,
     resizeMode: 'contain',
   },
+
   infoCont: {
     paddingLeft: 21,
     paddingTop: 7,
     paddingBottom: 16,
     paddingRight: 40,
   },
+
   title: {
-    fontSize: 16,
+    fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
-    // paddingRight:40,
     width: 200,
   },
+
   desc: {
     paddingTop: 10,
-    fontSize: 13,
+    fontSize: FONT_SIZE.m,
     width: 200,
   },
+
   qty: {
     top: 8,
     flexDirection: 'row',
-    // borderWidth:1,
     width: 60,
     backgroundColor: '#F2F2F2',
-    borderRadius: 4,
+    borderRadius: RADIUS.sm,
   },
+
   plsbtn: {
     paddingVertical: 5,
     paddingHorizontal: 8,
   },
+
   qtyNo: {
     paddingTop: 5,
   },
+
   priceCont: {
     top: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  detailsCard:{
-  backgroundColor:'#fff',
-  padding:16
-},
 
-rowBetween:{
-  flexDirection:'row',
-  justifyContent:'space-between',
-  alignItems:'center',
-  paddingVertical:6
-},
+  detailsCard: {
+    backgroundColor: COLORS.white,
+    padding: SPACING.m,
+  },
 
-heading:{
-  fontSize:16,
-  fontWeight:'bold',
-  paddingVertical:10
-},
+  rowBetween: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 6,
+  },
 
-bold:{
-  fontWeight:'bold'
-},
+  heading: {
+    fontSize: FONT_SIZE.l,
+    fontWeight: 'bold',
+    paddingVertical: 10,
+  },
 
-red:{
-  color:'#F83758',
-  fontWeight:'bold'
-},
+  bold: {
+    fontWeight: 'bold',
+  },
 
-redSmall:{
-  color:'#F83758',
-  fontSize:12,
-  paddingTop:4
-},
+  red: {
+    color: COLORS.primary,
+    fontWeight: 'bold',
+  },
 
-divider:{
-  height:1,
-  backgroundColor:'#eee',
-  marginVertical:10
-},
+  redSmall: {
+    color: COLORS.primary,
+    fontSize: FONT_SIZE.s,
+    paddingTop: 4,
+  },
 
+  divider: {
+    height: 1,
+    backgroundColor: '#eee',
+    marginVertical: SPACING.sm,
+  },
 
-footer:{
-  position:'absolute',
-  bottom:0,
-  left:0,
-  right:0,
-  backgroundColor:'#fff',
-  padding:16,
-  borderTopWidth:1,
-  borderColor:'#eee'
-},
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: COLORS.white,
+    padding: SPACING.m,
+    borderTopWidth: 1,
+    borderColor: '#eee',
+  },
 
-footerRow:{
-  flexDirection:'row',
-  justifyContent:'space-between',
-  alignItems:'center'
-},
+  footerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 
-footerPrice:{
-  fontSize:16,
-  fontWeight:'bold'
-},
+  footerPrice: {
+    fontSize: FONT_SIZE.l,
+    fontWeight: 'bold',
+  },
 
-viewDetails:{
-  color:'#F83758',
-  fontSize:12
-},
+  viewDetails: {
+    color: COLORS.primary,
+    fontSize: FONT_SIZE.s,
+  },
 
-payBtn:{
-  backgroundColor:'#F83758',
-  paddingVertical:12,
-  paddingHorizontal:20,
-  borderRadius:6
-},
+  payBtn: {
+    backgroundColor: COLORS.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: RADIUS.md,
+  },
 
-payText:{
-  color:'#fff',
-  fontWeight:'bold'
-}
+  payText: {
+    color: COLORS.white,
+    fontWeight: 'bold',
+  },
 });

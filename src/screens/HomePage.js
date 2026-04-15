@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import Loader from '../components/Loader';
 import NoDataFound from '../components/NoDataFound'
 import {  useSelector } from 'react-redux';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const HomePage = () => {
   const [data, setData] = useState([]);
@@ -124,26 +125,26 @@ const ProductCards = ({ item, cartnvg }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
       
-      {/* img */}
+      {/* IMAGE */}
       <Image source={{ uri: item.image }} style={styles.image} />
 
-      {/* content */}
+      {/* CONTENT */}
       <View style={styles.content}>
         
-        {/* Title */}
+        {/* TITLE */}
         <Text style={styles.title} numberOfLines={1}>
           {item.title}
         </Text>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
         <Text style={styles.desc} numberOfLines={2}>
           {item.description}
         </Text>
 
-        {/* price */}
+        {/* PRICE */}
         <Text style={styles.price}>₹{item.price}</Text>
 
-        {/* Rate */}
+        {/* RATING */}
         <View style={styles.ratingRow}>
           <Text style={styles.star}>⭐⭐⭐⭐☆</Text>
           <Text style={styles.count}> {item.rating?.count}</Text>
@@ -158,45 +159,52 @@ const ProductCards = ({ item, cartnvg }) => {
 export default HomePage
 
 const styles = StyleSheet.create({
+  countCont: {
+    paddingHorizontal: SPACING.m,
+    paddingVertical: SPACING.s,
+  },
+
+  countText: {
+    fontSize: FONT_SIZE.m,
+  },
+
   card: {
-  width: '45%',
-  backgroundColor: '#fff',
-  borderRadius: 12,
-  margin: 8,
-  elevation: 2, 
-  overflow: 'hidden', 
-  shadowColor: '#000',
-  shadowOpacity: 0.08,
-  shadowRadius: 6,
-  elevation: 2,
-  left:16
-},
+    width: '45%',
+    backgroundColor: COLORS.white,
+    borderRadius: RADIUS.lg,
+    margin: SPACING.s,
+    elevation: 2,
+    shadowColor: COLORS.black,
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    overflow: 'hidden',
+  },
 
   image: {
-  width: '100%',
-  height: 150,
-  resizeMode: 'contain', 
-  backgroundColor: '#F5F5F5',
-},
+    width: '100%',
+    height: 150,
+    resizeMode: 'contain',
+    backgroundColor: COLORS.bg,
+  },
 
   content: {
-  padding: 12, 
-},
+    padding: SPACING.sm,
+  },
 
   title: {
-    fontSize: 16,
+    fontSize: FONT_SIZE.l,
     fontWeight: '600',
-    color: '#000',
+    color: COLORS.black,
   },
 
   desc: {
-    fontSize: 13,
-    color: '#666',
+    fontSize: FONT_SIZE.s,
+    color: COLORS.gray,
     marginTop: 6,
   },
 
   price: {
-    fontSize: 16,
+    fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
     marginTop: 8,
   },
@@ -209,11 +217,11 @@ const styles = StyleSheet.create({
 
   star: {
     color: '#F5A623',
-    fontSize: 12,
+    fontSize: FONT_SIZE.s,
   },
 
   count: {
     color: '#999',
-    fontSize: 12,
+    fontSize: FONT_SIZE.s,
   },
 })

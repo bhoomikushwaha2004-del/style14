@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import NoItem from '../components/NoItem'
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const Checkout = () => {
   const navigation = useNavigation();
@@ -91,181 +92,108 @@ const ItemList = ({ item }) => {
 export default Checkout
 
 const styles = StyleSheet.create({
-  shoptxtCont:{
-    paddingTop:24,
-    paddingLeft:22
+  shoptxtCont: {
+    paddingTop: SPACING.xl, // 24
+    paddingLeft: 22,
   },
-  shopTxt:{
-    fontSize:14,
-    fontWeight:'bold',
 
+  shopTxt: {
+    fontSize: FONT_SIZE.m, // 14
+    fontWeight: 'bold',
   },
-  contentCont:{
-    marginTop:10,
-    marginHorizontal:22,
-    backgroundColor:'#FFFFFF',
-    paddingBottom:14,
-    flexDirection:'row',
-    justifyContent:'space-evenly'
-    
+
+  card: {
+    backgroundColor: COLORS.white,
+    marginHorizontal: 22,
+    marginTop: 12,
+    borderRadius: RADIUS.md,
+    padding: SPACING.sm,
+    elevation: 2,
   },
-  imgCont:{
-    paddingTop:10,
-    paddingLeft:10,
-    backgroundColor:'#FFFFFF',
-    paddingBottom:56
 
+  row: {
+    flexDirection: 'row',
   },
-  img:{
-    width:130,
-    height:125
+
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: RADIUS.sm,
   },
-  titleCont:{
-    paddingTop:17,
-    paddingLeft:8,
-    paddingRight:20,
-    backgroundColor:'#FFFFFF',
-    paddingBottom:5,
-    maxWidth:200
+
+  info: {
+    flex: 1,
+    paddingLeft: SPACING.sm,
+    justifyContent: 'space-between',
   },
-  title:{
-    fontSize:14,
-    fontWeight:'bold',
-    paddingRight:20,
 
+  title: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
   },
-  rateCont:{
-    paddingTop:7,
-    paddingLeft:8
+
+  rating: {
+    fontSize: FONT_SIZE.s,
+    color: COLORS.gray,
   },
-  rate:{
-    fontSize:12,
-    fontWeight:'bold'
+
+  priceBox: {
+    borderWidth: 1,
+    borderColor: COLORS.lightGray,
+    borderRadius: RADIUS.sm,
+    alignSelf: 'flex-start',
   },
-  rating:{
-    fontSize:12,
-    paddingTop:7,
-    fontWeight:'bold'
+
+  price: {
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 6,
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
   },
-  priceCont:{
-    paddingTop:7,
-    paddingLeft:8,
-    paddingRight:98,
-    // borderWidth:0.3,
 
+  divider: {
+    height: 1,
+    backgroundColor: '#E5E5E5',
+    marginVertical: SPACING.sm,
   },
-  priceOuter:{
-    borderWidth:0.3,
-    borderColor:'#CACACA',
-    backgroundColor:'#FFFFFF',
-    borderRadius:4
+
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  price:{
-    paddingVertical:8,
-    paddingHorizontal:10,
-    fontSize:16,
-    color:'#000000',
 
+  totalText: {
+    fontSize: 13,
+    color: '#333',
   },
-  dividerCont:{
-    paddingTop:147,
-    paddingHorizontal:10,
-    paddingBottom:44,
-    borderWidth:1,
-    height:1,
-  width:311
+
+  totalPrice: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
   },
-  card:{
-  backgroundColor:'#FFFFFF',
-  marginHorizontal:22,
-  marginTop:12,
-  borderRadius:8,
-  padding:10,
-  elevation:2 
-},
 
-row:{
-  flexDirection:'row'
-},
+  bottomBtnContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: COLORS.white,
+    padding: SPACING.m,
+    borderTopWidth: 1,
+    borderColor: '#eee',
+  },
 
-img:{
-  width:100,
-  height:100,
-  borderRadius:6
-},
+  bagstyle: {
+    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.sm,
+    alignItems: 'center',
+  },
 
-info:{
-  flex:1,
-  paddingLeft:10,
-  justifyContent:'space-between'
-},
-
-title:{
-  fontSize:14,
-  fontWeight:'bold'
-},
-
-rating:{
-  fontSize:12,
-  color:'#666'
-},
-
-priceBox:{
-  borderWidth:1,
-  borderColor:'#CACACA',
-  borderRadius:4,
-  alignSelf:'flex-start'
-},
-
-price:{
-  paddingHorizontal:10,
-  paddingVertical:6,
-  fontSize:14,
-  fontWeight:'bold'
-},
-
-divider:{
-  height:1,
-  backgroundColor:'#E5E5E5',
-  marginVertical:10
-},
-
-totalRow:{
-  flexDirection:'row',
-  justifyContent:'space-between'
-},
-
-totalText:{
-  fontSize:13,
-  color:'#333'
-},
-
-totalPrice:{
-  fontSize:14,
-  fontWeight:'bold'
-},
-bottomBtnContainer:{
-  position:'absolute',
-  bottom:0,
-  left:0,
-  right:0,
-  backgroundColor:'#fff',
-  padding:15,
-  borderTopWidth:1,
-  borderColor:'#eee'
-},
-
-bagstyle:{
-  backgroundColor:'#FF5F6D',
-  borderRadius:6,
-  alignItems:'center'
-},
-
-bagtxt:{
-  color:'#fff',
-  fontSize:16,
-  fontWeight:'bold',
-  paddingVertical:12
-}
+  bagtxt: {
+    color: COLORS.white,
+    fontSize: FONT_SIZE.l,
+    fontWeight: 'bold',
+    paddingVertical: 12,
+  },
 
 })

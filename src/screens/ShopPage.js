@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import CartIcon from 'react-native-vector-icons/Ionicons' 
 import {addItems} from '../redux/slice'
+import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const ShopPage = () => {
     const navigation = useNavigation()
@@ -92,79 +93,88 @@ const ShopPage = () => {
 export default ShopPage
 
 const styles = StyleSheet.create({
-    imgCont:{
-        padding:16
-    },
-    img:{
-        height:250,
-        width:339,
-        resizeMode:'contain'
-    },
-    titleCont:{
-        paddingTop:16,
-        paddingHorizontal:16
-    },
-    title:{
-        fontSize:20,
-        fontWeight:'bold'
-    },
-    detailsCont:{
-        paddingTop:8,
-        paddingHorizontal:16
-    },
-    priceCont:{
-        paddingTop:8
-    },
-    price:{
-        fontSize:14,
-        fontWeight:'bold'
-    },
-    descriptionCont:{
-        paddingTop:8
-    
-    },
-    description:{
-        fontSize:12,
-        color:'#000000'
-    },
-    proddtl:{
-        fontSize:14,
-        fontWeight:'bold',
-        color:'#000000'
-    },
-    btnCont:{
-        paddingTop:12,
-        paddingLeft:16,
-        flexDirection:'row'
-    },
-    addedbtn:{
-    // borderWidth:1,
+    imgCont: {
+    padding: SPACING.m,
+  },
 
-   },
-   gotoCartimg:{
-    height:40,
-    width:136,
-    // borderWidth:1,
-   },
-   addcartbtn:{
-    flexDirection:'row',
-    backgroundColor:'#3F92FF',
-    borderTopLeftRadius:20,
-    borderTopRightRadius:4,
-    borderBottomRightRadius:4,
-    borderBottomLeftRadius:20,
-    
-   },
-   addtoCartTxt:{
-    paddingVertical:8,
-    paddingLeft:16,
-    paddingRight:8,
-    color:'#FFFFFF'
-   },
-   addtocartIcon:{
-    paddingVertical:10,
-    paddingHorizontal:10
-   }
+  img: {
+    height: 250,
+    width: 339,
+    resizeMode: 'contain',
+  },
+
+  titleCont: {
+    paddingTop: SPACING.m,
+    paddingHorizontal: SPACING.m,
+  },
+
+  title: {
+    fontSize: FONT_SIZE.xxl, // 20
+    fontWeight: 'bold',
+  },
+
+  detailsCont: {
+    paddingTop: SPACING.s,
+    paddingHorizontal: SPACING.m,
+  },
+
+  priceCont: {
+    paddingTop: SPACING.s,
+  },
+
+  price: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
+  },
+
+  proddtl: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
+    color: COLORS.black,
+  },
+
+  descriptionCont: {
+    paddingTop: SPACING.s,
+  },
+
+  description: {
+    fontSize: FONT_SIZE.s,
+    color: COLORS.black,
+  },
+
+  btnCont: {
+    paddingTop: SPACING.s,
+    paddingLeft: SPACING.m,
+    flexDirection: 'row',
+  },
+
+  addedbtn: {},
+
+  gotoCartimg: {
+    height: 40,
+    width: 136,
+  },
+
+  addcartbtn: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.secondary,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: RADIUS.sm,
+    borderBottomRightRadius: RADIUS.sm,
+    borderBottomLeftRadius: 20,
+  },
+
+  addtoCartTxt: {
+    paddingVertical: SPACING.s,
+    paddingLeft: SPACING.m,
+    paddingRight: SPACING.s,
+    color: COLORS.white,
+  },
+
+  addtocartIcon: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.sm,
+  },
 
     
 })
