@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {fontSize} from '../styles/sizes'
 
 const HomeFeatures = ({handleCategory, handleSort}) => {
   const [sortedData,setSortedData] = useState(false)
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 20,
+    fontSize: fontSize.xl,
     fontWeight: 'bold',
     color: '#000',
   },
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   },
 
   btnText: {
-    fontSize: 12,
+    fontSize: fontSize.xxs,
     marginRight: 5,
     color: '#000',
   },
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
 
   categoryText: {
     marginTop: 6,
-    fontSize: 13,
+    fontSize: fontSize.xs,
     color: '#555',
   },
   categoryCont:{
@@ -204,13 +205,13 @@ const styles = StyleSheet.create({
   },
   sortItem: {
   paddingVertical: 8,
-  fontSize: 14,
+  fontSize: fontSize.s,
   color: '#333',
 },
 filterBox: {
   position: 'absolute',
-  top: 150,
-  right: 20, // thoda left shift so it doesn't overlap sort
+  top: 40,
+  right: 20, 
   backgroundColor: '#fff',
   padding: 10,
   borderRadius: 10,
@@ -224,7 +225,7 @@ filterBox: {
 
 filterItem: {
   paddingVertical: 10,
-  fontSize: 14,
+  fontSize: fontSize.s,
   color: '#333',
 },
 sortBox: {
