@@ -1,19 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 export default function GetStarted() {
     
   const navigation = useNavigation();
-  const homepagenvg = (item) => {
-    navigation.navigate('bottomTab',{
-        screen:'home' ,
-        params: {
-          item: item,
-
-        }
-    });
+  const homepagenvg = () => {
+    navigation.navigate('bottomTab');
   };
   return (
     <>

@@ -1,6 +1,9 @@
-export const COLORS = {
-  pink: '#F83758',
-  grey: '#A8A8A9',
-  lightPink: '#FCF3F6',
-  textGrey: '#575757',
-};
+export const colors = {
+    grey:'#A8A8A9',
+    pink:'#F83758',
+    pink2:'#FF4B26',
+    white:'#FCF3F6',
+    black:'#000000',
+    darkGrey:'#626262',
+    
+}

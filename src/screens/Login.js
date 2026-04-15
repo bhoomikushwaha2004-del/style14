@@ -223,6 +223,7 @@ const styles = StyleSheet.create({
     bottom:18
     // paddingTop:49,
     // alignSelf:''
-  },
+  }
   
+
 });

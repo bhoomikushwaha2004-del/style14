@@ -14,13 +14,13 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
   return (
     <View style={styles.container}>
 
-      {/* TOP ROW */}
+      
       <View style={styles.topRow}>
         <Text style={styles.title}>All Featured</Text>
 
         <View style={styles.rightBtns}>
           
-          {/* SORT BUTTON */}
+          {/* Sort */}
           <TouchableOpacity onPress={()=> setSortedData(!sortedData)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Sort</Text>
@@ -49,7 +49,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
           )
         }
 
-          {/* FILTER BUTTON */}
+          {/* Filter */}
           <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Filter</Text>
@@ -97,7 +97,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
         </View>
       </View>
 
-      {/* CATEGORY SECTION */}
+      {/* Category */}
       <View style={styles.categoryCont}>
 
         {/* Mens */}

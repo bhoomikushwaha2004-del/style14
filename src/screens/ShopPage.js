@@ -1,137 +1,4 @@
-// import { useNavigation, useRoute } from "@react-navigation/native";
-// import { useState } from "react";
-// import {  Image, StyleSheet, Text, TouchableOpacity, View, } from "react-native";
-// import { Card } from "react-native-paper";
-// import CartIcon from 'react-native-vector-icons/Ionicons' 
-// import { useDispatch, useSelector } from "react-redux";
-// import {addItems} from '../redux/slice'
-
-// export default function ShopPage(){
-//     const navigation = useNavigation()
-//     const[cart,setCart] = useState([])
-//     const dispatch = useDispatch()
-
-//     const route = useRoute();
-//     const { item } = route.params;
-//     console.log(item, "item");
-
-//     const selector= useSelector((state)=> state.cart.items)
-
-    
-//     const addToCart=(item)=>{
-//         const updatedCart=[...cart,item]
-//         setCart(updatedCart)
-
-//         dispatch(addItems({...item, quantity:1}))
-
-//         navigation.navigate('bottomTab',{
-//             screen:'home',
-//             params:{item,cart}})
-//     }
-
-//     const goToCart=(item)=>{
-//         const updatedCart=[...cart,item]
-//         setCart(updatedCart)
-
-//         dispatch(addItems({...item, quantity:1}))
-
-//         navigation.navigate('bottomTab',{
-//             screen:'cart',
-//             params:{item,cart}})
-//     }
-
-
-//     return(
-//         <View style={{backgroundColor:'#F9F9F9',height:'100%'}}>
-//         <View style={{margin:10}}>
-//             <Image source={{ uri: item.image}} style={style.img} />
-//         </View>
-
-//         <View>
-//             <Text style={style.titletxt}>{item.title} </Text>
-//             <Text style={style.pricetxt}>₹{item.price} </Text>
-//             <Text style={{fontWeight:'bold',marginLeft:10,marginTop:10,fontSize:14}}>Product Details</Text>
-
-//             <Text style={{margin:10}}>{item.description} </Text>
-
-
-// {/* button  */}
-//             { selector.find(cartItem=> cartItem.id === item.id) ? (
-//                 <TouchableOpacity style={style.addedbtn}  >
-//                     <Image source={require('../assets/goToCart.png')} style={style.gotoCartimg}/>
-//                 </TouchableOpacity>
-//             ): (
-//                 <View>
-//                 <TouchableOpacity style={style.addcartbtn} onPress={()=>addToCart(item)}>
-//                     <CartIcon name='cart-outline' size={24} color={'white'} style={{marginLeft:10,marginTop:5}} />
-//                     <Text style={{color:'#FFFFFF',marginLeft:20,
-//                         marginTop:5
-//                     }}>Add to Cart</Text>
-//                 </TouchableOpacity>
-//             </View>
-//             )
-//         }
-            
-//         </View>
-        
-
-        
-//         </View>
-//     )
-// }
-
-// const style=StyleSheet.create({
-//    img:{
-//     height:250,
-//     width:339,
-//     // margin:10,
-//     backgroundColor:'#F9F9F9',
-//     resizeMode:'contain',
-//     marginLeft:20
-//    },
-//    titletxt:{
-//     fontSize:20,
-//     fontWeight:'bold',
-//     margin:10
-//    },
-//    pricetxt:{
-//     fontSize:14,
-//     fontWeight:'bold',
-//     marginLeft:10
-//    },
-//    addcartbtn:{
-//     borderWidth:1,
-//     marginLeft:20,
-//     width:136,
-//     height:36,
-//     backgroundColor:'#3F92FF',
-//     borderColor:'#3F92FF',
-//     borderRadius:5,
-//     flexDirection:'row',
-//     marginBottom:20,
-//     borderBottomLeftRadius:18,
-//     borderTopLeftRadius:18
-//    },
-//    addedbtn:{
-//     borderWidth:1,
-//     marginLeft:20,
-//     width:136,
-//     height:36,
-//     backgroundColor:'#3F92FF',
-//     borderColor:'#3F92FF',
-//     borderRadius:5,
-//     flexDirection:'row',
-//     marginBottom:20,
-//     borderBottomLeftRadius:18,
-//     borderTopLeftRadius:18
-//    },
-//    gotoCartimg:{
-//     height:40,
-//     width:136
-//    }
-// })
-
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -162,13 +29,9 @@ const ShopPage = () => {
     }
 
     const goToCart=(item)=>{
-        const updatedCart=[...cart,item]
-        setCart(updatedCart)
-
-        dispatch(addItems({...item, quantity:1}))
 
         navigation.navigate('bottomTab',{
-            screen:'cart',
+            screen:'checkout',
             params:{item,cart}})
     }
   return (
@@ -201,8 +64,27 @@ const ShopPage = () => {
         {/* description */}
         <View style={styles.descriptionCont}>
             <Text style={styles.description}>{item.description}</Text>
-        </View>
+        </View>    
       </View>
+
+
+      {/* Btn */}
+      <View style={styles.btnCont}>
+        { selector.find(cartItem => cartItem.id === item.id) ? (
+            <TouchableOpacity style={styles.addedbtn} onPress={()=>goToCart(item)} >
+                    <Image source={require('../assets/goToCart.png')} style={styles.gotoCartimg}/>
+               </TouchableOpacity>
+        ):(
+            <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
+                   <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
+                    <Text style={styles.addtoCartTxt}>Add to Cart</Text>
+                </TouchableOpacity>
+        )}
+        
+      </View>
+
+
+      
     </>
   )
 }
@@ -250,6 +132,39 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'#000000'
     },
+    btnCont:{
+        paddingTop:12,
+        paddingLeft:16,
+        flexDirection:'row'
+    },
+    addedbtn:{
+    // borderWidth:1,
+
+   },
+   gotoCartimg:{
+    height:40,
+    width:136,
+    // borderWidth:1,
+   },
+   addcartbtn:{
+    flexDirection:'row',
+    backgroundColor:'#3F92FF',
+    borderTopLeftRadius:20,
+    borderTopRightRadius:4,
+    borderBottomRightRadius:4,
+    borderBottomLeftRadius:20,
+    
+   },
+   addtoCartTxt:{
+    paddingVertical:8,
+    paddingLeft:16,
+    paddingRight:8,
+    color:'#FFFFFF'
+   },
+   addtocartIcon:{
+    paddingVertical:10,
+    paddingHorizontal:10
+   }
 
     
 })

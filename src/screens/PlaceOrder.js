@@ -1,179 +1,133 @@
 import {
   FlatList,
+  Image,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
-import { Card } from 'react-native-paper';
+import React from 'react';
 import Coupon from 'react-native-vector-icons/FontAwesome5';
 import { useRoute } from '@react-navigation/native';
 import { removeCart, handleQuantity } from '../redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import DeleteIcon from 'react-native-vector-icons/MaterialIcons'
+import DeleteIcon from 'react-native-vector-icons/MaterialIcons';
 
 const PlaceOrder = () => {
   const route = useRoute();
 
   const { selector } = route.params;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.items)
+  const cartItems = useSelector(state => state.cart.items);
   // console.log(cartItems, 'cartitems');
-  
 
   const manageQuantity = (id, q) => {
-    let quantity = q <=1 ? 1: q;
+    let quantity = q <= 1 ? 1 : q;
 
-    dispatch(handleQuantity({id,quantity}))
-    console.log(manageQuantity, 'managequantity' );
+    dispatch(handleQuantity({ id, quantity }));
+    console.log(manageQuantity, 'managequantity');
   };
-    
-  
-
-  
 
   const totalPrice = cartItems.reduce((sum, item) => {
     const qty = item.quantity ? item.quantity : 1;
     return sum + item.price * qty;
   }, 0);
 
-
-  if(cartItems.length === 0) {
-    return(
-      <View> 
-        <Text style={{fontSize:18,fontWeight:'bold'}}>No items in Cart 🛒 </Text>
+  if (cartItems.length === 0) {
+    return (
+      <View>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+          No items in Cart 🛒{' '}
+        </Text>
       </View>
-    )
+    );
   }
-
   return (
     <>
-      <View style={{ backgroundColor: '#FFFFFF' }}>
-        <Text>{cartItems.length} items </Text>
-
-        <FlatList
-          data={cartItems}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <CartItems
-              item={item}
-              selector={selector}
-              cartItems={cartItems}
-              manageQuantity={manageQuantity}
-              dispatch={dispatch}
-              removeCart={removeCart}
-            />
-          )}
-        />
-
-        {/* details */}
-        <View style={{ margin: 15, backgroundColor: '#FFFFFF', padding: 10 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={styles.couponicon}>
-              <Coupon name="ticket-alt" size={24} />
-            </View>
-
-            <Text style={styles.coupontxt}>Apply Coupons</Text>
-
-            <Text style={styles.selectTxt}>Select</Text>
-          </View>
-
-          <View
-            style={{
-              height: 0,
-              borderWidth: 1,
-              borderColor: '#BBBBBB',
-              margin: 5,
-              marginTop: 20,
-            }}
+      <FlatList
+        data={cartItems}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <CartItems
+            item={item}
+            selector={selector}
+            cartItems={cartItems}
+            manageQuantity={manageQuantity}
+            dispatch={dispatch}
+            removeCart={removeCart}
           />
+        )}
 
-          <View>
-            <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
-              Order Payment Details
-            </Text>
+        ListFooterComponent={<OrderDetails totalPrice={totalPrice} Coupon={<Coupon />}/>}
+        contentContainerStyle={{paddingBottom:120}}
+      />
 
-            <View style={{ flexDirection: 'row', marginTop: 10 }}>
-              <Text>Order Amounts</Text>
-              <Text style={{ left: 200, fontWeight: 'bold' }}>₹{totalPrice}</Text>
-            </View>
-
-            <View style={{ flexDirection: 'row', marginTop: 10 }}>
-              <Text>Convenience</Text>
-              <Text style={{ color: '#F83758', fontWeight: 'bold' }}>
-                {' '}
-                Know more
-              </Text>
-              <Text style={{ left: 100, fontWeight: 'bold', color: '#F83758' }}>
-                Apply Coupon
-              </Text>
-            </View>
-
-            <View
-              style={{ flexDirection: 'row', marginTop: 10, marginBottom: 30 }}
-            >
-              <Text>Delivery Fee</Text>
-              <Text style={{ left: 240, fontWeight: 'bold', color: '#F83758' }}>
-                Free
-              </Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              height: 0,
-              borderWidth: 1,
-              borderColor: '#BBBBBB',
-              margin: 5,
-              marginTop: 20,
-            }}
-          />
-
-          <View>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={{ fontWeight: 'bold' }}>Order Total</Text>
-              <Text style={{ fontWeight: 'bold', left: 200 }}>
-                ₹ {totalPrice}
-              </Text>
-            </View>
-
-            <View style={{ flexDirection: 'row' }}>
-              <Text>EMI Available</Text>
-              <Text style={{ color: '#F83758', left: 20, fontWeight: 'bold' }}>
-                Details
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
+      
 
       {/* Payment Footer */}
+        <View style={styles.footer}>
+    <View style={styles.footerRow}>
       <View>
-        <View style={styles.container}>
-          <Text style={{ fontWeight: 'bold', top: 40, left: 22, fontSize: 16 }}>
-            ₹ {totalPrice}
-          </Text>
-          <Text
-            style={{
-              color: '#F83758',
-              fontSize: 12,
-              left: 21,
-              top: 45,
-              fontWeight: 'bold',
-              
-            }}
-          >
-            View Details{' '}
-          </Text>
+        <Text style={styles.footerPrice}>₹ {totalPrice.toFixed(0)}</Text>
+        <Text style={styles.viewDetails}>View Details</Text>
+      </View>
 
-          <View>
-            <TouchableOpacity style={styles.paymentbtn}>
-              <Text style={{color:'#FFFFFF',textAlign:'center',fontSize:17,top:10}}>Proceed to Payment</Text>
-            </TouchableOpacity>
+      <TouchableOpacity style={styles.payBtn}>
+        <Text style={styles.payText}>Proceed to Payment</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+    </>
+  );
+};
+
+const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
+  return (
+    <>
+      <View style={styles.contentCont}>
+        <View style={styles.row}>
+          <Image source={{ uri: item.image }} style={styles.img} />
+
+          <View style={styles.infoCont}>
+            <Text style={styles.title} numberOfLines={1}>
+              {item.title}
+            </Text>
+
+            <Text style={styles.desc} numberOfLines={1}>
+              {item.description}
+            </Text>
+
+            <View style={styles.qty}>
+              <TouchableOpacity
+                onPress={() =>
+                  manageQuantity(item.id, (item.quantity || 1) - 1)
+                }
+                style={styles.plsbtn}
+              >
+                <Text>{'-'}</Text>
+              </TouchableOpacity>
+
+              <Text style={styles.qtyNo}>{item.quantity || 1}</Text>
+
+              <TouchableOpacity
+                onPress={() =>
+                  manageQuantity(item.id, (item.quantity || 1) + 1)
+                }
+                style={styles.plsbtn}
+              >
+                <Text>{'+'}</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.priceCont}>
+              <Text>₹ {(item.price * (item.quantity || 1)).toFixed(0)}</Text>
+
+              <TouchableOpacity onPress={() => dispatch(removeCart(item.id))}>
+                <DeleteIcon name="delete" size={24} color={'red'} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -181,107 +135,182 @@ const PlaceOrder = () => {
   );
 };
 
-const CartItems = ({ item, manageQuantity, dispatch,removeCart }) => {
+const OrderDetails = ({ totalPrice }) => {
   return (
-    <>
-      <Card style={styles.card}>
-        <View style={{ flexDirection: 'row' }}>
-          <Card.Cover source={{ uri: item.image }} style={styles.img} />
-          <Card.Content>
-            <Text variant="titleLarge" style={{fontWeight:'bold', paddingTop:7,fontSize:16,paddingLeft:21,paddingRight:39,paddingBottom:8,width:188,height:23}} >{item.title} </Text>
-            <Text variant="bodyMedium" ellipsizeMode="tail" numberOfLines={1} style={{paddingLeft:21,width:188}}>{item.description} </Text>
+    <View style={styles.detailsCard}>
 
+      {/* Coupon */}
+      <View style={styles.rowBetween}>
+        <Text style={styles.bold}>Apply Coupons</Text>
+        <Text style={styles.red}>Select</Text>
+      </View>
 
-            <View style={{flexDirection:'row',alignItems:'center', marginTop:10}}>
-              <Text>Quantity </Text>
-              <TouchableOpacity style={{padding:5, borderWidth:1,}} onPress={()=> manageQuantity(item.id, (item.quantity || 1)-1)}>
-                <Text>{'-'} </Text>
-              </TouchableOpacity>
-              <Text>{item.quantity || 1} </Text>
+      <View style={styles.divider} />
 
-              <TouchableOpacity style={{padding:5, borderWidth:1,}} onPress={()=> manageQuantity(item.id, (item.quantity || 1)+1)}>
-                <Text>{'+'} </Text>
-              </TouchableOpacity>
+      {/* Payment Details */}
+      <Text style={styles.heading}>Order Payment Details</Text>
 
-            </View>
+      <View style={styles.rowBetween}>
+        <Text>Order Amounts</Text>
+        <Text style={styles.bold}>₹{totalPrice.toFixed(0)}</Text>
+      </View>
 
-            <View style={{flexDirection:'row', justifyContent:'space-between', top:20}}>
-              <Text>₹ {item.price * (item.quantity ||1 )}</Text>
+      <View style={styles.rowBetween}>
+        <Text>Convenience</Text>
+        <Text style={styles.red}>Apply Coupon</Text>
+      </View>
 
-            <TouchableOpacity onPress={()=> dispatch(removeCart(item.id))}>
-              <DeleteIcon name='delete' size={24} color={'red'} />
-            </TouchableOpacity>
-            </View>
+      <View style={styles.rowBetween}>
+        <Text>Delivery Fee</Text>
+        <Text style={styles.red}>Free</Text>
+      </View>
 
-          </Card.Content>
-        </View>
-      </Card>
-    </>
+      <View style={styles.divider} />
+
+      {/* Total */}
+      <View style={styles.rowBetween}>
+        <Text style={styles.bold}>Order Total</Text>
+        <Text style={styles.bold}>₹{totalPrice.toFixed(0)}</Text>
+      </View>
+
+      <Text style={styles.redSmall}>EMI Available</Text>
+
+    </View>
   );
 };
 
 export default PlaceOrder;
 
 const styles = StyleSheet.create({
-  card: {
-    height: 154,
-    margin: 15,
+  contentCont: {
+    paddingTop: 37,
+    paddingHorizontal: 17,
     backgroundColor: '#FFFFFF',
-    // elevation:0
+    elevation: 20,
+    // bottom:20
+  },
+  row: {
+    flexDirection: 'row',
   },
   img: {
     height: 153,
     width: 123,
-    marginLeft: 10,
+    borderRadius: 4,
+    resizeMode: 'contain',
+  },
+  infoCont: {
+    paddingLeft: 21,
+    paddingTop: 7,
+    paddingBottom: 16,
+    paddingRight: 40,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    // paddingRight:40,
+    width: 200,
+  },
+  desc: {
+    paddingTop: 10,
+    fontSize: 13,
+    width: 200,
+  },
+  qty: {
+    top: 8,
+    flexDirection: 'row',
+    // borderWidth:1,
+    width: 60,
+    backgroundColor: '#F2F2F2',
     borderRadius: 4,
   },
-  dropdown: {
-    height: 30,
-    width: 86,
-    borderWidth: 1,
-    backgroundColor: '#F2F2F2',
-    borderRadius: 5,
-    marginTop: 40,
+  plsbtn: {
+    paddingVertical: 5,
+    paddingHorizontal: 8,
   },
-  couponicon: {
-    color: '#231F20',
-    height: 20,
-    width: 31,
+  qtyNo: {
+    paddingTop: 5,
   },
-  coupontxt: {
-    fontSize: 16,
-    color: '#000000',
-    fontWeight: 'bold',
+  priceCont: {
+    top: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  selectTxt: {
-    color: '#F83758',
-    fontSize: 14,
-    marginLeft: 170,
-    fontWeight: 'bold',
-  },
-  container: {
-    height: 146,
-    width: '100%',
-    borderRadius: 24,
-    borderWidth: 0.5,
-    top: 145,
-    borderColor: 'grey',
-    // marginLeft:10
-  },
-  paymentbtn:{
-    borderWidth:1,
-    backgroundColor:'#F83758',
-    borderColor:'#F83758',
-    left:152,
-    height:48,
-    width:219,
-    borderRadius:5
-  },
-  deletebtn:{
-    borderWidth:1,
-    height:30,
-    width: 70,
-    borderRadius:10,
-    borderColor:'red'
-  }
+  detailsCard:{
+  backgroundColor:'#fff',
+  padding:16
+},
+
+rowBetween:{
+  flexDirection:'row',
+  justifyContent:'space-between',
+  alignItems:'center',
+  paddingVertical:6
+},
+
+heading:{
+  fontSize:16,
+  fontWeight:'bold',
+  paddingVertical:10
+},
+
+bold:{
+  fontWeight:'bold'
+},
+
+red:{
+  color:'#F83758',
+  fontWeight:'bold'
+},
+
+redSmall:{
+  color:'#F83758',
+  fontSize:12,
+  paddingTop:4
+},
+
+divider:{
+  height:1,
+  backgroundColor:'#eee',
+  marginVertical:10
+},
+
+
+footer:{
+  position:'absolute',
+  bottom:0,
+  left:0,
+  right:0,
+  backgroundColor:'#fff',
+  padding:16,
+  borderTopWidth:1,
+  borderColor:'#eee'
+},
+
+footerRow:{
+  flexDirection:'row',
+  justifyContent:'space-between',
+  alignItems:'center'
+},
+
+footerPrice:{
+  fontSize:16,
+  fontWeight:'bold'
+},
+
+viewDetails:{
+  color:'#F83758',
+  fontSize:12
+},
+
+payBtn:{
+  backgroundColor:'#F83758',
+  paddingVertical:12,
+  paddingHorizontal:20,
+  borderRadius:6
+},
+
+payText:{
+  color:'#fff',
+  fontWeight:'bold'
+}
 });

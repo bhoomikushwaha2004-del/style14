@@ -3,9 +3,9 @@ import React from 'react'
 
 const NoItem = () => {
   return (
-    <View>
-      <Text>NoItem</Text>
-    </View>
+    <View style={{top:300, left:100}}> 
+            <Text style={{fontSize:18,fontWeight:'bold'}}>No items in Cart 🛒 </Text>
+          </View>
   )
 }
 

@@ -7,7 +7,7 @@ const HomeHeader = ({ handleSearch }) => {
     
       <View style={styles.container}>
       
-      {/* LEFT MENU */}
+      {/* hdr line */}
       <TouchableOpacity>
         <Image
           source={require('../assets/hdr-lines.png')}
@@ -15,7 +15,7 @@ const HomeHeader = ({ handleSearch }) => {
         />
       </TouchableOpacity>
 
-      {/* CENTER LOGO */}
+      {/* logo */}
       <View style={styles.center}>
         <Image
           source={require('../assets/stylish-icon.png')}
@@ -24,7 +24,7 @@ const HomeHeader = ({ handleSearch }) => {
         <Text style={styles.logoText}>Stylish</Text>
       </View>
 
-      {/* RIGHT PROFILE */}
+      {/* Profile */}
       <TouchableOpacity>
         <Image
           source={require('../assets/profile-picture.png')}

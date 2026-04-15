@@ -124,26 +124,26 @@ const ProductCards = ({ item, cartnvg }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
       
-      {/* IMAGE */}
+      {/* img */}
       <Image source={{ uri: item.image }} style={styles.image} />
 
-      {/* CONTENT */}
+      {/* content */}
       <View style={styles.content}>
         
-        {/* TITLE */}
+        {/* Title */}
         <Text style={styles.title} numberOfLines={1}>
           {item.title}
         </Text>
 
-        {/* DESCRIPTION */}
+        {/* Description */}
         <Text style={styles.desc} numberOfLines={2}>
           {item.description}
         </Text>
 
-        {/* PRICE */}
+        {/* price */}
         <Text style={styles.price}>₹{item.price}</Text>
 
-        {/* RATING */}
+        {/* Rate */}
         <View style={styles.ratingRow}>
           <Text style={styles.star}>⭐⭐⭐⭐☆</Text>
           <Text style={styles.count}> {item.rating?.count}</Text>
@@ -174,12 +174,12 @@ const styles = StyleSheet.create({
   image: {
   width: '100%',
   height: 150,
-  resizeMode: 'contain', // 🔥 NO CROP
-  backgroundColor: '#F5F5F5', // light bg like figma
+  resizeMode: 'contain', 
+  backgroundColor: '#F5F5F5',
 },
 
   content: {
-  padding: 12, // 🔥 yaha shift kiya
+  padding: 12, 
 },
 
   title: {
