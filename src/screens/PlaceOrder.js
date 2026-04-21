@@ -28,7 +28,7 @@ const PlaceOrder = () => {
     let quantity = q <= 1 ? 1 : q;
 
     dispatch(handleQuantity({ id, quantity }));
-    console.log(manageQuantity, 'managequantity');
+    // console.log(manageQuantity, 'managequantity');
   };
 
   const totalPrice = cartItems.reduce((sum, item) => {
@@ -53,15 +53,13 @@ const PlaceOrder = () => {
         renderItem={({ item }) => (
           <CartItems
             item={item}
-            selector={selector}
-            cartItems={cartItems}
             manageQuantity={manageQuantity}
             dispatch={dispatch}
             removeCart={removeCart}
           />
         )}
 
-        ListFooterComponent={<OrderDetails totalPrice={totalPrice} Coupon={<Coupon />}/>}
+        ListFooterComponent={<OrderDetails totalPrice={totalPrice} coupon={<Coupon />}/>}
         contentContainerStyle={{paddingBottom:120}}
       />
 
@@ -136,12 +134,13 @@ const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
   );
 };
 
-const OrderDetails = ({ totalPrice }) => {
+const OrderDetails = ({ totalPrice,coupon  }) => {
   return (
     <View style={styles.detailsCard}>
 
       {/* Coupon */}
       <View style={styles.rowBetween}>
+        <Text>{coupon}</Text>
         <Text style={styles.bold}>Apply Coupons</Text>
         <Text style={styles.red}>Select</Text>
       </View>
@@ -189,37 +188,31 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     elevation: 20,
   },
-
   row: {
     flexDirection: 'row',
   },
-
   img: {
     height: 153,
     width: 123,
     borderRadius: RADIUS.sm,
     resizeMode: 'contain',
   },
-
   infoCont: {
     paddingLeft: 21,
     paddingTop: 7,
     paddingBottom: 16,
     paddingRight: 40,
   },
-
   title: {
     fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
     width: 200,
   },
-
   desc: {
     paddingTop: 10,
     fontSize: FONT_SIZE.m,
     width: 200,
   },
-
   qty: {
     top: 8,
     flexDirection: 'row',
@@ -227,61 +220,50 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderRadius: RADIUS.sm,
   },
-
   plsbtn: {
     paddingVertical: 5,
     paddingHorizontal: 8,
   },
-
   qtyNo: {
     paddingTop: 5,
   },
-
   priceCont: {
     top: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   detailsCard: {
     backgroundColor: COLORS.white,
     padding: SPACING.m,
   },
-
   rowBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 6,
   },
-
   heading: {
     fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
     paddingVertical: 10,
   },
-
   bold: {
     fontWeight: 'bold',
   },
-
   red: {
     color: COLORS.primary,
     fontWeight: 'bold',
   },
-
   redSmall: {
     color: COLORS.primary,
     fontSize: FONT_SIZE.s,
     paddingTop: 4,
   },
-
   divider: {
     height: 1,
     backgroundColor: '#eee',
     marginVertical: SPACING.sm,
   },
-
   footer: {
     position: 'absolute',
     bottom: 0,
@@ -292,30 +274,25 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#eee',
   },
-
   footerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-
   footerPrice: {
     fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
   },
-
   viewDetails: {
     color: COLORS.primary,
     fontSize: FONT_SIZE.s,
   },
-
   payBtn: {
     backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: RADIUS.md,
   },
-
   payText: {
     color: COLORS.white,
     fontWeight: 'bold',

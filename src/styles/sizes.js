@@ -4,3 +4,4 @@ export const SIZES = {
   buttonText: 20,
   heading: 36,
 };
+

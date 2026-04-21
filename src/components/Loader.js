@@ -21,12 +21,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
-
   loader: {
     justifyContent: 'center',
     marginTop: 300,
   },
-
   txt: {
     marginLeft: 50,
     marginTop: SPACING.s,

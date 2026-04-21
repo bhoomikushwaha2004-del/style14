@@ -96,12 +96,10 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.xl, // 24
     paddingLeft: 22,
   },
-
   shopTxt: {
     fontSize: FONT_SIZE.m, // 14
     fontWeight: 'bold',
   },
-
   card: {
     backgroundColor: COLORS.white,
     marginHorizontal: 22,
@@ -110,68 +108,56 @@ const styles = StyleSheet.create({
     padding: SPACING.sm,
     elevation: 2,
   },
-
   row: {
     flexDirection: 'row',
   },
-
   img: {
     width: 100,
     height: 100,
     borderRadius: RADIUS.sm,
   },
-
   info: {
     flex: 1,
     paddingLeft: SPACING.sm,
     justifyContent: 'space-between',
   },
-
   title: {
     fontSize: FONT_SIZE.m,
     fontWeight: 'bold',
   },
-
   rating: {
     fontSize: FONT_SIZE.s,
     color: COLORS.gray,
   },
-
   priceBox: {
     borderWidth: 1,
     borderColor: COLORS.lightGray,
     borderRadius: RADIUS.sm,
     alignSelf: 'flex-start',
   },
-
   price: {
     paddingHorizontal: SPACING.sm,
     paddingVertical: 6,
     fontSize: FONT_SIZE.m,
     fontWeight: 'bold',
   },
-
   divider: {
     height: 1,
     backgroundColor: '#E5E5E5',
     marginVertical: SPACING.sm,
   },
-
   totalRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   totalText: {
     fontSize: 13,
     color: '#333',
   },
-
   totalPrice: {
     fontSize: FONT_SIZE.m,
     fontWeight: 'bold',
   },
-
   bottomBtnContainer: {
     position: 'absolute',
     bottom: 0,
@@ -182,13 +168,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: '#eee',
   },
-
   bagstyle: {
     backgroundColor: COLORS.primary,
     borderRadius: RADIUS.sm,
     alignItems: 'center',
   },
-
   bagtxt: {
     color: COLORS.white,
     fontSize: FONT_SIZE.l,

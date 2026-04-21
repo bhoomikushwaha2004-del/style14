@@ -95,7 +95,7 @@ const HomePage = () => {
 
     {/* count */}
        <View>
-         <Text>{filteredData.length} items </Text>
+         <Text style={styles.noItems}>{filteredData.length} items </Text>
        </View>
 
     <View>
@@ -125,26 +125,26 @@ const ProductCards = ({ item, cartnvg }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
       
-      {/* IMAGE */}
+      {/* img */}
       <Image source={{ uri: item.image }} style={styles.image} />
 
-      {/* CONTENT */}
+      {/* content */}
       <View style={styles.content}>
         
-        {/* TITLE */}
+        {/* Title */}
         <Text style={styles.title} numberOfLines={1}>
           {item.title}
         </Text>
 
-        {/* DESCRIPTION */}
+        {/* Description */}
         <Text style={styles.desc} numberOfLines={2}>
           {item.description}
         </Text>
 
-        {/* PRICE */}
+        {/* price */}
         <Text style={styles.price}>₹{item.price}</Text>
 
-        {/* RATING */}
+        {/* Rate */}
         <View style={styles.ratingRow}>
           <Text style={styles.star}>⭐⭐⭐⭐☆</Text>
           <Text style={styles.count}> {item.rating?.count}</Text>
@@ -163,11 +163,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.m,
     paddingVertical: SPACING.s,
   },
-
   countText: {
     fontSize: FONT_SIZE.m,
   },
-
   card: {
     width: '45%',
     backgroundColor: COLORS.white,
@@ -178,50 +176,49 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 6,
     overflow: 'hidden',
-  },
+    left:10,
 
+  },
   image: {
     width: '100%',
     height: 150,
     resizeMode: 'contain',
     backgroundColor: COLORS.bg,
+    // borderRadius:5
   },
-
   content: {
     padding: SPACING.sm,
   },
-
   title: {
     fontSize: FONT_SIZE.l,
     fontWeight: '600',
     color: COLORS.black,
   },
-
   desc: {
     fontSize: FONT_SIZE.s,
     color: COLORS.gray,
     marginTop: 6,
   },
-
   price: {
     fontSize: FONT_SIZE.l,
     fontWeight: 'bold',
     marginTop: 8,
   },
-
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 6,
   },
-
   star: {
     color: '#F5A623',
     fontSize: FONT_SIZE.s,
   },
-
   count: {
     color: '#999',
     fontSize: FONT_SIZE.s,
   },
+  noItems:{
+    fontWeight:'bold',
+    left:20
+  }
 })

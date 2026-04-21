@@ -117,18 +117,15 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     fontWeight: 'bold',
   },
-
   userCont: {
     position: 'absolute',
     paddingLeft: 40,
     paddingTop: 50,
   },
-
   scndinputCont: {
     paddingTop: 30,
     paddingHorizontal: 30,
   },
-
   scndinput: {
     borderWidth: 1,
     borderColor: '#A8A8A9',
@@ -137,25 +134,21 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingLeft: 42,
   },
-
   lockCont: {
     position: 'absolute',
     paddingLeft: 44,
     paddingTop: 48,
   },
-
   eyeCont: {
     position: 'absolute',
     right: 50,
     bottom: 18,
   },
-
   registerCont: {
     paddingTop: 20,
     paddingLeft: 30,
     paddingRight: 87,
   },
-
   registerTxt: {
     color: '#676767',
   },
@@ -164,12 +157,10 @@ const styles = StyleSheet.create({
     paddingTop: 38,
     paddingHorizontal: 30,
   },
-
   btn: {
     backgroundColor: COLORS.primary,
     borderRadius: RADIUS.sm,
   },
-
   btnTxt: {
     paddingHorizontal: 78,
     paddingVertical: 15,
@@ -177,26 +168,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: FONT_SIZE.xxl,
   },
-
   ggleCont: {
     paddingTop: 40,
     paddingHorizontal: 90,
   },
-
   continueWithCont: {
     paddingHorizontal: 30,
   },
-
   continueWithTxt: {
     fontSize: FONT_SIZE.s,
     color: '#575757',
   },
-
   socialMediaCont: {
     paddingTop: 20,
     flexDirection: 'row',
   },
-
   ggleOuter: {
     borderWidth: 1,
     borderColor: COLORS.primary,
@@ -205,7 +191,6 @@ const styles = StyleSheet.create({
     padding: 15,
     width: 54,
   },
-
   appleCont: {
     padding: 15,
     borderWidth: 1,
@@ -214,11 +199,9 @@ const styles = StyleSheet.create({
     width: 55,
     borderRadius: 50,
   },
-
   signupCont: {
     paddingTop: 28,
   },
-
   signupTxt: {
     color: '#575757',
     fontSize: FONT_SIZE.m,

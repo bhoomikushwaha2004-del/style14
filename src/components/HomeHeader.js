@@ -1,22 +1,29 @@
 import { Image,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import Search from 'react-native-vector-icons/Fontisto'
+import Mic from 'react-native-vector-icons/MaterialIcons'
+import { useNavigation } from '@react-navigation/native';
 
 const HomeHeader = ({ handleSearch }) => {
+  const navigation = useNavigation()
+  const drawernvg =()=> {
+    navigation.openDrawer()
+  }
   return (
     <>
     
       <View style={styles.container}>
       
-      {/* LEFT MENU */}
-      <TouchableOpacity>
+      {/* hdr line */}
+      <TouchableOpacity onPress={drawernvg} >
         <Image
           source={require('../assets/hdr-lines.png')}
           style={styles.menuIcon}
         />
       </TouchableOpacity>
 
-      {/* CENTER LOGO */}
+      {/* logo */}
       <View style={styles.center}>
         <Image
           source={require('../assets/stylish-icon.png')}
@@ -25,7 +32,7 @@ const HomeHeader = ({ handleSearch }) => {
         <Text style={styles.logoText}>Stylish</Text>
       </View>
 
-      {/* RIGHT PROFILE */}
+      {/* Profile */}
       <TouchableOpacity>
         <Image
           source={require('../assets/profile-picture.png')}
@@ -37,7 +44,9 @@ const HomeHeader = ({ handleSearch }) => {
 
     {/* SearchBox */}
     <View style={styles.searchBoxCont}>
+      <Search name='search' size={20} style={styles.srchicon}  />
       <TextInput placeholder='Search any Product..' style={styles.searchinput} onChangeText={handleSearch} />
+      <Mic name='mic-none' size={24} style={styles.micIcon} />
     </View>
     </>
   )
@@ -55,24 +64,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.m, // 16
     backgroundColor: COLORS.white,
   },
-
   menuIcon: {
     width: 24,
     height: 24,
     resizeMode: 'contain',
   },
-
   center: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   logo: {
     width: 32,
     height: 32,
     resizeMode: 'contain',
   },
-
   logoText: {
     fontSize: FONT_SIZE.l, // 18
     fontWeight: 'bold',
@@ -80,17 +85,14 @@ const styles = StyleSheet.create({
     marginLeft: SPACING.s, // 6 approx (closest match)
     fontFamily: 'libreCaslonText',
   },
-
   profile: {
     width: 36,
     height: 36,
     borderRadius: 18,
   },
-
   searchBoxCont: {
     padding: SPACING.m,
   },
-
   searchinput: {
     borderColor: COLORS.white,
     borderWidth: 1,
@@ -99,4 +101,19 @@ const styles = StyleSheet.create({
     paddingLeft: 46,
     color: '#BBBBBB',
   },
+  srchicon:{
+    position:'absolute',
+    zIndex:1,
+    left:32,
+    top:26,
+    color:COLORS.grey4
+  },
+  micIcon:{
+    // left:320,
+    position:'absolute',
+    top:24,
+    alignSelf:'flex-end',
+    right:32,
+    color:COLORS.grey4
+  }
 })

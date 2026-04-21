@@ -1,14 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Text } from "react-native";
 
-const SearchBar = () => {
-  return (
-    <View>
-      <Text>SearchBar</Text>
-    </View>
-  )
+export default function SearchBar () {
+    return (
+        <>
+        <Text>search </Text>
+        </>
+    )
 }
-
-export default SearchBar
-
-const styles = StyleSheet.create({})

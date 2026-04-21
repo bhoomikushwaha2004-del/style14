@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
-
 const HomeFeatures = ({handleCategory, handleSort}) => {
   const [sortedData,setSortedData] = useState(false)
   const [showFilter, setShowFilter] = useState(false)
@@ -16,13 +15,13 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
   return (
     <View style={styles.container}>
 
-      {/* TOP ROW */}
+      
       <View style={styles.topRow}>
         <Text style={styles.title}>All Featured</Text>
 
         <View style={styles.rightBtns}>
           
-          {/* SORT BUTTON */}
+          {/* Sort */}
           <TouchableOpacity onPress={()=> setSortedData(!sortedData)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Sort</Text>
@@ -51,7 +50,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
           )
         }
 
-          {/* FILTER BUTTON */}
+          {/* Filter */}
           <TouchableOpacity onPress={() => setShowFilter(!showFilter)}>
             <View style={styles.btn}>
               <Text style={styles.btnText}>Filter</Text>
@@ -99,7 +98,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
         </View>
       </View>
 
-      {/* CATEGORY SECTION */}
+      {/* Category */}
       <View style={styles.categoryCont}>
 
         {/* Mens */}
@@ -139,23 +138,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.m, // 16
     marginTop: SPACING.s, // 10
   },
-
   topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-
   title: {
     fontSize: FONT_SIZE.xl, // 20
     fontWeight: 'bold',
     color: COLORS.black,
   },
-
   rightBtns: {
     flexDirection: 'row',
   },
-
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -166,29 +161,24 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginLeft: SPACING.sm,
   },
-
   btnText: {
     fontSize: FONT_SIZE.s, // 12
     marginRight: 5,
     color: COLORS.black,
   },
-
   categoryItem: {
     alignItems: 'center',
   },
-
   categoryImg: {
     width: 60,
     height: 60,
     borderRadius: 30,
   },
-
   categoryText: {
     marginTop: 6,
     fontSize: 13,
     color: '#555',
   },
-
   categoryCont: {
     padding: SPACING.m,
     backgroundColor: COLORS.white,
@@ -197,19 +187,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: SPACING.l,
   },
-
   sortItem: {
     paddingVertical: SPACING.s,
     fontSize: FONT_SIZE.m,
     color: COLORS.gray,
   },
-
   filterItem: {
     paddingVertical: SPACING.s,
     fontSize: FONT_SIZE.m,
     color: COLORS.gray,
   },
-
   sortBox: {
     position: 'absolute',
     top: 50,
@@ -221,7 +208,6 @@ const styles = StyleSheet.create({
     width: 160,
     zIndex: 100,
   },
-
   filterBox: {
     position: 'absolute',
     top: 150,
@@ -233,5 +219,4 @@ const styles = StyleSheet.create({
     width: 170,
     zIndex: 100,
   },
-
 });

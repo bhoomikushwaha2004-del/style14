@@ -39,17 +39,14 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 142,
   },
-
   headlineTxt: {
     fontSize: 35,
     fontWeight: 'bold',
   },
-
   inputCont: {
     paddingTop: 32,
     paddingHorizontal: 30,
   },
-
   input: {
     borderWidth: 1,
     borderColor: '#A8A8A9',
@@ -57,34 +54,28 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderRadius: RADIUS.md,
   },
-
   mail: {
     position: 'absolute',
     paddingLeft: 42,
     paddingTop: 50,
   },
-
   txtCont: {
     paddingTop: 25,
     paddingLeft: 30,
     paddingRight: 63,
   },
-
   txt: {
     fontSize: FONT_SIZE.s,
     color: '#676767',
   },
-
   btnCont: {
     paddingHorizontal: 30,
     paddingTop: 25,
   },
-
   btn: {
     backgroundColor: COLORS.primary,
     borderRadius: RADIUS.sm,
   },
-
   btnTxt: {
     color: COLORS.white,
     paddingVertical: 15,

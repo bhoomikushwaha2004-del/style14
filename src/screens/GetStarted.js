@@ -1,29 +1,32 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function GetStarted() {
     
   const navigation = useNavigation();
-  const homepagenvg = (item) => {
-    navigation.navigate('bottomTab',{
-        screen:'home' ,
-        params: {
-          item: item,
-
-        }
-    });
+  const homepagenvg = () => {
+    navigation.navigate('bottomTab');
   };
   return (
     <>
       <View >
-        <Image
+        <ImageBackground
           source={require('../assets/getstartedimg.jpg')}
           style={styles.img}
         />
+        <LinearGradient 
+        colors={['transparent','#000000A1']}
+        start={{x:0,y:0}}
+        end={{x:0,y:1}}
+        style={styles.gradient}
+        >
+          </LinearGradient>
+          
 
-        {/* <View style={{  opacity: 0.5, backgroundColor:'black',position:'absolute',height:500 }}> */}
+        
         <Text style={styles.firsttxt}>
           You want         Authentic, here       you go!</Text>
 
@@ -43,8 +46,10 @@ export default function GetStarted() {
             Get Started
           </Text>
         </TouchableOpacity>
+        
+
+        
         </View>
-      {/* </View> */}
     </>
   );
 }
@@ -85,4 +90,13 @@ const styles = StyleSheet.create({
     marginLeft: 55,
     borderRadius: 5,
   },
+  gradient:{
+    position:'absolute',
+    height:362,
+    justifyContent:'flex-end',
+    bottom:0,
+    left:0,
+    right:0,
+    
+  }
 });

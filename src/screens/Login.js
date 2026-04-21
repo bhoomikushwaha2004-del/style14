@@ -32,7 +32,7 @@ const Login = () => {
       {/* First input */}
       <View style={styles.firstInputCont}>
           <UserIcon name={"user-large"} size={24} color={'#626262'} style={styles.usericonCont} />
-        <TextInput placeholder='Username or Email' style={styles.firstinput}/>
+        <TextInput placeholder='Username or Email' style={styles.firstinput}  />
       </View>
 
       {/* second input */}
@@ -99,20 +99,19 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.l, // 20
     paddingLeft: SPACING.xl + 7, // 31 exact
     paddingRight: 158,
+    // backgroundColor:'#212529'
   },
-
   wlcTxt: {
     fontSize: 36,
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
+    // color:'#dee2e6'
   },
-
   firstInputCont: {
     paddingTop: 35,
     paddingLeft: 32,
     paddingRight: 25,
   },
-
   firstinput: {
     borderWidth: 1,
     borderColor: '#A8A8A9',
@@ -122,13 +121,11 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE.s,
     fontWeight: 'bold',
   },
-
   scdInputCont: {
     paddingTop: 30,
     paddingLeft: 32,
     paddingRight: 25,
   },
-
   scntInput: {
     borderWidth: 1,
     borderColor: '#A8A8A9',
@@ -138,28 +135,23 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE.s,
     fontWeight: 'bold',
   },
-
   frgtCont: {
     paddingTop: 10,
     paddingRight: 25,
     alignSelf: 'flex-end',
   },
-
   frgtTxt: {
     color: COLORS.primary,
     fontSize: FONT_SIZE.s,
   },
-
   btnCont: {
     paddingTop: 52,
     paddingHorizontal: 30,
   },
-
   btnOuter: {
     backgroundColor: COLORS.primary,
     borderRadius: RADIUS.sm,
   },
-
   btnTxt: {
     paddingVertical: 15,
     paddingHorizontal: 130,
@@ -167,26 +159,21 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE.xxl, // 20
     fontWeight: 'bold',
   },
-
   ggleCont: {
     paddingTop: 75,
     paddingHorizontal: 90,
   },
-
   continueWithCont: {
     paddingHorizontal: 30,
   },
-
   continueWithTxt: {
     fontSize: FONT_SIZE.s,
     color: '#575757',
   },
-
   socialMediaCont: {
     paddingTop: 20,
     flexDirection: 'row',
   },
-
   ggleOuter: {
     borderWidth: 1,
     borderColor: COLORS.primary,
@@ -195,7 +182,6 @@ const styles = StyleSheet.create({
     padding: 15,
     width: 54,
   },
-
   appleCont: {
     padding: 15,
     borderWidth: 1,
@@ -204,32 +190,28 @@ const styles = StyleSheet.create({
     width: 55,
     borderRadius: 50,
   },
-
   signupCont: {
     paddingTop: 28,
   },
-
   signupTxt: {
     color: '#575757',
     fontSize: FONT_SIZE.m,
   },
-
   usericonCont: {
     position: 'absolute',
     paddingLeft: 43,
     paddingTop: 52,
   },
-
   lockCont: {
     position: 'absolute',
     paddingLeft: 47,
     paddingTop: 48,
   },
-
   eyeCont: {
     position: 'absolute',
     right: 50,
     bottom: 18,
   },
   
+
 });

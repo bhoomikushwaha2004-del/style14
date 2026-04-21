@@ -96,65 +96,52 @@ const styles = StyleSheet.create({
     imgCont: {
     padding: SPACING.m,
   },
-
   img: {
     height: 250,
     width: 339,
     resizeMode: 'contain',
   },
-
   titleCont: {
     paddingTop: SPACING.m,
     paddingHorizontal: SPACING.m,
   },
-
   title: {
     fontSize: FONT_SIZE.xxl, // 20
     fontWeight: 'bold',
   },
-
   detailsCont: {
     paddingTop: SPACING.s,
     paddingHorizontal: SPACING.m,
   },
-
   priceCont: {
     paddingTop: SPACING.s,
   },
-
   price: {
     fontSize: FONT_SIZE.m,
     fontWeight: 'bold',
   },
-
   proddtl: {
     fontSize: FONT_SIZE.m,
     fontWeight: 'bold',
     color: COLORS.black,
   },
-
   descriptionCont: {
     paddingTop: SPACING.s,
   },
-
   description: {
     fontSize: FONT_SIZE.s,
     color: COLORS.black,
   },
-
   btnCont: {
     paddingTop: SPACING.s,
     paddingLeft: SPACING.m,
     flexDirection: 'row',
   },
-
   addedbtn: {},
-
   gotoCartimg: {
     height: 40,
     width: 136,
   },
-
   addcartbtn: {
     flexDirection: 'row',
     backgroundColor: COLORS.secondary,
@@ -163,14 +150,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: RADIUS.sm,
     borderBottomLeftRadius: 20,
   },
-
   addtoCartTxt: {
     paddingVertical: SPACING.s,
     paddingLeft: SPACING.m,
     paddingRight: SPACING.s,
     color: COLORS.white,
   },
-
   addtocartIcon: {
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.sm,
