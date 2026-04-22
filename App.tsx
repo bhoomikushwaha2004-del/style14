@@ -2,19 +2,19 @@ import { NavigationContainer, DarkTheme as NavigationDarkTheme , DefaultTheme as
 import StackNavigation from './src/navigation/StackNavigation';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import store from './src/redux/store'
-import 'react-native-reanimated/plugin'
+// import 'react-native-reanimated/plugin'
 
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import { setCart } from './src/redux/slice';
 import { useEffect, useState } from 'react';
-import { Provider as PaperProvider, MD2DarkTheme as PaperDarkTheme, DefaultTheme  as PaperDefaultTheme} from 'react-native-paper';
+import { Provider as PaperProvider, MD3DarkTheme , MD3LightTheme  } from 'react-native-paper';
 import { changeTheme } from './src/redux/themeSlice';
 
 const AppContent = ()=> {
   
   const dispatch = useDispatch()
 
-  const isDarkTheme = useSelector(state => state.theme.isDarkTheme)
+  // const isDarkTheme = useSelector((state)=> state.theme.darkTheme)
 
   useEffect(()=> {
     loadCart()
@@ -35,28 +35,28 @@ const AppContent = ()=> {
 
   const CustomDefaultTheme={
     ...NavigationDefaultTheme,
-    ...PaperDefaultTheme,
+    ...MD3LightTheme,
     colors:{
       ...NavigationDefaultTheme.colors,
-      ...PaperDefaultTheme.colors,
+      ...MD3LightTheme.colors,
 
     }
   }
 
   const CustomDarkTheme = {
     ...NavigationDarkTheme,
-    ...PaperDarkTheme,
+    ...MD3DarkTheme,
     colors:{
       ...NavigationDarkTheme.colors,
-      ...PaperDarkTheme.colors
+      ...MD3DarkTheme.colors
     }
   }
 
-  const theme = isDarkTheme? CustomDarkTheme: CustomDefaultTheme
+  // const theme = isDarkTheme? CustomDarkTheme: CustomDefaultTheme
 
   return(
-    <PaperProvider theme={theme} > 
-    <NavigationContainer theme={theme}>
+    <PaperProvider  > 
+    <NavigationContainer >
       <StackNavigation />
     </NavigationContainer>
     </PaperProvider>

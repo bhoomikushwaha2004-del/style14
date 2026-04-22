@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import Checkout from '../screens/Checkout';
 import { useSelector } from 'react-redux';
 import DrawerNavigation from './DrawerNavigation'
+import WishList from '../screens/bottomTabScreens/WishList'
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,8 @@ const getTabBarIcon = (routeName, focused, color, size) => {
           ? 'shopping-cart'
           : routeName === 'search'
           ? 'search'
+          : routeName === 'wishlist'
+          ? 'heart-outlined'
           : null
       }
       size={size}
@@ -103,6 +106,12 @@ export default function BottomTabNavigation() {
           name="search"
           component={SearchBar}
           options={{ title: 'Search' }}
+        />
+
+        <Tab.Screen
+          name="wishlist"
+          component={WishList}
+          options={{ title: 'Wishlist' }}
         />
 
         
