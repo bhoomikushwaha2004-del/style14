@@ -14,16 +14,15 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useState } from 'react';
+import { changeTheme } from '../redux/themeSlice';
 
 // import{ AuthContext } from '../components/context';
 
 const MyDrawerContent = props => {
   const paperTheme = useTheme();
-  const [isDarkTheme, setDarkTheme] = useState(false);
 
-  const toggleTheme = () => {
-    setDarkTheme(!isDarkTheme);
-  };
+  // const { changeTheme } = 
+  
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
