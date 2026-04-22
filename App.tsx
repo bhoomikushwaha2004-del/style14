@@ -1,17 +1,20 @@
 import { NavigationContainer, DarkTheme as NavigationDarkTheme , DefaultTheme as NavigationDefaultTheme} from '@react-navigation/native';
 import StackNavigation from './src/navigation/StackNavigation';
-import { Provider as ReduxProvider, useDispatch } from 'react-redux';
+import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import store from './src/redux/store'
-import 'react-native-reanimated'
+import 'react-native-reanimated/plugin'
 
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import { setCart } from './src/redux/slice';
 import { useEffect, useState } from 'react';
 import { Provider as PaperProvider, MD2DarkTheme as PaperDarkTheme, DefaultTheme  as PaperDefaultTheme} from 'react-native-paper';
+import { changeTheme } from './src/redux/themeSlice';
 
 const AppContent = ()=> {
-  const [isDarkTheme, setDarkTheme] = useState(false);
+  
   const dispatch = useDispatch()
+
+  const isDarkTheme = useSelector(state => state.theme.isDarkTheme)
 
   useEffect(()=> {
     loadCart()
