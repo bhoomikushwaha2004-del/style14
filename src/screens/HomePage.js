@@ -8,14 +8,20 @@ import Loader from '../components/Loader';
 import NoDataFound from '../components/NoDataFound'
 import {  useSelector } from 'react-redux';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import HearOutline from 'react-native-vector-icons/FontAwesome'
+import Heart from 'react-native-vector-icons/FontAwesome'
 
 const HomePage = () => {
+
   const [data, setData] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const[searchText, setSearchText] = useState('')
   const [ category, setCategory] = useState('')
+  const [ hearted, setHearted] = useState(false)
+  
+  
 
   const navigation = useNavigation();
 
@@ -110,7 +116,7 @@ const HomePage = () => {
               onRefresh={onRefresh}
               refreshing={refreshing}
               renderItem={({ item }) => (
-                <ProductCards item={item} cartnvg={cartnvg} />
+                <ProductCards item={item} cartnvg={cartnvg} hearted={hearted} setHearted={setHearted} />
               )}
             />
           </>
@@ -121,9 +127,22 @@ const HomePage = () => {
   )
 }
 
-const ProductCards = ({ item, cartnvg }) => {
+const ProductCards = ({ item, cartnvg, hearted, setHearted }) => {
+  
   return (
     <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
+
+      <View style={styles.hertView}>
+        <TouchableOpacity onPress={()=> setHearted(!hearted)}>
+          {
+            !hearted ? 
+            <HearOutline name='heart-o' size={20} style={styles.hrtOutline} />
+            : 
+            <Heart name='heart' size={20} color={'red'} style={styles.hrtOutline}/>
+          }
+          
+        </TouchableOpacity>
+         </View>
       
       {/* img */}
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -177,6 +196,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     overflow: 'hidden',
     left:10,
+    right:8
 
   },
   image: {
@@ -220,5 +240,18 @@ const styles = StyleSheet.create({
   noItems:{
     fontWeight:'bold',
     left:20
+  },
+  hertView:{
+    zIndex:1,
+    
+    
+    width:30,
+    position:'absolute',
+    left:5,
+    top:5
+  },
+  hrtOutline:{
+    padding:5,
+    // color:'black'
   }
 })

@@ -26,7 +26,7 @@ const getTabBarIcon = (routeName, focused, color, size) => {
           : routeName === 'search'
           ? 'search'
           : routeName === 'wishlist'
-          ? 'heart-outlined'
+          ? 'heart'
           : null
       }
       size={size}
@@ -85,6 +85,13 @@ export default function BottomTabNavigation() {
    headerTitle:''
  }}
         /> */}
+
+        <Tab.Screen
+          name="wishlist"
+          component={WishList}
+          options={{ title: 'Wishlist' }}
+        />
+        
         <Tab.Screen
           name="checkout"
           component={Checkout}
@@ -108,11 +115,7 @@ export default function BottomTabNavigation() {
           options={{ title: 'Search' }}
         />
 
-        <Tab.Screen
-          name="wishlist"
-          component={WishList}
-          options={{ title: 'Wishlist' }}
-        />
+        
 
         
       </Tab.Navigator>
