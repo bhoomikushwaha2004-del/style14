@@ -33,7 +33,7 @@ const HomeHeader = ({ handleSearch }) => {
       </View>
 
       {/* Profile */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=> navigation.navigate('profile')}>
         <Image
           source={require('../assets/profile-picture.png')}
           style={styles.profile}
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: SPACING.m, // 16
     backgroundColor: COLORS.white,
+    top:20
   },
   menuIcon: {
     width: 24,

@@ -12,6 +12,7 @@ import PlaceOrder from '../screens/PlaceOrder';
 import ShopPage from '../screens/ShopPage';
 import CartIcon from 'react-native-vector-icons/Ionicons';
 import DrawerNavigation from './DrawerNavigation'
+import Profile from '../screens/Profile'
 
 const Stack = createNativeStackNavigator();
 
@@ -77,12 +78,13 @@ export default function StackNavigation() {
           component={Checkout}
           options={{
             headerShown: true,
-            headerTitle: '                  Checkout',
+            headerTitle: 'Checkout',
             headerLeft: () => (
               <TouchableOpacity onPress={cartnvg}>
                 <BackIcon name="chevron-back" size={24} />
               </TouchableOpacity>
             ),
+            headerTitleAlign:'center'
           }}
         />
 
@@ -112,12 +114,13 @@ export default function StackNavigation() {
           component={PlaceOrder}
           options={{
             headerShown: true,
-            headerTitle: '                  Shopping Bag',
+            headerTitle: 'Shopping Bag',
             headerLeft: () => (
               <TouchableOpacity onPress={checkoutnvg}>
                 <BackIcon name="chevron-back" size={24} />
               </TouchableOpacity>
             ),
+            headerTitleAlign:'center'
           }}
         />
 
@@ -126,6 +129,21 @@ export default function StackNavigation() {
         component={DrawerNavigation}
         options={{
           headerShown:false
+        }}
+        />
+
+        <Stack.Screen 
+        name='profile'
+        component={Profile}
+        options={{
+          // headerShown:false
+          headerTitle:'Profile',
+          headerLeft: () => (
+              <TouchableOpacity onPress={()=> navigation.goBack()}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign:'center'
         }}
         />
       </Stack.Navigator>

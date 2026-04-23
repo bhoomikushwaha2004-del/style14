@@ -32,7 +32,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const wishlist=  useSelector(state => state.cart.wishlist)
 
-  const isHearted = wishlist.some(w => w.id === item.id)
+  
 
   
 
@@ -123,7 +123,7 @@ const HomePage = () => {
               onRefresh={onRefresh}
               refreshing={refreshing}
               renderItem={({ item }) => (
-                <ProductCards item={item} cartnvg={cartnvg}  isHearted={isHearted}  dispatch={dispatch} />
+                <ProductCards item={item} cartnvg={cartnvg}  wishlist={wishlist}  dispatch={dispatch} />
               )}
             />
           </>
@@ -134,11 +134,13 @@ const HomePage = () => {
   )
 }
 
-const ProductCards = ({ item, cartnvg, isHearted,dispatch }) => {
+const ProductCards = ({ item, cartnvg, dispatch,wishlist }) => {
+
+  const isHearted = wishlist.some(w => w.id === item.id)
   
 
   const handleHeart =() => {
-    if(!isHearted){
+    if(isHearted){
       dispatch(removeFromWishlist(item))
     } else {
       dispatch(addToWishlist(item))
