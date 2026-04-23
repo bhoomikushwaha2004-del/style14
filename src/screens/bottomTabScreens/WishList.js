@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const WishList = () => {
+  const wishlist = useSelector(state => state.cart.wishlist)
   return (
-    <View>
-      <Text>WishList</Text>
-    </View>
+    <FlatList
+    data={wishlist}
+    renderItem={({item}) => (
+      <Text>{item.title} </Text>
+    )} 
+    />
   )
 }
 

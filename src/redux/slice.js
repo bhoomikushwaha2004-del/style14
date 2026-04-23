@@ -12,6 +12,7 @@ const saveData = async data => {
 const initialState = {
   // value:0,
   items: [],
+  wishlist:[],
 };
 
 const addToCart = createSlice({
@@ -40,9 +41,20 @@ const addToCart = createSlice({
 
       saveData(state.items);
     },
+    addToWishlist:(state,action)=>{
+      const exist = state.wishlist.find(item => item.id === action.payload.id)
+
+      if(!exist) {
+        state.wishlist.push(action.payload)
+      }
+    },
+    removeFromWishlist:(state,action)=> {
+      state.wishlist=state.wishlist.filter(item => item.id !== action.payload.id);
+      saveData(state.wishlist);
+    }
   },
 });
 
-export const { addItems, removeCart, setCart, handleQuantity } =
+export const { addItems, removeCart, setCart, handleQuantity, addToWishlist,removeFromWishlist } =
   addToCart.actions;
 export default addToCart.reducer;

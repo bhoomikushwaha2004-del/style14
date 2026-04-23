@@ -41,6 +41,8 @@ export default function BottomTabNavigation() {
   const selector = useSelector(state => state.cart.items);
   console.log(selector, 'cart');
 
+  const wishlistSelector = useSelector(state => state.cart.wishlist)
+
   const homenvg = () => {
     navigation.navigate('bottomTab', {
       screen: 'home',
@@ -89,7 +91,10 @@ export default function BottomTabNavigation() {
         <Tab.Screen
           name="wishlist"
           component={WishList}
-          options={{ title: 'Wishlist' }}
+          options={{ title: 'Wishlist',
+            tabBarBadge:wishlistSelector.length
+           }}
+          
         />
         
         <Tab.Screen

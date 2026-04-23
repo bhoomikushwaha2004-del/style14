@@ -6,10 +6,11 @@ import { getData } from '../services/api';
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../components/Loader';
 import NoDataFound from '../components/NoDataFound'
-import {  useSelector } from 'react-redux';
+import {  useSelector,useDispatch } from 'react-redux';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import HearOutline from 'react-native-vector-icons/FontAwesome'
 import Heart from 'react-native-vector-icons/FontAwesome'
+import { addToWishlist, removeFromWishlist } from '../redux/slice';
 
 const HomePage = () => {
 
@@ -19,7 +20,6 @@ const HomePage = () => {
   const [filteredData, setFilteredData] = useState([]);
   const[searchText, setSearchText] = useState('')
   const [ category, setCategory] = useState('')
-  const [ hearted, setHearted] = useState(false)
   
   
 
@@ -28,6 +28,13 @@ const HomePage = () => {
 
   const selector = useSelector(state => state.products.items);
   console.log(selector, 'selector on home');
+
+  const dispatch = useDispatch();
+  const wishlist=  useSelector(state => state.cart.wishlist)
+
+  const isHearted = wishlist.some(w => w.id === item.id)
+
+  
 
   useEffect(() => {
     getProd();
@@ -97,7 +104,7 @@ const HomePage = () => {
   return (
     <>
     <HomeHeader handleSearch={handleSearch}  />
-    <HomeFeatures handleCategory={handleCategory} handleSort={handleSort} />
+    <HomeFeatures handleCategory={handleCategory} handleSort={handleSort}  />
 
     {/* count */}
        <View>
@@ -116,7 +123,7 @@ const HomePage = () => {
               onRefresh={onRefresh}
               refreshing={refreshing}
               renderItem={({ item }) => (
-                <ProductCards item={item} cartnvg={cartnvg} hearted={hearted} setHearted={setHearted} />
+                <ProductCards item={item} cartnvg={cartnvg}  isHearted={isHearted}  dispatch={dispatch} />
               )}
             />
           </>
@@ -127,15 +134,26 @@ const HomePage = () => {
   )
 }
 
-const ProductCards = ({ item, cartnvg, hearted, setHearted }) => {
+const ProductCards = ({ item, cartnvg, isHearted,dispatch }) => {
+  
+
+  const handleHeart =() => {
+    if(!isHearted){
+      dispatch(removeFromWishlist(item))
+    } else {
+      dispatch(addToWishlist(item))
+    }
+  }
+
+  
   
   return (
     <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
 
       <View style={styles.hertView}>
-        <TouchableOpacity onPress={()=> setHearted(!hearted)}>
+        <TouchableOpacity onPress={handleHeart}>
           {
-            !hearted ? 
+            !isHearted ? 
             <HearOutline name='heart-o' size={20} style={styles.hrtOutline} />
             : 
             <Heart name='heart' size={20} color={'red'} style={styles.hrtOutline}/>
