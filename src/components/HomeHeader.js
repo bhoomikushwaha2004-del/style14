@@ -35,7 +35,7 @@ const HomeHeader = ({ handleSearch }) => {
       {/* Profile */}
       <TouchableOpacity onPress={()=> navigation.navigate('profile')}>
         <Image
-          source={require('../assets/profile-picture.png')}
+          source={require('../assets/profile-picture.jpg')}
           style={styles.profile}
         />
       </TouchableOpacity>

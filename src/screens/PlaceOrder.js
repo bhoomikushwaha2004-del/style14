@@ -1,12 +1,13 @@
 import {
   FlatList,
   Image,
+  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Coupon from 'react-native-vector-icons/FontAwesome5';
 import { useRoute } from '@react-navigation/native';
 import { removeCart, handleQuantity } from '../redux/slice';
@@ -16,6 +17,7 @@ import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const PlaceOrder = () => {
   const route = useRoute();
+  const [showModal, setShowModal] = useState(false);
 
   const { selector } = route.params;
 
@@ -73,11 +75,19 @@ const PlaceOrder = () => {
         <Text style={styles.viewDetails}>View Details</Text>
       </View>
 
-      <TouchableOpacity style={styles.payBtn}>
+      <TouchableOpacity style={styles.payBtn} onPress={()=> setShowModal(true)}>
         <Text style={styles.payText}>Proceed to Payment</Text>
       </TouchableOpacity>
     </View>
   </View>
+
+  {/* Modal */}
+  <Modal visible={showModal} transparent={true} animationType='slide'  >
+    <View style={{ flex: 1, opacity: 0.6, backgroundColor: 'black' }}>
+      <Text>hey</Text>
+    </View>
+
+  </Modal>
     </>
   );
 };

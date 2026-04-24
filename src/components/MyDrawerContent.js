@@ -38,7 +38,7 @@ const MyDrawerContent = props => {
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: 'row', marginTop: 15 }}>
               <Avatar.Image
-                source={require('../assets/profile-picture.png')}
+                source={require('../assets/profile-picture.jpg')}
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: 'column' }}>
