@@ -51,7 +51,7 @@ const addToCart = createSlice({
       saveData(state.wishlist)
     },
     removeFromWishlist:(state,action)=> {
-      state.wishlist=state.wishlist.filter(item => item.id !== action.payload.id);
+      state.wishlist=state.wishlist.filter(item => item.id !== action.payload);
       saveData(state.wishlist);
     }
   },

@@ -9,44 +9,39 @@ import Cross from 'react-native-vector-icons/Entypo'
 const WishList = () => {
   const selector = useSelector((state)=> state.cart.items)
   const wishlist = useSelector(state => state.cart.wishlist)
-  const[cart,setCart] = useState([])
   const dispatch = useDispatch()
 
   const navigation = useNavigation()
   
-  if (wishlist.length === 0) {
-      return (
-        <View>
-          <Text style={{ fontSize: 18, fontWeight: 'bold',flex:1, alignSelf:'center' }}>
-            No items in WishList 🛒{' '}
-          </Text>
-        </View>
-      );
-    }
 
   const addToCart=(item)=>{
-          const updatedCart=[...cart,item]
-          setCart(updatedCart)
-  
+        
           dispatch(addItems({...item, quantity:1}))
   
           navigation.navigate('bottomTab',{
               screen:'home',
-              params:{item,cart}})
+              params:{item}})
       }
   return (
     
     <FlatList
     data={wishlist}
     renderItem={({item}) => (
-      <WishlistItems item={item} addToCart={addToCart} dispatch={dispatch}/>
+      <WishlistItems item={item} addToCart={addToCart} dispatch={dispatch} wishlist={wishlist} navigation={navigation}/>
     )} 
+    ListEmptyComponent={()=> (
+      <View style={{flex:1}}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf:'center' }}>
+            No items in WishList 🛒
+          </Text>
+        </View>
+    )}
     />
   )
 }
 
 
-const WishlistItems =({item,addToCart,dispatch})=> {
+const WishlistItems =({item,addToCart,dispatch,wishlist,navigation})=> {
 return(
   <>
    <View style={styles.card}>
@@ -77,15 +72,40 @@ return(
 
             {/* Add btn */}
             <View style={styles.addcartView}>
-              <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
+              {wishlist.find(wishlistdata => wishlistdata.id === item.id) ? (
+                <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
                 <Text style={styles.addcartTxt}>Add to Cart</Text>
               </TouchableOpacity>
+              ):(
+                <TouchableOpacity style={styles.addcartBtn} onPress={()=> navigation.navigate('bottomTab' ,{screen:'checkout'})}>
+                <Text style={styles.addcartTxt}>Go to Cart</Text>
+              </TouchableOpacity>
+              ) }
+              {/* <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
+                <Text style={styles.addcartTxt}>Add to Cart</Text>
+              </TouchableOpacity> */}
 
 
               <TouchableOpacity style={styles.buycartBtn}>
                 <Text style={styles.addcartTxt}>Buy</Text>
               </TouchableOpacity>
             </View>
+
+
+            {/* Btn */}
+                  {/* <View style={styles.btnCont}>
+                    { selector.find(cartItem => cartItem.id === item.id) ? (
+                        <TouchableOpacity style={styles.addedbtn} onPress={()=>goToCart(item)} >
+                                <Image source={require('../assets/goToCart.png')} style={styles.gotoCartimg}/>
+                           </TouchableOpacity>
+                    ):(
+                        <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
+                               <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
+                                <Text style={styles.addtoCartTxt}>Add to Cart</Text>
+                            </TouchableOpacity>
+                    )}
+                    
+                  </View> */}
 
             
 
