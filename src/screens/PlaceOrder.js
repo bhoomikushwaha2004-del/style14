@@ -60,34 +60,35 @@ const PlaceOrder = () => {
             removeCart={removeCart}
           />
         )}
-
-        ListFooterComponent={<OrderDetails totalPrice={totalPrice} coupon={<Coupon />}/>}
-        contentContainerStyle={{paddingBottom:120}}
+        ListFooterComponent={
+          <OrderDetails totalPrice={totalPrice} coupon={<Coupon />} />
+        }
+        contentContainerStyle={{ paddingBottom: 120 }}
       />
 
-      
-
       {/* Payment Footer */}
-        <View style={styles.footer}>
-    <View style={styles.footerRow}>
-      <View>
-        <Text style={styles.footerPrice}>₹ {totalPrice.toFixed(0)}</Text>
-        <Text style={styles.viewDetails}>View Details</Text>
+      <View style={styles.footer}>
+        <View style={styles.footerRow}>
+          <View>
+            <Text style={styles.footerPrice}>₹ {totalPrice.toFixed(0)}</Text>
+            <Text style={styles.viewDetails}>View Details</Text>
+          </View>
+
+          <TouchableOpacity
+            style={styles.payBtn}
+            onPress={() => setShowModal(true)}
+          >
+            <Text style={styles.payText}>Proceed to Payment</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      <TouchableOpacity style={styles.payBtn} onPress={()=> setShowModal(true)}>
-        <Text style={styles.payText}>Proceed to Payment</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-
-  {/* Modal */}
-  <Modal visible={showModal} transparent={true} animationType='slide'  >
-    <View style={{ flex: 1, opacity: 0.6, backgroundColor: 'black' }}>
-      <Text>hey</Text>
-    </View>
-
-  </Modal>
+      {/* Modal */}
+      <Modal visible={showModal} transparent={true} animationType="slide">
+        <View style={{ flex: 1, opacity: 0.6, backgroundColor: 'black' }}>
+          <Text>hey</Text>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -144,10 +145,9 @@ const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
   );
 };
 
-const OrderDetails = ({ totalPrice,coupon  }) => {
+const OrderDetails = ({ totalPrice, coupon }) => {
   return (
     <View style={styles.detailsCard}>
-
       {/* Coupon */}
       <View style={styles.rowBetween}>
         <Text>{coupon}</Text>
@@ -184,7 +184,6 @@ const OrderDetails = ({ totalPrice,coupon  }) => {
       </View>
 
       <Text style={styles.redSmall}>EMI Available</Text>
-
     </View>
   );
 };

@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import Checkout from '../screens/Checkout';
 import { useSelector } from 'react-redux';
 import DrawerNavigation from './DrawerNavigation'
-import WishList from '../screens/bottomTabScreens/WishList'
+import WishList from '../screens/WishList'
 
 const Tab = createBottomTabNavigator();
 
