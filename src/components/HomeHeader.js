@@ -4,12 +4,15 @@ import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import Search from 'react-native-vector-icons/Fontisto'
 import Mic from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
+import Voice from 'react-native-voice/voice'
 
 const HomeHeader = ({ handleSearch }) => {
   const navigation = useNavigation()
   const drawernvg =()=> {
     navigation.openDrawer()
   }
+
+  
   return (
     <>
     

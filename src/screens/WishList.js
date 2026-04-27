@@ -27,7 +27,7 @@ const WishList = () => {
     <FlatList
     data={wishlist}
     renderItem={({item}) => (
-      <WishlistItems item={item} addToCart={addToCart} dispatch={dispatch} wishlist={wishlist} navigation={navigation}/>
+      <WishlistItems item={item} addToCart={addToCart} dispatch={dispatch} wishlist={wishlist} navigation={navigation} selector={selector} />
     )} 
     ListEmptyComponent={()=> (
       <View style={{flex:1}}>
@@ -41,7 +41,7 @@ const WishList = () => {
 }
 
 
-const WishlistItems =({item,addToCart,dispatch,wishlist,navigation})=> {
+const WishlistItems =({item,addToCart,dispatch,wishlist,navigation,selector})=> {
 return(
   <>
    <View style={styles.card}>
@@ -72,42 +72,21 @@ return(
 
             {/* Add btn */}
             <View style={styles.addcartView}>
-              {wishlist.find(wishlistdata => wishlistdata.id === item.id) ? (
-                <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
-                <Text style={styles.addcartTxt}>Add to Cart</Text>
-              </TouchableOpacity>
-              ):(
+              {selector.find(wishlistdata => wishlistdata.id === item.id) ? (
                 <TouchableOpacity style={styles.addcartBtn} onPress={()=> navigation.navigate('bottomTab' ,{screen:'checkout'})}>
                 <Text style={styles.addcartTxt}>Go to Cart</Text>
               </TouchableOpacity>
+              ):(
+                <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
+                 <Text style={styles.addcartTxt}>Add to Cart</Text>
+               </TouchableOpacity>
               ) }
-              {/* <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
-                <Text style={styles.addcartTxt}>Add to Cart</Text>
-              </TouchableOpacity> */}
 
 
               <TouchableOpacity style={styles.buycartBtn}>
                 <Text style={styles.addcartTxt}>Buy</Text>
               </TouchableOpacity>
             </View>
-
-
-            {/* Btn */}
-                  {/* <View style={styles.btnCont}>
-                    { selector.find(cartItem => cartItem.id === item.id) ? (
-                        <TouchableOpacity style={styles.addedbtn} onPress={()=>goToCart(item)} >
-                                <Image source={require('../assets/goToCart.png')} style={styles.gotoCartimg}/>
-                           </TouchableOpacity>
-                    ):(
-                        <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
-                               <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
-                                <Text style={styles.addtoCartTxt}>Add to Cart</Text>
-                            </TouchableOpacity>
-                    )}
-                    
-                  </View> */}
-
-            
 
 
           </View>
@@ -198,13 +177,15 @@ const styles = StyleSheet.create({
       borderWidth:0.5,
       width:90,
       backgroundColor:'#0000FF',
-      borderRadius:5
+      borderRadius:5,
+      borderColor:'#0000FF'
     },
     buycartBtn:{
       borderWidth:0.5,
       width:90,
       backgroundColor:'#00D100',
-      borderRadius:5
+      borderRadius:5,
+      borderColor:'#00D100'
     },
     addcartTxt:{
       color:'white',
