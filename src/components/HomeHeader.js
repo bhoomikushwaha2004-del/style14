@@ -5,6 +5,7 @@ import Search from 'react-native-vector-icons/Fontisto'
 import Mic from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
 import { micEvents,SpeechToText } from 'react-native-speech-convertor'
+import Demo from './Demo'
 
 const HomeHeader = ({ handleSearch }) => {
   const navigation = useNavigation()
@@ -94,6 +95,9 @@ const HomeHeader = ({ handleSearch }) => {
         <Mic name='mic-none' size={24}  />
       </TouchableOpacity>
     </View>
+
+
+    {/* <Demo /> */}
     </>
   )
 }
