@@ -1,5 +1,5 @@
 import { Image,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import Search from 'react-native-vector-icons/Fontisto'
 import Mic from 'react-native-vector-icons/MaterialIcons'
@@ -20,8 +20,15 @@ const HomeHeader = ({ handleSearch }) => {
   
 
     useEffect(() => {
-        const resultListener = micEvents.addListener('onSpeechResult', setText);
-        const errorListener = micEvents.addListener('onSpeechError', console.error);
+        const resultListener = micEvents.addListener('onSpeechResult', (res)=> {
+          setText(res);
+          handleSearch(res)
+          setIsListening(false)
+        });
+        const errorListener = micEvents.addListener('onSpeechError', (err)=> {
+          console.log(err, 'error on useefect mic');
+          setIsListening(false)
+        });
 
         return () => {
             resultListener.remove();
@@ -65,21 +72,26 @@ const HomeHeader = ({ handleSearch }) => {
     {/* SearchBox */}
     <View style={styles.searchBoxCont}>
       <Search name='search' size={20} style={styles.srchicon}  />
-      <TextInput placeholder='Search any Product..' style={styles.searchinput} onChangeText={handleSearch} />
+      <TextInput placeholder='Search any Product..' style={styles.searchinput} value={text} onChangeText={(val)=> {
+        setText(val) 
+        handleSearch(val)
+      }} />
       
       {/* Mic */}
       <TouchableOpacity
-      style={isListening ? styles.micStyling : null } 
-      onPress={()=> { setIsListening(true)
-        setTimeout(() => {
+      style={styles.micIcon}
+      // style={isListening ? styles.micActive : null } 
+      onPress={()=> { 
+        if(!isListening) {
+          setIsListening(true)
           SpeechToText.startListening()
-        }, 5000);
-        setIsListening(false)
-        SpeechToText.stopListening() }
-      }
-       
+        } else {
+          SpeechToText.stopListening()
+          setIsListening(false)
+        }
+      }}
       >
-        <Mic name='mic-none' size={24} style={styles.micIcon} />
+        <Mic name='mic-none' size={24}  />
       </TouchableOpacity>
     </View>
     </>
@@ -150,5 +162,13 @@ const styles = StyleSheet.create({
     alignSelf:'flex-end',
     right:32,
     color:COLORS.grey4
+  },
+  micActive:{
+    position:'absolute',
+    right:32,
+    top:24,
+    backgroundColor:'red',
+    borderRadius:20,
+    padding:6
   }
 })
