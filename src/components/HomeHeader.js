@@ -1,16 +1,33 @@
 import { Image,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import Search from 'react-native-vector-icons/Fontisto'
 import Mic from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
-import Voice from 'react-native-voice/voice'
+import { micEvents,SpeechToText } from 'react-native-speech-convertor'
 
 const HomeHeader = ({ handleSearch }) => {
   const navigation = useNavigation()
+  const [text, setText] = useState('');
+  const [ isListening, setIsListening] = useState(false)
+
+
+
   const drawernvg =()=> {
     navigation.openDrawer()
   }
+
+  
+
+    useEffect(() => {
+        const resultListener = micEvents.addListener('onSpeechResult', setText);
+        const errorListener = micEvents.addListener('onSpeechError', console.error);
+
+        return () => {
+            resultListener.remove();
+            errorListener.remove();
+        };
+    }, []);
 
   
   return (
@@ -49,7 +66,21 @@ const HomeHeader = ({ handleSearch }) => {
     <View style={styles.searchBoxCont}>
       <Search name='search' size={20} style={styles.srchicon}  />
       <TextInput placeholder='Search any Product..' style={styles.searchinput} onChangeText={handleSearch} />
-      <Mic name='mic-none' size={24} style={styles.micIcon} />
+      
+      {/* Mic */}
+      <TouchableOpacity
+      style={isListening ? styles.micStyling : null } 
+      onPress={()=> { setIsListening(true)
+        setTimeout(() => {
+          SpeechToText.startListening()
+        }, 5000);
+        setIsListening(false)
+        SpeechToText.stopListening() }
+      }
+       
+      >
+        <Mic name='mic-none' size={24} style={styles.micIcon} />
+      </TouchableOpacity>
     </View>
     </>
   )
