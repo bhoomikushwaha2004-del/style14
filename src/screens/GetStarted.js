@@ -1,7 +1,6 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function GetStarted() {

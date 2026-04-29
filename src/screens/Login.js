@@ -1,13 +1,16 @@
-import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Alert, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import EyeIcon from 'react-native-vector-icons/Feather';
 import UserIcon from 'react-native-vector-icons/FontAwesome6';
 import Lock from 'react-native-vector-icons/Fontisto';
-import EyeIcon from 'react-native-vector-icons/Feather';
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import { getUser } from '../services/authStorage';
+import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
 const Login = () => {
   const navigation = useNavigation();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const signupnvg = () => {
     navigation.navigate('signup', { navigation });
@@ -21,6 +24,24 @@ const Login = () => {
     navigation.navigate('getstarted', { navigation });
   };
 
+  const login = async ()=> {
+    const user = await getUser();
+
+    if(!user ) {
+      Alert('No Account found');
+      return ;
+    }
+
+    if(user.username === username && user.password === password) {
+      navigation.navigate('bottomTab')
+    } else {
+      Alert('Invalid credentails')
+    }
+
+
+    navigation.navigate('getstarted', { navigation });
+  }
+
   return (
     <>
     <StatusBar />
@@ -32,13 +53,13 @@ const Login = () => {
       {/* First input */}
       <View style={styles.firstInputCont}>
           <UserIcon name={"user-large"} size={24} color={'#626262'} style={styles.usericonCont} />
-        <TextInput placeholder='Username or Email' style={styles.firstinput}  />
+        <TextInput placeholder='Username or Email' style={styles.firstinput} onChangeText={setUsername}  />
       </View>
 
       {/* second input */}
       <View style={styles.scdInputCont}>
           <Lock name="locked" size={20} color={'#626262'} style={styles.lockCont} />
-        <TextInput placeholder='Password' style={styles.scntInput} />
+        <TextInput placeholder='Password' style={styles.scntInput} onChangeText={setPassword} />
           <EyeIcon name="eye"
             size={20}
             color={'#626262'} style={styles.eyeCont} />
@@ -50,8 +71,8 @@ const Login = () => {
       </View>
 
       {/* Login Btn */}
-      <View style={styles.btnCont} > 
-      <TouchableOpacity style={styles.btnOuter} onPress={getstartednvg}>
+      <View style={styles.btnCont}  > 
+      <TouchableOpacity style={styles.btnOuter} onPress={getstartednvg} >
         <Text style={styles.btnTxt}>Login</Text>
       </TouchableOpacity>
       </View>

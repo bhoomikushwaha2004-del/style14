@@ -70,7 +70,7 @@ const ItemList = ({ item }) => {
 
           <View style={styles.priceBox}>
             <Text style={styles.price}>
-              ₹{item.price.toFixed(0)}
+              ₹{item.price.toFixed(2)}
             </Text>
           </View>
         </View>

@@ -7,14 +7,14 @@ import { useNavigation } from '@react-navigation/native';
 import Loader from '../components/Loader';
 import NoDataFound from '../components/NoDataFound'
 import {  useSelector,useDispatch } from 'react-redux';
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import { COLORS, SPACING, FONT_SIZE, RADIUS, } from '../styles';
 import HearOutline from 'react-native-vector-icons/FontAwesome'
 import Heart from 'react-native-vector-icons/FontAwesome'
 import { addToWishlist, removeFromWishlist } from '../redux/slice';
 
 const HomePage = () => {
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
@@ -32,10 +32,6 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const wishlist=  useSelector(state => state.cart.wishlist)
 
-  
-
-  
-
   useEffect(() => {
     getProd();
   }, []);
@@ -43,7 +39,7 @@ const HomePage = () => {
   const getProd = async () => {
     setIsLoader(true);
     const result = await getData();
-    setData(result);
+    // setData(result);
 
     setIsLoader(false);
     setFilteredData(result);
@@ -54,7 +50,7 @@ const HomePage = () => {
   };
 
   const filterData = (text,cat) => {
-    let filtered = data;
+    let filtered = filterData;
 
     if(text){
       filtered= filtered.filter(item => item.title.toLowerCase().includes(text.toLowerCase()))
@@ -122,6 +118,8 @@ const HomePage = () => {
               numColumns={numColumn}
               onRefresh={onRefresh}
               refreshing={refreshing}
+              contentContainerStyle={styles.mainContainer}
+              columnWrapperStyle={styles.columns}
               renderItem={({ item }) => (
                 <ProductCards item={item} cartnvg={cartnvg}  wishlist={wishlist}  dispatch={dispatch} />
               )}
@@ -215,8 +213,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 6,
     overflow: 'hidden',
-    left:10,
-    right:8
+    // left:10,
+    // right:8
 
   },
   image: {
@@ -273,5 +271,13 @@ const styles = StyleSheet.create({
   hrtOutline:{
     padding:5,
     // color:'black'
+  },
+  columns:{
+    paddingBottom:16,
+    gap:16,
+  },
+  mainContainer:{
+    paddingHorizontal:16,
+    // paddingTop:16
   }
 })

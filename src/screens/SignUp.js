@@ -1,17 +1,38 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome6'
 import Lock from 'react-native-vector-icons/Fontisto'
 import EyeIcon from 'react-native-vector-icons/Feather'
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import { saveUser} from '../services/authStorage'
 
 
 const SignUp = () => {
   const navigation = useNavigation()
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+
   const lgnnvg=()=> {
         navigation.navigate('login')
     }
+
+  const register = async() => {
+    if(!username || !password) {
+      Alert('Enter Details')
+      return ;
+    }
+
+
+    const user = {username, password};
+
+    await saveUser(user)
+
+    Alert('Account Created Successful')
+    navigation.navigate('login')
+
+  }
+
   return (
     <>
       {/* Headline Txt */}
@@ -22,13 +43,13 @@ const SignUp = () => {
       {/* username input */}
       <View style={styles.firstinputCont}>
           <UserIcon name='user-large' size={20} color={'#626262'} style={styles.userCont} />
-        <TextInput placeholder='Username or Email'style={styles.firstinput} />
+        <TextInput placeholder='Username or Email' style={styles.firstinput} onChangeText={setUsername} />
       </View>
 
           {/* Password input */}
       <View style={styles.scndinputCont}>
           <Lock name='locked' size={20} color={'#626262'} style={styles.lockCont} />
-        <TextInput placeholder='Password' style={styles.scndinput} />
+        <TextInput placeholder='Password' style={styles.scndinput} onChangeText={setPassword} />
           <EyeIcon name='eye' size={20} color={'#626262'} style={styles.eyeCont} />
       </View>
 
@@ -36,7 +57,7 @@ const SignUp = () => {
           {/* confirm pass input */}
       <View style={styles.scndinputCont}>
           <Lock name='locked' size={20} color={'#626262'} style={styles.lockCont} />
-        <TextInput placeholder='Confirm Password' style={styles.scndinput} />
+        <TextInput placeholder='Confirm Password' style={styles.scndinput} onChangeText={setPassword} />
           <EyeIcon name='eye' size={20} color={'#626262'} style={styles.eyeCont} />
       </View>
 
@@ -50,7 +71,7 @@ const SignUp = () => {
 
       {/* create act psw */}
       <View style={styles.btnCont}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} >
           <Text style={styles.btnTxt}>Create Account</Text>
         </TouchableOpacity>
       </View>

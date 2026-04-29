@@ -70,7 +70,7 @@ const PlaceOrder = () => {
       <View style={styles.footer}>
         <View style={styles.footerRow}>
           <View>
-            <Text style={styles.footerPrice}>₹ {totalPrice.toFixed(0)}</Text>
+            <Text style={styles.footerPrice}>₹ {totalPrice.toFixed(2)}</Text>
             <Text style={styles.viewDetails}>View Details</Text>
           </View>
 
@@ -132,7 +132,7 @@ const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
             </View>
 
             <View style={styles.priceCont}>
-              <Text>₹ {(item.price * (item.quantity || 1)).toFixed(0)}</Text>
+              <Text>₹ {(item.price * (item.quantity || 1)).toFixed(2)}</Text>
 
               <TouchableOpacity onPress={() => dispatch(removeCart(item.id))}>
                 <DeleteIcon name="delete" size={24} color={'red'} />
@@ -162,7 +162,7 @@ const OrderDetails = ({ totalPrice, coupon }) => {
 
       <View style={styles.rowBetween}>
         <Text>Order Amounts</Text>
-        <Text style={styles.bold}>₹{totalPrice.toFixed(0)}</Text>
+        <Text style={styles.bold}>₹{totalPrice.toFixed(2)}</Text>
       </View>
 
       <View style={styles.rowBetween}>
@@ -180,7 +180,7 @@ const OrderDetails = ({ totalPrice, coupon }) => {
       {/* Total */}
       <View style={styles.rowBetween}>
         <Text style={styles.bold}>Order Total</Text>
-        <Text style={styles.bold}>₹{totalPrice.toFixed(0)}</Text>
+        <Text style={styles.bold}>₹{totalPrice.toFixed(2)}</Text>
       </View>
 
       <Text style={styles.redSmall}>EMI Available</Text>

@@ -1,4 +1,4 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
@@ -11,8 +11,8 @@ import { TouchableOpacity } from 'react-native';
 import PlaceOrder from '../screens/PlaceOrder';
 import ShopPage from '../screens/ShopPage';
 import CartIcon from 'react-native-vector-icons/Ionicons';
-import DrawerNavigation from './DrawerNavigation'
-import Profile from '../screens/Profile'
+import DrawerNavigation from './DrawerNavigation';
+import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -84,7 +84,7 @@ export default function StackNavigation() {
                 <BackIcon name="chevron-back" size={24} />
               </TouchableOpacity>
             ),
-            headerTitleAlign:'center'
+            headerTitleAlign: 'center',
           }}
         />
 
@@ -120,31 +120,31 @@ export default function StackNavigation() {
                 <BackIcon name="chevron-back" size={24} />
               </TouchableOpacity>
             ),
-            headerTitleAlign:'center'
+            headerTitleAlign: 'center',
           }}
         />
 
-        <Stack.Screen 
-        name='drawer'
-        component={DrawerNavigation}
-        options={{
-          headerShown:false
-        }}
+        <Stack.Screen
+          name="drawer"
+          component={DrawerNavigation}
+          options={{
+            headerShown: false,
+          }}
         />
 
-        <Stack.Screen 
-        name='profile'
-        component={Profile}
-        options={{
-          // headerShown:false
-          headerTitle:'Profile',
-          headerLeft: () => (
-              <TouchableOpacity onPress={()=> navigation.goBack()}>
+        <Stack.Screen
+          name="profile"
+          component={Profile}
+          options={{
+            // headerShown:false
+            headerTitle: 'Profile',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <BackIcon name="chevron-back" size={24} />
               </TouchableOpacity>
             ),
-            headerTitleAlign:'center'
-        }}
+            headerTitleAlign: 'center',
+          }}
         />
       </Stack.Navigator>
       {/* </NavigationContainer> */}

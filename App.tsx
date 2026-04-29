@@ -9,10 +9,12 @@ import { setCart } from './src/redux/slice';
 import { useEffect, useState } from 'react';
 import { Provider as PaperProvider, MD3DarkTheme , MD3LightTheme  } from 'react-native-paper';
 import { changeTheme } from './src/redux/themeSlice';
+import { getUser } from './src/services/authStorage';
 
 const AppContent = ()=> {
   
   const dispatch = useDispatch()
+  const[isLoggedIn, setIsLoggedIn] = useState(false)
 
   // const isDarkTheme = useSelector((state)=> state.theme.darkTheme)
 
@@ -30,6 +32,14 @@ const AppContent = ()=> {
     catch(e){
       console.log('load error',e);
       
+    }
+  }
+
+  const checkUser = async ()=>{
+    const user = await getUser()
+
+    if(user) {
+      setIsLoggedIn(true)
     }
   }
 
@@ -57,7 +67,7 @@ const AppContent = ()=> {
   return(
     <PaperProvider  > 
     <NavigationContainer >
-      <StackNavigation />
+      <StackNavigation  />
     </NavigationContainer>
     </PaperProvider>
   )

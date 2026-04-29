@@ -80,8 +80,8 @@ const HomeHeader = ({ handleSearch }) => {
       
       {/* Mic */}
       <TouchableOpacity
-      style={styles.micIcon}
-      // style={isListening ? styles.micActive : null } 
+
+      style={isListening ? styles.micActive : styles.micIcon } 
       onPress={()=> { 
         if(!isListening) {
           setIsListening(true)
