@@ -1,4 +1,4 @@
-import { Image,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image,  SafeAreaView,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import Search from 'react-native-vector-icons/Fontisto'
@@ -39,7 +39,7 @@ const HomeHeader = ({ handleSearch }) => {
 
   
   return (
-    <>
+    <SafeAreaView>
     
       <View style={styles.container}>
       
@@ -98,7 +98,7 @@ const HomeHeader = ({ handleSearch }) => {
 
 
     {/* <Demo /> */}
-    </>
+    </SafeAreaView>
   )
 }
 

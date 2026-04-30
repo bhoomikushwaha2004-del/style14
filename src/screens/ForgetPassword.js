@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import MailIcon from 'react-native-vector-icons/Ionicons'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const ForgetPassword = () => {
   return (
-    <>
+    <SafeAreaView>
     {/* headline Txt */}
       <View style={styles.headlineCont}>
         <Text style={styles.headlineTxt}>Forgot password?</Text>
@@ -27,7 +27,7 @@ const ForgetPassword = () => {
           <Text style={styles.btnTxt}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </SafeAreaView>
   );
 };
 

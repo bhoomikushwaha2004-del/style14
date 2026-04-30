@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Alert, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import EyeIcon from 'react-native-vector-icons/Feather';
 import UserIcon from 'react-native-vector-icons/FontAwesome6';
 import Lock from 'react-native-vector-icons/Fontisto';
@@ -43,7 +43,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <SafeAreaView>
     <StatusBar />
     {/* Headline Txt */}
       <View style={styles.headlineTxt}>
@@ -109,7 +109,7 @@ const Login = () => {
 
       </View>
 
-    </>
+    </SafeAreaView>
   );
 };
 

@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeHeader from '../components/HomeHeader'
 import HomeFeatures from '../components/HomeFeatures'
@@ -14,9 +14,10 @@ import { addToWishlist, removeFromWishlist } from '../redux/slice';
 
 const HomePage = () => {
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+
   const [filteredData, setFilteredData] = useState([]);
   const[searchText, setSearchText] = useState('')
   const [ category, setCategory] = useState('')
@@ -39,7 +40,7 @@ const HomePage = () => {
   const getProd = async () => {
     setIsLoader(true);
     const result = await getData();
-    // setData(result);
+    setData(result);
 
     setIsLoader(false);
     setFilteredData(result);
@@ -86,7 +87,7 @@ const HomePage = () => {
   }
 
   const handleSort = type => {
-    let sortedData = [...filteredData]
+    let sortedData = [...data]
 
     if(type==='high'){
       sortedData.sort((a,b) => b.price - a.price)
@@ -98,7 +99,7 @@ const HomePage = () => {
     
   }
   return (
-    <>
+    <SafeAreaView>
     <HomeHeader handleSearch={handleSearch}  />
     <HomeFeatures handleCategory={handleCategory} handleSort={handleSort}  />
 
@@ -128,7 +129,7 @@ const HomePage = () => {
         )}
       </View>
 
-    </>
+    </SafeAreaView>
   )
 }
 

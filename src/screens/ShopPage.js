@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -36,7 +36,7 @@ const ShopPage = () => {
             params:{item,cart}})
     }
   return (
-    <>
+    <SafeAreaView>
     {/* image */}
       <View style={styles.imgCont}>
         <Image source={{uri: item.image}} style={styles.img} />
@@ -86,7 +86,7 @@ const ShopPage = () => {
 
 
       
-    </>
+    </SafeAreaView>
   )
 }
 

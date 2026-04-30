@@ -2,6 +2,7 @@ import {
   FlatList,
   Image,
   Modal,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -14,6 +15,7 @@ import { removeCart, handleQuantity } from '../redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import Cross from 'react-native-vector-icons/Entypo'
 
 const PlaceOrder = () => {
   const route = useRoute();
@@ -85,9 +87,31 @@ const PlaceOrder = () => {
 
       {/* Modal */}
       <Modal visible={showModal} transparent={true} animationType="slide">
-        <View style={{ flex: 1, opacity: 0.6, backgroundColor: 'black' }}>
-          <Text>hey</Text>
+        
+
+
+          
+          <View style={styles.modalBackground}>
+        <View style={styles.modalContainer}>
+          <TouchableOpacity onPress={()=> setShowModal(false)} style={styles.close}>
+            <Cross name='cross' size={20} color={'#000'} />
+          </TouchableOpacity>
+          <View style={styles.imageWrapper}>
+            <Image
+              source={require('../assets/circle.jpg')}
+              style={styles.image}
+              resizeMode='contain'
+            />
+            <Image
+              source={require('../assets/tick.png')}
+              style={styles.tick}
+              resizeMode='contain'
+            />
+          </View>
+          <Text style={styles.text}>Payment done successfully.</Text>
         </View>
+      </View>
+        
       </Modal>
     </>
   );
@@ -147,7 +171,7 @@ const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
 
 const OrderDetails = ({ totalPrice, coupon }) => {
   return (
-    <View style={styles.detailsCard}>
+    <SafeAreaView style={styles.detailsCard}>
       {/* Coupon */}
       <View style={styles.rowBetween}>
         <Text>{coupon}</Text>
@@ -184,7 +208,7 @@ const OrderDetails = ({ totalPrice, coupon }) => {
       </View>
 
       <Text style={styles.redSmall}>EMI Available</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -305,5 +329,59 @@ const styles = StyleSheet.create({
   payText: {
     color: COLORS.white,
     fontWeight: 'bold',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalBackground: {
+    flex:1,
+    backgroundColor:'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position:'absolute',
+    top:0,
+    right:0,
+    left:0,
+    bottom:0,
+  },
+  modalContainer: {
+    width: 310,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    borderRadius: 6,
+    elevation: 20,
+    // position:'relative',
+    height:201,
+  },
+  image:{
+    height:100,
+    width:100,
+  },
+  close:{
+    position:'absolute',
+    top:12,
+    right:12,
+    zIndex:10,
+    padding:4,
+  },
+  tick:{
+    position:'absolute',
+    height:40,
+    width:40,
+  },
+  imageWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  text:{
+    color:'#222222',
+    fontSize:14,
+    fontWeight:'600',
+    padding:20,
+    paddingLeft:50
   },
 });

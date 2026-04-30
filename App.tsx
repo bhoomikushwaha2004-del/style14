@@ -14,9 +14,12 @@ import { getUser } from './src/services/authStorage';
 const AppContent = ()=> {
   
   const dispatch = useDispatch()
+  // const isDarkTheme = useSelector((state)=> state.theme.isDarkTheme)
+  
   const[isLoggedIn, setIsLoggedIn] = useState(false)
+  
 
-  // const isDarkTheme = useSelector((state)=> state.theme.darkTheme)
+  
 
   useEffect(()=> {
     loadCart()
@@ -65,15 +68,15 @@ const AppContent = ()=> {
   // const theme = isDarkTheme? CustomDarkTheme: CustomDefaultTheme
 
   return(
-    <PaperProvider  > 
-    <NavigationContainer >
+    <PaperProvider   > 
+    <NavigationContainer  >
       <StackNavigation  />
     </NavigationContainer>
     </PaperProvider>
   )
 
 }
-2
+
 
 function App() {
   return (

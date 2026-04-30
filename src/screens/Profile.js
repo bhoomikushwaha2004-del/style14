@@ -1,9 +1,9 @@
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 const Profile = () => {
   return (
-    <>
+    <SafeAreaView>
       <View style={styles.container}>
         <ScrollView> 
 
@@ -109,7 +109,7 @@ const Profile = () => {
         </View>
         </ScrollView>
       </View>
-    </>
+    </SafeAreaView>
   )
 }
 

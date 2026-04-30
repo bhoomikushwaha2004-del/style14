@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function GetStarted() {
@@ -10,7 +10,7 @@ export default function GetStarted() {
     navigation.navigate('bottomTab');
   };
   return (
-    <>
+    <SafeAreaView>
       <View >
         <ImageBackground
           source={require('../assets/getstartedimg.jpg')}
@@ -27,10 +27,10 @@ export default function GetStarted() {
 
         
         <Text style={styles.firsttxt}>
-          You want         Authentic, here       you go!</Text>
+          You want {'\n'} Authentic, here{'\n'}you go!</Text>
 
            
-        <Text style={styles.secondtxt}>              Find it here, buy it now!</Text>
+        <Text style={styles.secondtxt}>Find it here, buy it now!</Text>
         
 
         <TouchableOpacity style={styles.btn} onPress={homepagenvg}>
@@ -49,7 +49,7 @@ export default function GetStarted() {
 
         
         </View>
-    </>
+    </SafeAreaView>
   );
 }
 
@@ -75,8 +75,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     height: 22,
     marginTop: 680,
-    marginLeft: 77,
-    textAlign:'center'
+    alignSelf:'center',
+    right:150
+    // textAlign:'center'
   },
   btn: {
     borderWidth: 1,
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     width: 279,
     backgroundColor: '#F83758',
     borderColor: '#F83758',
-    marginTop: 755,
+    marginTop: 750,
     marginLeft: 55,
     borderRadius: 5,
   },

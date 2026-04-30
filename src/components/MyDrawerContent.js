@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import {
   useTheme,
   Avatar,
@@ -32,7 +32,8 @@ const MyDrawerContent = props => {
   }
   
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView> 
+      <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
@@ -138,6 +139,8 @@ const MyDrawerContent = props => {
         />
       </Drawer.Section>
     </View>
+    </SafeAreaView>
+    
   );
 };
 

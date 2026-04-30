@@ -1,4 +1,4 @@
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import UserIcon from 'react-native-vector-icons/FontAwesome6'
 import Lock from 'react-native-vector-icons/Fontisto'
@@ -34,7 +34,7 @@ const SignUp = () => {
   }
 
   return (
-    <>
+    <SafeAreaView>
       {/* Headline Txt */}
       <View style={styles.headlineCont}>
         <Text style={styles.headlineTxt}>Create an account</Text>
@@ -106,7 +106,7 @@ const SignUp = () => {
               </View>
       
             </View>
-    </>
+    </SafeAreaView>
   );
 };
 

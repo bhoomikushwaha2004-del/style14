@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
@@ -43,7 +43,7 @@ const WishList = () => {
 
 const WishlistItems =({item,addToCart,dispatch,wishlist,navigation,selector})=> {
 return(
-  <>
+  <SafeAreaView>
    <View style={styles.card}>
 
     {/* cross btn */}
@@ -102,7 +102,7 @@ return(
         </View>
   
       </View>
-  </>
+  </SafeAreaView>
 )
 }
 

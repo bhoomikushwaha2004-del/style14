@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ActivityIndicator } from 'react-native-paper'
 import HomeHeader from './HomeHeader'
@@ -6,11 +6,14 @@ import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const Loader = () => {
   return (
+    < >
     <View style={styles.container}>
       <HomeHeader />
       <ActivityIndicator size={'large'} style={styles.loader}/>
       <Text style={styles.txt}>Please wait while your screen is being load!!!!!!</Text>
     </View>
+    </ >
+    
   )
 }
 

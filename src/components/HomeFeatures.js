@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,7 +14,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
       
       <View style={styles.topRow}>
@@ -127,7 +128,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
       </View>
       
 
-    </View>
+    </SafeAreaView>
   );
 };
 
