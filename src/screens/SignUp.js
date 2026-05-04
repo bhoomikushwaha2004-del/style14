@@ -19,7 +19,7 @@ const SignUp = () => {
 
   const register = async() => {
     if(!username || !password) {
-      Alert('Enter Details')
+      Alert.alert('Enter Details')
       return ;
     }
 
@@ -28,8 +28,8 @@ const SignUp = () => {
 
     await saveUser(user)
 
-    Alert('Account Created Successful')
-    navigation.navigate('login')
+    Alert.alert('Account Created Successful')
+    navigation.replace('login')
 
   }
 

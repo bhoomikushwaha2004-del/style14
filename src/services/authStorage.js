@@ -11,7 +11,7 @@ export const saveUser = async (user)=> {
 
 export const getUser = async () => {
     try {
-        const data = await AsyncStorage.getItem('user')
+        const data = await AsyncStorage.getItem('user') 
         return data ? JSON.parse(data) : null
     } catch (e) {
         console.log('Get user error =', e);

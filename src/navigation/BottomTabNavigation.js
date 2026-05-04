@@ -35,7 +35,7 @@ const getTabBarIcon = (routeName, focused, color, size) => {
   );
 };
 
-export default function BottomTabNavigation() {
+export default function BottomTabNavigation(props) {
   const navigation = useNavigation();
 
   const selector = useSelector(state => state.cart.items);
@@ -66,7 +66,7 @@ export default function BottomTabNavigation() {
       >
         <Tab.Screen
           name="home"
-          component={DrawerNavigation}
+          {...props =>  ( <DrawerNavigation {...props} setIsLoggedIn={setIsLoggedIn} />)}
           options={{ headerShown: false, title: 'Home' }}
         />
         {/* <Tab.Screen
@@ -103,7 +103,7 @@ export default function BottomTabNavigation() {
           component={Checkout}
           options={{
             title: 'Cart',
-            headerShown: true,
+            headerShown: false,
             tabBarBadge: selector.length,
             // headerLeft: () => (
             //   <TouchableOpacity onPress={() => navigation.goBack()}>

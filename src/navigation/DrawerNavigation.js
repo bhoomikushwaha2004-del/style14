@@ -9,14 +9,14 @@ import MyDrawerContent from '../components/MyDrawerContent'
 
 const Drawer = createDrawerNavigator()
 
-const DrawerNavigation = () => {
+const DrawerNavigation = (props) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false)
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
   return (
     <>
-      <Drawer.Navigator drawerContent={props => <MyDrawerContent {...props} />}>
+      <Drawer.Navigator drawerContent={props => <MyDrawerContent {...props} setIsLoggedIn={setIsLoggedIn} />}>
         <>
         <Drawer.Screen 
         name='home'

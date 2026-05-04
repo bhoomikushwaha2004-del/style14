@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const signupnvg = () => {
-    navigation.navigate('signup', { navigation });
+    navigation.navigate('signup');
   };
 
   const forgetnvg = () => {
@@ -28,13 +28,13 @@ const Login = () => {
     const user = await getUser();
 
     if(!user ) {
-      Alert('No Account found');
+      Alert.alert('No Account found');
       return ;
     }
 
     if(user.username === username && user.password === password) {
       await setLogin();
-      navigation.replace('bottomTab')
+      navigation.replace('bottomTab',{ screen:'home'})
       // navigation.navigate('bottomTab')
     } else {
       Alert.alert('Invalid credentails')

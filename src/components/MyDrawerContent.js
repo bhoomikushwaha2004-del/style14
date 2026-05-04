@@ -30,7 +30,8 @@ const MyDrawerContent = props => {
 
   const handleLogout = async ()=> {
     await logoutUser()
-    // props.navigation.replace('login')
+    props.setIsLoggedIn(false)
+    props.navigation.replace('login')
   }
 
   const toggleTheme =()=> {

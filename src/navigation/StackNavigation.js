@@ -16,7 +16,7 @@ import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
-export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
+export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
   const navigation = useNavigation();
 
   const cartnvg = () => {
@@ -33,99 +33,60 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
     <>
       {/* <NavigationContainer> */}
       <Stack.Navigator>
-        {isLoggedIn ? (
-          <>
-          <Stack.Screen
-          name="login"
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-        />
+  {!isLoggedIn ? (
+    <>
+      <Stack.Screen
+        name="login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="signup"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="forgetpassword"
+        component={ForgetPassword}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="getstarted"
+        component={GetStarted}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="bottomTab" options={{ headerShown: false }}/>
+    </>
+  ) : (
+    <>
+      {/* <Stack.Screen name="bottomTab" options={{ headerShown: false }}> */}
+        {/* {(props) => (
+          <BottomTabNavigation
+            {...props}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        )}
+      </Stack.Screen> */}
 
-        <Stack.Screen
-          name="signup"
-          component={SignUp}
-          options={{
-            headerShown: false,
-          }}
-        />
+      <Stack.Screen
+        name="cart"
+        component={ShopPage}
+        options={{ headerShown: true }}
+      />
 
-        <Stack.Screen
-          name="forgetpassword"
-          component={ForgetPassword}
-          options={{
-            headerShown: false,
-          }}
-        />
+      <Stack.Screen
+        name="bag"
+        component={PlaceOrder}
+      />
 
-        <Stack.Screen
-          name="getstarted"
-          component={GetStarted}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        
-
-        <Stack.Screen
-          name="cart"
-          component={ShopPage}
-          options={{
-            title: 'Cart',
-            headerShown: true,
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <BackIcon name="chevron-back" size={24} />
-              </TouchableOpacity>
-            ),
-            headerRight: () => (
-              <TouchableOpacity>
-                <CartIcon name="cart-outline" size={24} />
-              </TouchableOpacity>
-            ),
-
-            headerTitle: '',
-          }}
-        />
-
-        <Stack.Screen
-          name="bag"
-          component={PlaceOrder}
-          options={{
-            headerShown: true,
-            headerTitle: 'Shopping Bag',
-            headerLeft: () => (
-              <TouchableOpacity onPress={checkoutnvg}>
-                <BackIcon name="chevron-back" size={24} />
-              </TouchableOpacity>
-            ),
-            headerTitleAlign: 'center',
-          }}
-        />
-
-        <Stack.Screen
-          name="profile"
-          component={Profile}
-          options={{
-            // headerShown:false
-            headerTitle: 'Profile',
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <BackIcon name="chevron-back" size={24} />
-              </TouchableOpacity>
-            ),
-            headerTitleAlign: 'center',
-          }}
-        />
-
-          </>
-        ):null}
-
-        <Stack.Screen name='bottomTab' component={BottomTabNavigation} options={{headerShown:false}} />
-        </Stack.Navigator>
-        {/* <Stack.Screen
+      <Stack.Screen
+        name="profile"
+        component={Profile}
+      />
+    </>
+  )}
+</Stack.Navigator>
+      {/* <Stack.Screen
           name="login"
           component={Login}
           options={{
@@ -141,7 +102,7 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
           }}
         /> */}
 
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="forgetpassword"
           component={ForgetPassword}
           options={{
@@ -165,7 +126,7 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
           }}
         /> */}
 
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="checkout"
           component={Checkout}
           options={{
@@ -180,7 +141,7 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
           }}
         /> */}
 
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="cart"
           component={ShopPage}
           options={{
@@ -216,7 +177,7 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
           }}
         /> */}
 
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="drawer"
           component={DrawerNavigation}
           options={{
@@ -224,7 +185,7 @@ export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
           }}
         /> */}
 
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="profile"
           component={Profile}
           options={{

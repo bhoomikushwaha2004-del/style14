@@ -17,7 +17,7 @@ const AppContent = ()=> {
   // const isDarkTheme = useSelector((state)=> state.theme.isDarkTheme)
   
   // const[isLoggedIn, setIsLoggedIn] = useState(null)
-  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const [isLoggedIn,setIsLoggedIn] = useState<boolean | null >(null)
 
   // const dispatch = useDispatch()
   
