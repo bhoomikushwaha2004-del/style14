@@ -14,7 +14,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
 
       
       <View style={styles.topRow}>
@@ -128,7 +128,7 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
       </View>
       
 
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   filterBox: {
     position: 'absolute',
-    top: 150,
+    top: 40,
     right: 20,
     backgroundColor: COLORS.white,
     padding: SPACING.s,

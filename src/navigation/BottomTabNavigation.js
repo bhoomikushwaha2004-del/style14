@@ -61,6 +61,7 @@ export default function BottomTabNavigation() {
             height: 76,
             paddingTop: 10,
           },
+          
         })}
       >
         <Tab.Screen
@@ -104,11 +105,11 @@ export default function BottomTabNavigation() {
             title: 'Cart',
             headerShown: true,
             tabBarBadge: selector.length,
-            headerLeft: () => (
-              <TouchableOpacity onPress={homenvg}>
-                <BackIcon name="chevron-back" size={24} />
-              </TouchableOpacity>
-            ),
+            // headerLeft: () => (
+            //   <TouchableOpacity onPress={() => navigation.goBack()}>
+            //     <BackIcon name="chevron-back" size={24} />
+            //   </TouchableOpacity>
+            // ),
             headerTitleAlign:'center',
 
             headerTitle: 'Checkout',

@@ -19,6 +19,34 @@ export const getUser = async () => {
     }
 }
 
+export const setLogin = async () => {
+    try{
+         await AsyncStorage.setItem('isLoggedIn', 'true')
+    }
+    catch(e) {
+        console.log(e);
+        
+    }
+}
+
+export const getLogin = async () => {
+    try{
+        const val = await AsyncStorage.getItem('isLoggedIn')
+        return val === 'true'
+    }
+    catch(e) {
+        console.log(e);
+        return false;
+        
+    }
+}
+
 export const logoutUser = async () => {
-    await AsyncStorage.removeItem('user')
+    try {
+        await AsyncStorage.removeItem('isLoggedIn')
+    }
+    catch(e) {
+        console.log(e);
+        
+    }
 }

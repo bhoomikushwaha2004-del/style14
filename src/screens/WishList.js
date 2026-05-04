@@ -19,8 +19,7 @@ const WishList = () => {
           dispatch(addItems({...item, quantity:1}))
   
           navigation.navigate('bottomTab',{
-              screen:'home',
-              params:{item}})
+              screen:'home',})
       }
   return (
     
@@ -31,8 +30,8 @@ const WishList = () => {
     )} 
     ListEmptyComponent={()=> (
       <View style={{flex:1}}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf:'center' }}>
-            No items in WishList 🛒
+          <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf:'center',  }}>
+            Empty WishList 🛒
           </Text>
         </View>
     )}
@@ -43,7 +42,7 @@ const WishList = () => {
 
 const WishlistItems =({item,addToCart,dispatch,wishlist,navigation,selector})=> {
 return(
-  <SafeAreaView>
+  <>
    <View style={styles.card}>
 
     {/* cross btn */}
@@ -102,7 +101,7 @@ return(
         </View>
   
       </View>
-  </SafeAreaView>
+  </>
 )
 }
 

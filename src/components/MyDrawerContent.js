@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useState } from 'react';
 import { changeTheme } from '../redux/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../services/authStorage';
 
 // import{ AuthContext } from '../components/context';
 
@@ -27,12 +28,17 @@ const MyDrawerContent = props => {
   // const { changeTheme } = 
   const isDarkTheme = useSelector(state => state.theme.isDarkTheme)
 
+  const handleLogout = async ()=> {
+    await logoutUser()
+    // props.navigation.replace('login')
+  }
+
   const toggleTheme =()=> {
     dispatch(changeTheme())
   }
   
   return (
-    <SafeAreaView> 
+    <> 
       <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
@@ -48,7 +54,7 @@ const MyDrawerContent = props => {
               </View>
             </View>
 
-            <View style={styles.row}>
+            {/* <View style={styles.row}>
               <View style={styles.section}>
                 <Paragraph style={[styles.paragraph, styles.caption]}>
                   80
@@ -61,7 +67,9 @@ const MyDrawerContent = props => {
                 </Paragraph>
                 <Caption style={styles.caption}>Followers</Caption>
               </View>
-            </View>
+            </View> */}
+
+
           </View>
 
           <Drawer.Section style={styles.drawerSection}>
@@ -135,11 +143,12 @@ const MyDrawerContent = props => {
             <Icon name="exit-to-app" color={color} size={size} />
           )}
           label="Sign Out"
+          onPress={handleLogout}
           // onPress={() => {signOut()}}
         />
       </Drawer.Section>
     </View>
-    </SafeAreaView>
+    </>
     
   );
 };

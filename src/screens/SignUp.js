@@ -71,7 +71,7 @@ const SignUp = () => {
 
       {/* create act psw */}
       <View style={styles.btnCont}>
-        <TouchableOpacity style={styles.btn} >
+        <TouchableOpacity style={styles.btn} onPress={register} >
           <Text style={styles.btnTxt}>Create Account</Text>
         </TouchableOpacity>
       </View>

@@ -41,6 +41,8 @@ const addToCart = createSlice({
 
       saveData(state.items);
     },
+
+    
     addToWishlist:(state,action)=>{
       const exist = state.wishlist.find(item => item.id === action.payload.id)
 

@@ -16,7 +16,7 @@ import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
-export default function StackNavigation() {
+export default function StackNavigation({isLoggedIn, setIsLoggedIn}) {
   const navigation = useNavigation();
 
   const cartnvg = () => {
@@ -33,7 +33,9 @@ export default function StackNavigation() {
     <>
       {/* <NavigationContainer> */}
       <Stack.Navigator>
-        <Stack.Screen
+        {isLoggedIn ? (
+          <>
+          <Stack.Screen
           name="login"
           component={Login}
           options={{
@@ -65,28 +67,7 @@ export default function StackNavigation() {
           }}
         />
 
-        <Stack.Screen
-          name="bottomTab"
-          component={BottomTabNavigation}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="checkout"
-          component={Checkout}
-          options={{
-            headerShown: true,
-            headerTitle: 'Checkout',
-            headerLeft: () => (
-              <TouchableOpacity onPress={cartnvg}>
-                <BackIcon name="chevron-back" size={24} />
-              </TouchableOpacity>
-            ),
-            headerTitleAlign: 'center',
-          }}
-        />
+        
 
         <Stack.Screen
           name="cart"
@@ -125,14 +106,6 @@ export default function StackNavigation() {
         />
 
         <Stack.Screen
-          name="drawer"
-          component={DrawerNavigation}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
           name="profile"
           component={Profile}
           options={{
@@ -146,7 +119,126 @@ export default function StackNavigation() {
             headerTitleAlign: 'center',
           }}
         />
-      </Stack.Navigator>
+
+          </>
+        ):null}
+
+        <Stack.Screen name='bottomTab' component={BottomTabNavigation} options={{headerShown:false}} />
+        </Stack.Navigator>
+        {/* <Stack.Screen
+          name="login"
+          component={Login}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="signup"
+          component={SignUp}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
+
+        {/* <Stack.Screen
+          name="forgetpassword"
+          component={ForgetPassword}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="getstarted"
+          component={GetStarted}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="bottomTab"
+          component={BottomTabNavigation}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
+
+        {/* <Stack.Screen
+          name="checkout"
+          component={Checkout}
+          options={{
+            headerShown: true,
+            headerTitle: 'Checkout',
+            headerLeft: () => (
+              <TouchableOpacity onPress={cartnvg}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign: 'center',
+          }}
+        /> */}
+
+        {/* <Stack.Screen
+          name="cart"
+          component={ShopPage}
+          options={{
+            title: 'Cart',
+            headerShown: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity>
+                <CartIcon name="cart-outline" size={24} />
+              </TouchableOpacity>
+            ),
+
+            headerTitle: '',
+          }}
+        />
+
+        <Stack.Screen
+          name="bag"
+          component={PlaceOrder}
+          options={{
+            headerShown: true,
+            headerTitle: 'Shopping Bag',
+            headerLeft: () => (
+              <TouchableOpacity onPress={checkoutnvg}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign: 'center',
+          }}
+        /> */}
+
+        {/* <Stack.Screen
+          name="drawer"
+          component={DrawerNavigation}
+          options={{
+            headerShown: false,
+          }}
+        /> */}
+
+        {/* <Stack.Screen
+          name="profile"
+          component={Profile}
+          options={{
+            // headerShown:false
+            headerTitle: 'Profile',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign: 'center',
+          }}
+        /> */}
+      {/* </Stack.Navigator> */}
       {/* </NavigationContainer> */}
     </>
   );

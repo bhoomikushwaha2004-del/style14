@@ -9,20 +9,24 @@ import { setCart } from './src/redux/slice';
 import { useEffect, useState } from 'react';
 import { Provider as PaperProvider, MD3DarkTheme , MD3LightTheme  } from 'react-native-paper';
 import { changeTheme } from './src/redux/themeSlice';
-import { getUser } from './src/services/authStorage';
+import { getUser, getLogin } from './src/services/authStorage';
 
 const AppContent = ()=> {
   
   const dispatch = useDispatch()
   // const isDarkTheme = useSelector((state)=> state.theme.isDarkTheme)
   
-  const[isLoggedIn, setIsLoggedIn] = useState(false)
+  // const[isLoggedIn, setIsLoggedIn] = useState(null)
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+
+  // const dispatch = useDispatch()
   
 
   
 
   useEffect(()=> {
     loadCart()
+    checkLogin()
   }, [])
 
   const loadCart =async ()=> {
@@ -38,13 +42,22 @@ const AppContent = ()=> {
     }
   }
 
-  const checkUser = async ()=>{
-    const user = await getUser()
-
-    if(user) {
-      setIsLoggedIn(true)
-    }
+  const checkLogin = async () => {
+    const status = await getLogin()
+    setIsLoggedIn(status);
   }
+
+  // const checkUser = async ()=>{
+  //   const user = await getUser()
+
+  //   if(user) {
+  //     setIsLoggedIn(true)
+  //   }
+  // }
+
+  if( isLoggedIn === null) return null ;
+
+
 
   const CustomDefaultTheme={
     ...NavigationDefaultTheme,
@@ -55,6 +68,9 @@ const AppContent = ()=> {
 
     }
   }
+
+  console.log(CustomDefaultTheme , 'custom default theme');
+  
 
   const CustomDarkTheme = {
     ...NavigationDarkTheme,
@@ -70,7 +86,7 @@ const AppContent = ()=> {
   return(
     <PaperProvider   > 
     <NavigationContainer  >
-      <StackNavigation  />
+      <StackNavigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
     </NavigationContainer>
     </PaperProvider>
   )

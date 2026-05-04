@@ -4,7 +4,7 @@ import { Alert, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, Tou
 import EyeIcon from 'react-native-vector-icons/Feather';
 import UserIcon from 'react-native-vector-icons/FontAwesome6';
 import Lock from 'react-native-vector-icons/Fontisto';
-import { getUser } from '../services/authStorage';
+import { getUser, setLogin } from '../services/authStorage';
 import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
 const Login = () => {
@@ -33,13 +33,15 @@ const Login = () => {
     }
 
     if(user.username === username && user.password === password) {
-      navigation.navigate('bottomTab')
+      await setLogin();
+      navigation.replace('bottomTab')
+      // navigation.navigate('bottomTab')
     } else {
-      Alert('Invalid credentails')
+      Alert.alert('Invalid credentails')
     }
 
 
-    navigation.navigate('getstarted', { navigation });
+    // navigation.navigate('getstarted', { navigation });
   }
 
   return (
@@ -72,7 +74,7 @@ const Login = () => {
 
       {/* Login Btn */}
       <View style={styles.btnCont}  > 
-      <TouchableOpacity style={styles.btnOuter} onPress={getstartednvg} >
+      <TouchableOpacity style={styles.btnOuter} onPress={login} >
         <Text style={styles.btnTxt}>Login</Text>
       </TouchableOpacity>
       </View>

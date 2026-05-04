@@ -1,4 +1,4 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeHeader from '../components/HomeHeader'
 import HomeFeatures from '../components/HomeFeatures'
@@ -11,6 +11,7 @@ import { COLORS, SPACING, FONT_SIZE, RADIUS, } from '../styles';
 import HearOutline from 'react-native-vector-icons/FontAwesome'
 import Heart from 'react-native-vector-icons/FontAwesome'
 import { addToWishlist, removeFromWishlist } from '../redux/slice';
+import  AsyncStorage  from "@react-native-async-storage/async-storage"
 
 const HomePage = () => {
 
@@ -113,7 +114,11 @@ const HomePage = () => {
           <NoDataFound />
         ) : (
           <>
-          
+          <Button title='logout' onPress={async ()=> {
+            await AsyncStorage.clear();
+            console.log('storage clear');
+            
+          }}/>
             <FlatList
               data={filteredData}
               numColumns={numColumn}
