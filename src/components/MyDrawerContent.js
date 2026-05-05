@@ -1,44 +1,63 @@
-import { View, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import {
   useTheme,
   Avatar,
   Title,
   Caption,
-  Paragraph,
   Drawer,
   Text,
-  TouchableRipple,
   Switch,
 } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useState } from 'react';
+import Chat from 'react-native-vector-icons/Ionicons'
+import About from 'react-native-vector-icons/Entypo'
+import { useEffect, useState } from 'react';
 import { changeTheme } from '../redux/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../services/authStorage';
+import { getUser, logoutUser } from '../services/authStorage';
 import { useNavigation } from '@react-navigation/native';
 
 // import{ AuthContext } from '../components/context';
 
 const MyDrawerContent = props => {
   const paperTheme = useTheme();
-  const navigation=useNavigation()
+  // const navigation=useNavigation()
+  const [email,setEmail] = useState('')
 
+  
   const dispatch = useDispatch()
 
   // const { changeTheme } = 
   const isDarkTheme = useSelector(state => state.theme.isDarkTheme)
 
+
+  useEffect(()=> {
+    userInfo()
+  },[])
+  
   const handleLogout = async ()=> {
     await logoutUser()
+    Alert.alert('You Have been Logout')
     props.setIsLoggedIn(false)
-    navigation.replace('login')
+    
+    // navigation.replace('login')
   }
 
   const toggleTheme =()=> {
     dispatch(changeTheme())
   }
+
+  const userInfo = async () => {
+    const user = await getUser()
+
+    if(user) {
+      setEmail(user.username)
+    }
+  }
+
+  
   
   return (
     <> 
@@ -52,7 +71,7 @@ const MyDrawerContent = props => {
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: 'column' }}>
-                <Title style={styles.title}>John Doe</Title>
+                <Title style={styles.title}>{email} </Title>
                 <Caption style={styles.caption}>@j_doe</Caption>
               </View>
             </View>
@@ -76,55 +95,39 @@ const MyDrawerContent = props => {
           </View>
 
           <Drawer.Section style={styles.drawerSection}>
+
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="home-outline" color={color} size={size} />
               )}
+              
               label="Home"
               onPress={() => {
                 props.navigation.navigate('home');
               }}
+              
             />
+
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="account-outline" color={color} size={size} />
+                <Chat name="chatbox-ellipses" color={color} size={size} />
               )}
-              label="Profile"
+              label="Help"
               onPress={() => {
                 props.navigation.navigate('help');
               }}
             />
+
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="bookmark-outline" color={color} size={size} />
+                <About name="network" color={color} size={size} />
               )}
-              label="Bookmarks"
+              label="About Us"
               onPress={() => {
                 props.navigation.navigate('about');
               }}
             />
-            {/* <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="settings-outline" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Settings"
-                            onPress={() => {props.navigation.navigate('SettingsScreen')}}
-                        /> */}
-            {/* <DrawerItem 
-                            icon={({color, size}) => (
-                                <Icon 
-                                name="account-check-outline" 
-                                color={color}
-                                size={size}
-                                />
-                            )}
-                            label="Support"
-                            onPress={() => {props.navigation.navigate('SupportScreen')}}
-                        /> */}
+
           </Drawer.Section>
           <Drawer.Section title="Preferences">
             <TouchableOpacity

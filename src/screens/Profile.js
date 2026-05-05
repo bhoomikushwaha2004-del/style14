@@ -1,9 +1,29 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Image, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { use, useEffect, useState } from 'react'
+import { getUser } from '../services/authStorage'
 
 const Profile = () => {
+  const [email,setEmail] = useState('')
+  const[password, setPassword] = useState('')
+
+  useEffect(() => {
+    loadUser()
+  })
+
+  const loadUser = async ()=> {
+    const user = await getUser()
+
+    if(user) {
+      setEmail(user.username)
+      setPassword(user.password)
+    }
+  }
+
+
   return (
-    <SafeAreaView>
+
+    <>
+    <StatusBar barStyle={'dark-content'} />
       <View style={styles.container}>
         <ScrollView> 
 
@@ -20,14 +40,14 @@ const Profile = () => {
 
           {/* email input */}
           <View style={styles.emailInputView}>
-            <TextInput  placeholder='Email' style={styles.emailinput} />
+            <TextInput  placeholder='Email' style={styles.emailinput} value={email} onChangeText={setEmail} />
           </View>
 
           {/* Password */}
           <Text style={styles.pswTxt}>Password</Text>
 
           <View style={styles.pswInputView}>
-            <TextInput placeholder='Password' style={styles.pswInput} />
+            <TextInput placeholder='Password' style={styles.pswInput} value={password} onChangeText={setPassword} />
           </View>
 
           <Text style={styles.changepswTxt}>Change Password</Text>
@@ -109,7 +129,7 @@ const Profile = () => {
         </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </>
   )
 }
 

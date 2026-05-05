@@ -86,6 +86,10 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
       <Stack.Screen
         name="profile"
         component={Profile}
+        options={{
+          title:'Profile',
+          headerTitleAlign:'center'
+        }}
       />
     </>
   )}

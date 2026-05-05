@@ -1,4 +1,4 @@
-import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeHeader from '../components/HomeHeader'
 import HomeFeatures from '../components/HomeFeatures'
@@ -101,6 +101,7 @@ const HomePage = () => {
   }
   return (
     <SafeAreaView>
+      <StatusBar barStyle={'dark-content'} />
     <HomeHeader handleSearch={handleSearch}  />
     <HomeFeatures handleCategory={handleCategory} handleSort={handleSort}  />
 

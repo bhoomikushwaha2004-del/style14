@@ -63,8 +63,8 @@ export default function BottomTabNavigation(props) {
         })}
       >
         <Tab.Screen name="home"  options={{ headerShown: false, title: 'Home' }}>
-          {props => (
-            <DrawerNavigation {...props} setIsLoggedIn={props.setIsLoggedIn} />
+          {(tabProps) => (
+            <DrawerNavigation {...tabProps} setIsLoggedIn={props.setIsLoggedIn} />
           )}
           
         </Tab.Screen>
