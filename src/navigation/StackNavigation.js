@@ -37,9 +37,11 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
     <>
       <Stack.Screen
         name="login"
-        component={Login}
+        // component={Login}
         options={{ headerShown: false }}
-      />
+      >
+        {props => (<Login {...props} setIsLoggedIn={setIsLoggedIn}/>)}
+      </Stack.Screen>
       <Stack.Screen
         name="signup"
         component={SignUp}
@@ -61,7 +63,7 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
   ) : (
     <>
       
-      <Stack.Screen name="bottomTab" component={BottomTabNavigation} options={{ headerShown: false }}>
+      <Stack.Screen name="bottomTab"  options={{ headerShown: false }}>
         {(props) => (
           <BottomTabNavigation
             {...props}

@@ -17,11 +17,13 @@ import { useState } from 'react';
 import { changeTheme } from '../redux/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../services/authStorage';
+import { useNavigation } from '@react-navigation/native';
 
 // import{ AuthContext } from '../components/context';
 
 const MyDrawerContent = props => {
   const paperTheme = useTheme();
+  const navigation=useNavigation()
 
   const dispatch = useDispatch()
 
@@ -31,7 +33,7 @@ const MyDrawerContent = props => {
   const handleLogout = async ()=> {
     await logoutUser()
     props.setIsLoggedIn(false)
-    props.navigation.replace('login')
+    navigation.replace('login')
   }
 
   const toggleTheme =()=> {

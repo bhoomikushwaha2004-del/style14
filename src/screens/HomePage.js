@@ -114,11 +114,11 @@ const HomePage = () => {
           <NoDataFound />
         ) : (
           <>
-          <Button title='logout' onPress={async ()=> {
+          {/* <Button title='logout' onPress={async ()=> {
             await AsyncStorage.clear();
             console.log('storage clear');
             
-          }}/>
+          }}/> */}
             <FlatList
               data={filteredData}
               numColumns={numColumn}

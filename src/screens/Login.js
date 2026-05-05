@@ -7,7 +7,7 @@ import Lock from 'react-native-vector-icons/Fontisto';
 import { getUser, setLogin } from '../services/authStorage';
 import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -36,10 +36,11 @@ const Login = () => {
 
     if(user.username === username && user.password === password) {
       await setLogin();
+      setIsLoggedIn(true)
       Alert.alert('Account Logged In Successfully')
-      navigation.replace('bottomTab', {
-      screen: 'home',
-    })
+    //   navigation.replace('bottomTab', {
+    //   screen: 'home',
+    // })
       // navigation.navigate('bottomTab')
     } else {
       Alert.alert('Invalid credentails')
