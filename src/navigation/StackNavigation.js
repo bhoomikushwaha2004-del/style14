@@ -55,18 +55,20 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
         component={GetStarted}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="bottomTab" component={BottomTabNavigation} options={{ headerShown: false }}/>
+      
+       
     </>
   ) : (
     <>
-      {/* <Stack.Screen name="bottomTab" options={{ headerShown: false }}> */}
-        {/* {(props) => (
+      
+      <Stack.Screen name="bottomTab" component={BottomTabNavigation} options={{ headerShown: false }}>
+        {(props) => (
           <BottomTabNavigation
             {...props}
             setIsLoggedIn={setIsLoggedIn}
           />
-        )}
-      </Stack.Screen> */}
+        )} 
+        </Stack.Screen> 
 
       <Stack.Screen
         name="cart"

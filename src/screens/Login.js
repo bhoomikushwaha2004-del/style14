@@ -20,9 +20,9 @@ const Login = () => {
     navigation.navigate('forgetpassword');
   };
 
-  const getstartednvg = () => {
-    navigation.navigate('getstarted' );
-  };
+  // const getstartednvg = () => {
+  //   navigation.navigate('getstarted' );
+  // };
 
   const login = async ()=> {
     const user = await getUser();
@@ -37,7 +37,9 @@ const Login = () => {
     if(user.username === username && user.password === password) {
       await setLogin();
       Alert.alert('Account Logged In Successfully')
-      navigation.navigate('getstarted')
+      navigation.replace('bottomTab', {
+      screen: 'home',
+    })
       // navigation.navigate('bottomTab')
     } else {
       Alert.alert('Invalid credentails')

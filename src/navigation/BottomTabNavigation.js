@@ -9,13 +9,12 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Checkout from '../screens/Checkout';
 import { useSelector } from 'react-redux';
-import DrawerNavigation from './DrawerNavigation'
-import WishList from '../screens/WishList'
+import DrawerNavigation from './DrawerNavigation';
+import WishList from '../screens/WishList';
 
 const Tab = createBottomTabNavigator();
 
 const getTabBarIcon = (routeName, focused, color, size) => {
- 
   return (
     <Icon
       name={
@@ -41,13 +40,13 @@ export default function BottomTabNavigation(props) {
   const selector = useSelector(state => state.cart.items);
   console.log(selector, 'cart');
 
-  const wishlistSelector = useSelector(state => state.cart.wishlist)
+  const wishlistSelector = useSelector(state => state.cart.wishlist);
 
-  const homenvg = () => {
-    navigation.navigate('bottomTab', {
-      screen: 'home',
-    });
-  };
+  // const homenvg = () => {
+  //   navigation.navigate('bottomTab', {
+  //     screen: 'home',
+  //   });
+  // };
 
   return (
     <>
@@ -61,14 +60,15 @@ export default function BottomTabNavigation(props) {
             height: 76,
             paddingTop: 10,
           },
-          
         })}
       >
-        <Tab.Screen
-          name="home"
-          {...props =>  ( <DrawerNavigation {...props} setIsLoggedIn={setIsLoggedIn} />)}
-          options={{ headerShown: false, title: 'Home' }}
-        />
+        <Tab.Screen name="home" component={DrawerNavigation} options={{ headerShown: false, title: 'Home' }}>
+          {props => (
+            <DrawerNavigation {...props} setIsLoggedIn={setIsLoggedIn} />
+          )}
+          
+        </Tab.Screen>
+
         {/* <Tab.Screen
           name="cart"
           component={ShopPage}
@@ -92,12 +92,9 @@ export default function BottomTabNavigation(props) {
         <Tab.Screen
           name="wishlist"
           component={WishList}
-          options={{ title: 'Wishlist',
-            tabBarBadge:wishlistSelector.length
-           }}
-          
+          options={{ title: 'Wishlist', tabBarBadge: wishlistSelector.length }}
         />
-        
+
         <Tab.Screen
           name="checkout"
           component={Checkout}
@@ -110,7 +107,7 @@ export default function BottomTabNavigation(props) {
             //     <BackIcon name="chevron-back" size={24} />
             //   </TouchableOpacity>
             // ),
-            headerTitleAlign:'center',
+            headerTitleAlign: 'center',
 
             headerTitle: 'Checkout',
           }}
@@ -120,10 +117,6 @@ export default function BottomTabNavigation(props) {
           component={SearchBar}
           options={{ title: 'Search' }}
         />
-
-        
-
-        
       </Tab.Navigator>
     </>
   );

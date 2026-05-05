@@ -16,7 +16,7 @@ const DrawerNavigation = (props) => {
 
   return (
     <>
-      <Drawer.Navigator drawerContent={props => <MyDrawerContent {...props} setIsLoggedIn={setIsLoggedIn} />}>
+      <Drawer.Navigator drawerContent={props => <MyDrawerContent {...props} setIsLoggedIn={props.setIsLoggedIn} />}>
         <>
         <Drawer.Screen 
         name='home'
