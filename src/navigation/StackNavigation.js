@@ -55,7 +55,7 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
         component={GetStarted}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="bottomTab" options={{ headerShown: false }}/>
+      <Stack.Screen name="bottomTab" component={BottomTabNavigation} options={{ headerShown: false }}/>
     </>
   ) : (
     <>

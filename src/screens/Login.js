@@ -17,15 +17,17 @@ const Login = () => {
   };
 
   const forgetnvg = () => {
-    navigation.navigate('forgetpassword', { navigation });
+    navigation.navigate('forgetpassword');
   };
 
   const getstartednvg = () => {
-    navigation.navigate('getstarted', { navigation });
+    navigation.navigate('getstarted' );
   };
 
   const login = async ()=> {
     const user = await getUser();
+    console.log(user,'login user');
+    
 
     if(!user ) {
       Alert.alert('No Account found');
@@ -34,15 +36,18 @@ const Login = () => {
 
     if(user.username === username && user.password === password) {
       await setLogin();
-      navigation.replace('bottomTab',{ screen:'home'})
+      Alert.alert('Account Logged In Successfully')
+      navigation.navigate('getstarted')
       // navigation.navigate('bottomTab')
     } else {
       Alert.alert('Invalid credentails')
     }
 
-
     // navigation.navigate('getstarted', { navigation });
   }
+
+  // console.log(login, 'login');
+  
 
   return (
     <SafeAreaView>

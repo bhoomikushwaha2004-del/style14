@@ -12,7 +12,7 @@ const ShopPage = () => {
     const dispatch = useDispatch()
 
     const route = useRoute();
-    const { item } = route.params;
+    const  item  = route.params?.item;
     // console.log(item, "item");
 
     const selector= useSelector((state)=> state.cart.items)
@@ -34,6 +34,10 @@ const ShopPage = () => {
         navigation.navigate('bottomTab',{
             screen:'checkout',
             params:{item,cart}})
+    }
+
+    if(!item) {
+      return <Text>No item found</Text>
     }
   return (
     <SafeAreaView>

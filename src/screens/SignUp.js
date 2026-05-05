@@ -31,7 +31,12 @@ const SignUp = () => {
     Alert.alert('Account Created Successful')
     navigation.replace('login')
 
+    console.log(user,'sign up user');
+    
+
   }
+  // console.log(register,'register');
+  
 
   return (
     <SafeAreaView>
