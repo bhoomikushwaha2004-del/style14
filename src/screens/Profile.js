@@ -69,6 +69,7 @@ const Profile = () => {
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
           );
           const data = await res.json();
+          console.log(JSON.stringify(data,null,2));
 
           const addr = data.address || {};
 
@@ -94,6 +95,9 @@ const Profile = () => {
       },
     );
   };
+
+  
+  
 
   return (
     <>
