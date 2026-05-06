@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { use, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { getUser } from '../services/authStorage';
 import Location from 'react-native-vector-icons/FontAwesome';
 import GeoLocation from 'react-native-geolocation-service';
@@ -28,7 +28,7 @@ const Profile = () => {
 
   useEffect(() => {
     loadUser();
-  });
+  },[]);
 
   const loadUser = async () => {
     const user = await getUser();
@@ -60,11 +60,13 @@ const Profile = () => {
 
     GeoLocation.getCurrentPosition(
       async position => {
-        const { latitude, longtitude } = position.coords;
+        const { latitude, longitude } = position.coords;
+        console.log(latitude,latitude,'long,lat');
+        
 
         try {
           const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longtitude}`,
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
           );
           const data = await res.json();
 
