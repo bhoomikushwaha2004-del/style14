@@ -71,7 +71,7 @@ const MyDrawerContent = props => {
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: 'column' }}>
-                <Title style={styles.title}>{email} </Title>
+                <Title style={styles.title}>John Doe </Title>
                 <Caption style={styles.caption}>@j_doe</Caption>
               </View>
             </View>
