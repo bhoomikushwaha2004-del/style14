@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useState } from 'react';
 
 const initialState = {
     darkTheme:false
@@ -8,7 +7,7 @@ const initialState = {
 
 
 const ThemeSlice = createSlice({
-    name:'toggleTheme',
+    name:'theme',
     initialState,
     reducers:{
         changeTheme:(state)=> {

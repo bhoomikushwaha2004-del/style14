@@ -8,10 +8,14 @@ import {
   View,
 } from 'react-native';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import  useAppTheme  from '../theme/useAppTheme'
+// const theme = useAppTheme()
 
 const HomeFeatures = ({handleCategory, handleSort}) => {
   const [sortedData,setSortedData] = useState(false)
   const [showFilter, setShowFilter] = useState(false)
+
+  const theme = useAppTheme()
 
   return (
     <View style={styles.container}>
@@ -138,6 +142,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.m, // 16
     marginTop: SPACING.s, // 10
+    backgroundColor:theme.background
   },
   topRow: {
     flexDirection: 'row',
@@ -147,7 +152,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONT_SIZE.xl, // 20
     fontWeight: 'bold',
-    color: COLORS.black,
+    color: theme.text,
   },
   rightBtns: {
     flexDirection: 'row',
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: FONT_SIZE.s, // 12
     marginRight: 5,
-    color: COLORS.black,
+    color: theme.text,
   },
   categoryItem: {
     alignItems: 'center',
