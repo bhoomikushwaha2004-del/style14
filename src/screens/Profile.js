@@ -66,10 +66,22 @@ const Profile = () => {
 
         try {
           const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+            {
+              headers:{
+                Accept:'application/json',
+                'User-Agent':'StylishApp',
+              },
+            }
           );
-          const data = await res.json();
-          console.log(JSON.stringify(data,null,2));
+
+          const text = await res.text()
+          console.log(text);
+
+          const data= JSON.parse(text)
+          
+          // const data = await res.json();
+          // console.log(JSON.stringify(data,null,2));
 
           const addr = data.address || {};
 

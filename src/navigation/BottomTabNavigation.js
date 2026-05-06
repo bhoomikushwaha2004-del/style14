@@ -60,7 +60,15 @@ export default function BottomTabNavigation(props) {
             height: 76,
             paddingTop: 10,
           },
-        })}
+          // headerBackImage:()=> {
+          //   <BackIcon name="chevron-back" size={24} />
+          // }
+          // headerBackButtonDisplayMode:'generic'
+        })
+        
+      }
+      
+
       >
         <Tab.Screen name="home"  options={{ headerShown: false, title: 'Home' }}>
           {(tabProps) => (
@@ -100,13 +108,18 @@ export default function BottomTabNavigation(props) {
           component={Checkout}
           options={{
             title: 'Cart',
-            headerShown: false,
             tabBarBadge: selector.length,
+            headerShown:true,
             // headerLeft: () => (
-            //   <TouchableOpacity onPress={() => navigation.goBack()}>
+            //   <TouchableOpacity onPress={() => {
+            //     if(navigation.canGoBack()) {
+            //       navigation.goBack()
+            //     }
+            //   }} style={{paddingLeft:10}}>
             //     <BackIcon name="chevron-back" size={24} />
             //   </TouchableOpacity>
             // ),
+            
             headerTitleAlign: 'center',
 
             headerTitle: 'Checkout',
