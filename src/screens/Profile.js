@@ -61,7 +61,7 @@ const Profile = () => {
     GeoLocation.getCurrentPosition(
       async position => {
         const { latitude, longitude } = position.coords;
-        console.log(latitude,latitude,'long,lat');
+        console.log(latitude,longitude,'long,lat');
         
 
         try {
@@ -70,7 +70,7 @@ const Profile = () => {
           );
           const data = await res.json();
 
-          const addr = data.address;
+          const addr = data.address || {};
 
           setLocation({
             address: data.display_name || '',
