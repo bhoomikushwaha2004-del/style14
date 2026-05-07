@@ -11,6 +11,8 @@ const Checkout = () => {
   const selector = useSelector((state)=> state.cart.items)
   console.log(selector,'selector on checkout');
 
+  const products = useSelector(state => state.products.products)
+
       
   const placeordnvg=(item)=> {
     navigation.navigate('bag',{selector})
@@ -33,7 +35,16 @@ const Checkout = () => {
         <FlatList
           data={selector}
           keyExtractor={(item,index)=>index.toString()}
-          renderItem={({item})=> <ItemList item={item} />} 
+          renderItem={({item})=> {
+
+            const fullProduct = products.find( p => p.id === item.id)
+            if(!fullProduct) return null
+
+            return (
+              <ItemList item={{...fullProduct,quantity: item.quantity}} />
+            )
+          
+        } } 
           
           />
           </>

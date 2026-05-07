@@ -21,11 +21,12 @@ const PlaceOrder = () => {
   const route = useRoute();
   const [showModal, setShowModal] = useState(false);
 
-  const { selector } = route.params;
+  // const { selector } = route.params;
 
   const dispatch = useDispatch();
 
   const cartItems = useSelector(state => state.cart.items);
+  const products = useSelector(state => state.products.products)
   // console.log(cartItems, 'cartitems');
 
   const manageQuantity = (id, q) => {
@@ -35,10 +36,25 @@ const PlaceOrder = () => {
     // console.log(manageQuantity, 'managequantity');
   };
 
-  const totalPrice = cartItems.reduce((sum, item) => {
-    const qty = item.quantity ? item.quantity : 1;
-    return sum + item.price * qty;
-  }, 0);
+  // const totalPrice = cartItems.reduce((sum, item) => {
+  //   const qty = item.quantity ? item.quantity : 1;
+  //   return sum + item.price * qty;
+  // }, 0);
+
+
+  const finalCart = cartItems.map(cartItem => {
+    const product = products.find(p => p.id === cartItem.id)
+
+    return {...product, quantity:cartItem.quantity}
+
+    
+  })
+
+  const totalPrice = finalCart.reduce((sum,item) => {
+      const qty = item.quantity || 1;
+
+      return sum + item.price * qty;
+    },0)
 
   if (cartItems.length === 0) {
     return (
@@ -52,7 +68,7 @@ const PlaceOrder = () => {
   return (
     <>
       <FlatList
-        data={cartItems}
+        data={finalCart}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <CartItems
@@ -66,6 +82,7 @@ const PlaceOrder = () => {
           <OrderDetails totalPrice={totalPrice} coupon={<Coupon />} />
         }
         contentContainerStyle={{ paddingBottom: 120 }}
+        // ListEmptyComponent={}
       />
 
       {/* Payment Footer */}

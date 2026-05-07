@@ -1,8 +1,8 @@
-import { Button, FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeHeader from '../components/HomeHeader'
 import HomeFeatures from '../components/HomeFeatures'
-import { getData } from '../services/api';
+// import { getData } from '../services/api';
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../components/Loader';
 import NoDataFound from '../components/NoDataFound'
@@ -11,7 +11,7 @@ import { COLORS, SPACING, FONT_SIZE, RADIUS, } from '../styles';
 import HearOutline from 'react-native-vector-icons/FontAwesome'
 import Heart from 'react-native-vector-icons/FontAwesome'
 import { addToWishlist, removeFromWishlist } from '../redux/slice';
-import  AsyncStorage  from "@react-native-async-storage/async-storage"
+// import  AsyncStorage  from "@react-native-async-storage/async-storage"
 import { fetchProducts} from '../redux/productSlice'
 
 const HomePage = () => {
@@ -28,11 +28,11 @@ const HomePage = () => {
 
   const navigation = useNavigation();
 
-  const prodSelector = useSelector(state => state.products.products)
-  console.log(prodSelector, 'prodselector');
+  const selector = useSelector(state => state.products.products)
+  // console.log(selector, 'prodselector');
   
   const isLoader = useSelector( state => state.products.loading)
-  const selector = useSelector(state => state.products.items);
+  // const selector = useSelector(state => state.products.items);
   console.log(selector, 'selector on home');
 
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const HomePage = () => {
   };
 
   const filterData = (text,cat) => {
-    let filtered = filterData;
+    let filtered = [...selector];
 
     if(text){
       filtered= filtered.filter(item => item.title.toLowerCase().includes(text.toLowerCase()))
@@ -79,7 +79,7 @@ const HomePage = () => {
 
   const onRefresh = async () => {
     setRefreshing(true);
-     dispatch(fetchProducts());
+    await dispatch(fetchProducts());
     setRefreshing(false);
   };
 
@@ -96,7 +96,7 @@ const HomePage = () => {
   }
 
   const handleSort = type => {
-    let sortedData = [...data]
+    let sortedData = [...selector]
 
     if(type==='high'){
       sortedData.sort((a,b) => b.price - a.price)

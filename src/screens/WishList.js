@@ -1,196 +1,225 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 import { useNavigation } from '@react-navigation/native';
-import {addItems,removeFromWishlist} from '../redux/slice'
-import Cross from 'react-native-vector-icons/Entypo'
+import { addItems, removeFromWishlist } from '../redux/slice';
+import Cross from 'react-native-vector-icons/Entypo';
 
 const WishList = () => {
-  const selector = useSelector((state)=> state.cart.items)
-  const wishlist = useSelector(state => state.cart.wishlist)
-  const dispatch = useDispatch()
+  const selector = useSelector(state => state.cart.items);
+  const wishlist = useSelector(state => state.cart.wishlist);
+  const products = useSelector(state => state.products.products);
+  const dispatch = useDispatch();
 
-  const navigation = useNavigation()
-  
+  const navigation = useNavigation();
 
-  const addToCart=(item)=>{
-        
-          dispatch(addItems(item))
-  
-          navigation.navigate('bottomTab',{
-              screen:'home',})
-      }
+  const addToCart = item => {
+    dispatch(addItems(item));
+
+    navigation.navigate('bottomTab', {
+      screen: 'home',
+    });
+  };
   return (
-    
     <FlatList
-    data={wishlist}
-    renderItem={({item}) => (
-      <WishlistItems item={item} addToCart={addToCart} dispatch={dispatch} wishlist={wishlist} navigation={navigation} selector={selector} />
-    )} 
-    ListEmptyComponent={()=> (
-      <View style={{flex:1}}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf:'center',  }}>
+      data={wishlist}
+      renderItem={({ item }) => {
+        const  fullProduct = products.find(p => p.id === item.id)
+
+        if(!fullProduct) return null;
+
+        
+        return (
+          <WishlistItems
+            item={item}
+            addToCart={addToCart}
+            dispatch={dispatch}
+            wishlist={wishlist}
+            navigation={navigation}
+            selector={selector}
+          />
+        );
+      }}
+      ListEmptyComponent={() => (
+        <View style={{ flex: 1 }}>
+          <Text
+            style={{ fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}
+          >
             Empty WishList 🛒
           </Text>
         </View>
-    )}
+      )}
     />
-  )
-}
+  );
+};
 
+const WishlistItems = ({
+  item,
+  addToCart,
+  dispatch,
+  wishlist,
+  navigation,
+  selector,
+}) => {
+  return (
+    <>
+      <View style={styles.card}>
+        {/* cross btn */}
+        <View style={styles.crossView}>
+          <TouchableOpacity
+            onPress={() => dispatch(removeFromWishlist(item.id))}
+          >
+            <Cross name="cross" size={20} />
+          </TouchableOpacity>
+        </View>
 
-const WishlistItems =({item,addToCart,dispatch,wishlist,navigation,selector})=> {
-return(
-  <>
-   <View style={styles.card}>
-
-    {/* cross btn */}
-    <View style={styles.crossView} >
-      <TouchableOpacity onPress={()=> dispatch(removeFromWishlist(item.id))}>
-        <Cross name='cross' size={20} />
-      </TouchableOpacity>
-    </View>
-  
         <View style={styles.row}>
           <Image source={{ uri: item.image }} style={styles.img} />
-  
+
           <View style={styles.info}>
             <Text numberOfLines={1} style={styles.title}>
               {item.title}
             </Text>
-  
-           
-  
-            <View >
-              <Text style={styles.priceTxt}>
-                ₹{item.price.toFixed(2)}
-              </Text>
-            </View>
 
+            <View>
+              <Text style={styles.priceTxt}>₹{item.price.toFixed(2)}</Text>
+            </View>
 
             {/* Add btn */}
             <View style={styles.addcartView}>
               {selector.find(wishlistdata => wishlistdata.id === item.id) ? (
-                <TouchableOpacity style={styles.addcartBtn} onPress={()=> navigation.navigate('bottomTab' ,{screen:'checkout'})}>
-                <Text style={styles.addcartTxt}>Go to Cart</Text>
-              </TouchableOpacity>
-              ):(
-                <TouchableOpacity style={styles.addcartBtn} onPress={()=> addToCart(item)}>
-                 <Text style={styles.addcartTxt}>Add to Cart</Text>
-               </TouchableOpacity>
-              ) }
-
+                <TouchableOpacity
+                  style={styles.addcartBtn}
+                  onPress={() =>
+                    navigation.navigate('bottomTab', { screen: 'checkout' })
+                  }
+                >
+                  <Text style={styles.addcartTxt}>Go to Cart</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={styles.addcartBtn}
+                  onPress={() => addToCart(item)}
+                >
+                  <Text style={styles.addcartTxt}>Add to Cart</Text>
+                </TouchableOpacity>
+              )}
 
               <TouchableOpacity style={styles.buycartBtn}>
                 <Text style={styles.addcartTxt}>Buy</Text>
               </TouchableOpacity>
             </View>
-
-
           </View>
         </View>
-  
+
         {/* Divider */}
         <View style={styles.divider} />
-  
+
         {/* Total */}
         <View style={styles.totalRow}>
           <Text style={styles.totalText}>Total Order (1):</Text>
           <Text style={styles.totalPrice}>₹{item.price}</Text>
         </View>
-  
       </View>
-  </>
-)
-}
+    </>
+  );
+};
 
-export default WishList
+export default WishList;
 
 const styles = StyleSheet.create({
   card: {
-      backgroundColor: COLORS.white,
-      marginHorizontal: 22,
-      marginTop: 12,
-      borderRadius: RADIUS.md,
-      padding: SPACING.sm,
-      elevation: 2,
-    },
-    row: {
-      flexDirection: 'row',
-    },
-    img: {
-      width: 100,
-      height: 100,
-      borderRadius: RADIUS.sm,
-    },
-    info: {
-      flex: 1,
-      paddingLeft: SPACING.sm,
-      // justifyContent: 'space-between',
-    },
-    title: {
-      fontSize: FONT_SIZE.m,
-      fontWeight: 'bold',
-    },
-    
-    priceBox: {
-      borderWidth: 1,
-      borderColor: COLORS.lightGray,
-      borderRadius: RADIUS.sm,
-      alignSelf: 'flex-start',
-    },
-    price: {
-      paddingHorizontal: SPACING.sm,
-      paddingVertical: 6,
-      fontSize: FONT_SIZE.m,
-      fontWeight: 'bold',
-    },
-    divider: {
-      height: 1,
-      backgroundColor: '#E5E5E5',
-      marginVertical: SPACING.sm,
-    },
-    totalRow: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    totalText: {
-      fontSize: 13,
-      color: '#333',
-    },
-    totalPrice: {
-      fontSize: FONT_SIZE.m,
-      fontWeight: 'bold',
-    },
-    priceTxt:{
-      fontWeight:'bold',
-      paddingTop:10
-    },
-    addcartView:{
-      paddingTop:20,
-      flexDirection:'row',
-      justifyContent:'space-evenly'
-    },
-    addcartBtn:{
-      borderWidth:0.5,
-      width:90,
-      backgroundColor:'#0000FF',
-      borderRadius:5,
-      borderColor:'#0000FF'
-    },
-    buycartBtn:{
-      borderWidth:0.5,
-      width:90,
-      backgroundColor:'#00D100',
-      borderRadius:5,
-      borderColor:'#00D100'
-    },
-    addcartTxt:{
-      color:'white',
-      padding:5
-    },
-    crossView:{
-      alignItems:'flex-end'
-    }
-})
+    backgroundColor: COLORS.white,
+    marginHorizontal: 22,
+    marginTop: 12,
+    borderRadius: RADIUS.md,
+    padding: SPACING.sm,
+    elevation: 2,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: RADIUS.sm,
+  },
+  info: {
+    flex: 1,
+    paddingLeft: SPACING.sm,
+    // justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
+  },
+
+  priceBox: {
+    borderWidth: 1,
+    borderColor: COLORS.lightGray,
+    borderRadius: RADIUS.sm,
+    alignSelf: 'flex-start',
+  },
+  price: {
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 6,
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#E5E5E5',
+    marginVertical: SPACING.sm,
+  },
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  totalText: {
+    fontSize: 13,
+    color: '#333',
+  },
+  totalPrice: {
+    fontSize: FONT_SIZE.m,
+    fontWeight: 'bold',
+  },
+  priceTxt: {
+    fontWeight: 'bold',
+    paddingTop: 10,
+  },
+  addcartView: {
+    paddingTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  addcartBtn: {
+    borderWidth: 0.5,
+    width: 90,
+    backgroundColor: '#0000FF',
+    borderRadius: 5,
+    borderColor: '#0000FF',
+  },
+  buycartBtn: {
+    borderWidth: 0.5,
+    width: 90,
+    backgroundColor: '#00D100',
+    borderRadius: 5,
+    borderColor: '#00D100',
+  },
+  addcartTxt: {
+    color: 'white',
+    padding: 5,
+  },
+  crossView: {
+    alignItems: 'flex-end',
+  },
+});
