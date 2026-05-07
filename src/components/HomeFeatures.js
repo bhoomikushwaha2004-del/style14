@@ -47,6 +47,14 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
       }}>
       <Text style={styles.sortItem}> Price: Low to High</Text>
     </TouchableOpacity>
+
+    {/* clear sort */}
+    <TouchableOpacity style={styles.clearBtn} onPress={()=> {
+      handleSort(null)
+      setSortedData(false)
+    }}>
+      <Text style={styles.clearText}>Clear Sort</Text>
+    </TouchableOpacity>
   </View>
           )
         }
@@ -91,6 +99,14 @@ const HomeFeatures = ({handleCategory, handleSort}) => {
         setShowFilter(false);
       }}>
       <Text style={styles.filterItem}> Electronics</Text>
+    </TouchableOpacity>
+
+    {/* clear sort */}
+    <TouchableOpacity style={styles.clearBtn} onPress={()=> {
+      handleCategory(null)
+      setShowFilter(false)
+    }}>
+      <Text style={styles.clearText}>Clear Filter</Text>
     </TouchableOpacity>
 
   </View>
@@ -220,4 +236,17 @@ const styles = StyleSheet.create({
     width: 170,
     zIndex: 100,
   },
+  clearBtn :{
+    top:SPACING.s,
+    backgroundColor:COLORS.secondary,
+    paddingVertical:8,
+    borderRadius:8,
+    alignItems:'center',
+    // paddingBottom:15
+  },
+  clearText:{
+    color:COLORS.white,
+    fontWeight:'bold',
+    fontSize:FONT_SIZE.s
+  }
 });

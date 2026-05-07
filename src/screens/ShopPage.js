@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import CartIcon from 'react-native-vector-icons/Ionicons' 
-import {addItems} from '../redux/slice'
+import {addItems, removeCart} from '../redux/slice'
 import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
 
 const ShopPage = () => {
@@ -17,24 +17,29 @@ const ShopPage = () => {
 
     const selector= useSelector((state)=> state.cart.items)
 
-    
+    const isAdded = selector.find(cartItem => cartItem.id === item.id)
+
     const addToCart=(item)=>{
-        const updatedCart=[...cart,item]
-        setCart(updatedCart)
+        // const updatedCart=[...cart,item]
+        // setCart(updatedCart)
 
         dispatch(addItems(item))
 
-        navigation.navigate('bottomTab',{
-            screen:'home',
-            params:{item,cart}})
+        // navigation.navigate('bottomTab',{
+        //     screen:'home',
+        //     params:{item,cart}})
     }
 
-    const goToCart=(item)=>{
-
-        navigation.navigate('bottomTab',{
-            screen:'checkout',
-            params:{item,cart}})
+    const removeFromCart = id => {
+      dispatch(removeCart(id))
     }
+
+    // const goToCart=(item)=>{
+
+    //     navigation.navigate('bottomTab',{
+    //         screen:'checkout',
+    //         params:{item,cart}})
+    // }
 
     if(!item) {
       return <Text>No item found</Text>
@@ -75,12 +80,23 @@ const ShopPage = () => {
 
       {/* Btn */}
       <View style={styles.btnCont}>
-        { selector.find(cartItem => cartItem.id === item.id) ? (
+        {/* { selector.find(cartItem => cartItem.id === item.id) ? (
             <TouchableOpacity style={styles.addedbtn} onPress={()=>goToCart(item)} >
                     <Image source={require('../assets/goToCart.png')} style={styles.gotoCartimg}/>
                </TouchableOpacity>
         ):(
             <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
+                   <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
+                    <Text style={styles.addtoCartTxt}>Add to Cart</Text>
+                </TouchableOpacity>
+        )} */}
+        { isAdded ? (
+          <TouchableOpacity style={styles.removecartbtn} onPress={()=>removeFromCart(item.id)} >
+                    <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
+                    <Text style={styles.addtoCartTxt}>Remove from cart</Text>
+               </TouchableOpacity>
+        ):(
+          <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
                    <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
                     <Text style={styles.addtoCartTxt}>Add to Cart</Text>
                 </TouchableOpacity>
@@ -149,6 +165,14 @@ const styles = StyleSheet.create({
   addcartbtn: {
     flexDirection: 'row',
     backgroundColor: COLORS.secondary,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: RADIUS.sm,
+    borderBottomRightRadius: RADIUS.sm,
+    borderBottomLeftRadius: 20,
+  },
+  removecartbtn: {
+    flexDirection: 'row',
+    backgroundColor: 'red',
     borderTopLeftRadius: 20,
     borderTopRightRadius: RADIUS.sm,
     borderBottomRightRadius: RADIUS.sm,

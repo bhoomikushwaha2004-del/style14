@@ -86,16 +86,28 @@ const HomePage = () => {
   const numColumn = 2;
 
   const handleCategory = cat=> {
+    if(!cat) {
+      setCategory('');
+      filterData(searchText,'')
+      return;
+    }
+
     setCategory(cat)
     filterData(searchText,cat)
+
   }
 
   const handleSearch = text => {
+
     setSearchText(text)
     filterData(text,category)
   }
 
   const handleSort = type => {
+    if(!type) {
+      filterData(searchText,category)
+      return;
+    }
     let sortedData = [...selector]
 
     if(type==='high'){
