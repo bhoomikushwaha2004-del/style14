@@ -1,27 +1,46 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchProducts = createAsyncThunk('products', async()=>{
-    const resp = await fetch('https://69a7bb832cd1d055269167fa.mockapi.io/api/v1/cart');
-    const jsonResp = await resp.json();
-    return jsonResp.products
-})
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
 
-const initialState ={
-    items:[],
-    status:undefined,
-    error :null
-}
+  async () => {
+    const response = await fetch(
+      'https://69a7bb832cd1d055269167fa.mockapi.io/api/v1/cart',
+    );
 
-const ProductSlice = createSlice({
-    name:'productSlice',
-    initialState,
-    extraReducers:(builders)=>{
-        builders
-        .addCase(fetchProducts.fulfilled,(state,action)=>{
-            state.status='Succeeded',
-            state.items=action.payload
-        })
-    }
-})
+    const data = await response.json();
 
-export default ProductSlice.reducer
+    return data;
+  },
+);
+
+const productSlice = createSlice({
+  name: 'products',
+
+  initialState: {
+    products: [],
+    loading: false,
+  },
+
+  reducers: {},
+
+  extraReducers: builder => {
+    builder
+
+      .addCase(fetchProducts.pending, state => {
+        state.loading = true;
+      })
+
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.products = action.payload;
+      })
+
+      .addCase(fetchProducts.rejected, state => {
+        state.loading = false;
+      });
+  },
+});
+
+export default productSlice.reducer;

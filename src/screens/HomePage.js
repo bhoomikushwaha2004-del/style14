@@ -12,11 +12,12 @@ import HearOutline from 'react-native-vector-icons/FontAwesome'
 import Heart from 'react-native-vector-icons/FontAwesome'
 import { addToWishlist, removeFromWishlist } from '../redux/slice';
 import  AsyncStorage  from "@react-native-async-storage/async-storage"
+import { fetchProducts} from '../redux/productSlice'
 
 const HomePage = () => {
 
-  const [data, setData] = useState([]);
-  const [isLoader, setIsLoader] = useState(false);
+  // const [data, setData] = useState([]);
+  // const [isLoader, setIsLoader] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   const [filteredData, setFilteredData] = useState([]);
@@ -27,7 +28,10 @@ const HomePage = () => {
 
   const navigation = useNavigation();
 
-
+  const prodSelector = useSelector(state => state.products.products)
+  console.log(prodSelector, 'prodselector');
+  
+  const isLoader = useSelector( state => state.products.loading)
   const selector = useSelector(state => state.products.items);
   console.log(selector, 'selector on home');
 
@@ -35,17 +39,21 @@ const HomePage = () => {
   const wishlist=  useSelector(state => state.cart.wishlist)
 
   useEffect(() => {
-    getProd();
+    dispatch(fetchProducts())
   }, []);
 
-  const getProd = async () => {
-    setIsLoader(true);
-    const result = await getData();
-    setData(result);
+  useEffect(() => {
+    setFilteredData(selector)
+  }, [selector]);
 
-    setIsLoader(false);
-    setFilteredData(result);
-  };
+  // const getProd = async () => {
+  //   setIsLoader(true);
+  //   const result = await getData();
+  //   setData(result);
+
+  //   setIsLoader(false);
+  //   setFilteredData(result);
+  // };
 
   const cartnvg = item => {
     navigation.navigate('cart', { item });
@@ -71,7 +79,7 @@ const HomePage = () => {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    const result = await getProd();
+     dispatch(fetchProducts());
     setRefreshing(false);
   };
 
