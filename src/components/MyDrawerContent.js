@@ -18,6 +18,7 @@ import { changeTheme } from '../redux/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, logoutUser } from '../services/authStorage';
 import { useNavigation } from '@react-navigation/native';
+import useAppTheme from '../theme/useAppTheme';
 
 // import{ AuthContext } from '../components/context';
 
@@ -56,6 +57,38 @@ const MyDrawerContent = props => {
       setEmail(user.username)
     }
   }
+
+  // const [email, setEmail] = useState('')
+
+  // const dispatch = useDispatch()
+
+  // const isDarkTheme = useSelector(state => state.theme.darkTheme)
+
+  const theme = useAppTheme()
+
+  const dynamicStyles = styles(theme)
+
+  // useEffect(() => {
+  //   userInfo()
+  // }, [])
+
+  // const handleLogout = async () => {
+  //   await logoutUser()
+  //   Alert.alert('You Have been Logout')
+  //   props.setIsLoggedIn(false)
+  // }
+
+  // const toggleTheme = () => {
+  //   dispatch(changeTheme())
+  // }
+
+  // const userInfo = async () => {
+  //   const user = await getUser()
+
+  //   if (user) {
+  //     setEmail(user.username)
+  //   }
+  // }
 
   
   
@@ -161,7 +194,7 @@ const MyDrawerContent = props => {
 
 export default MyDrawerContent;
 
-const styles = StyleSheet.create({
+const styles = theme => StyleSheet.create({
   drawerContent: {
     flex: 1,
   },

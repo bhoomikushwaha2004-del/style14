@@ -16,7 +16,7 @@ const WishList = () => {
 
   const addToCart=(item)=>{
         
-          dispatch(addItems({...item, quantity:1}))
+          dispatch(addItems(item))
   
           navigation.navigate('bottomTab',{
               screen:'home',})

@@ -146,7 +146,7 @@ const ProductCards = ({ item, cartnvg, dispatch,wishlist }) => {
 
   const handleHeart =() => {
     if(isHearted){
-      dispatch(removeFromWishlist(item))
+      dispatch(removeFromWishlist(item.id))
     } else {
       dispatch(addToWishlist(item))
     }
