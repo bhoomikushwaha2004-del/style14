@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {  HearOutline,  Heart } from 'react-native-vector-icons/FontAwesome';
+import  HearOutline from 'react-native-vector-icons/FontAwesome';
+import  Heart  from 'react-native-vector-icons/FontAwesome';
 import { addToWishlist, removeFromWishlist } from '../redux/slice';
 import { COLORS, SPACING, FONT_SIZE, RADIUS } from '../styles';
 
@@ -16,7 +17,6 @@ const ProductCards = ({ item, cartnvg, dispatch, wishlist }) => {
   };
 
   return (
-    <View>
         <TouchableOpacity style={styles.card} onPress={() => cartnvg(item)}>
       <View style={styles.hertView}>
         <TouchableOpacity onPress={handleHeart}>
@@ -58,7 +58,6 @@ const ProductCards = ({ item, cartnvg, dispatch, wishlist }) => {
         </View>
       </View>
     </TouchableOpacity>
-    </View>
     
   );
 };
@@ -129,6 +128,18 @@ const styles = StyleSheet.create({
   hrtOutline: {
     padding: 5,
     // color:'black'
+  },
+  columns: {
+    paddingBottom: 16,
+    gap: 16,
+  },
+  mainContainer: {
+    paddingHorizontal: 16,
+    // paddingTop:16
+  },
+  noItems: {
+    fontWeight: 'bold',
+    left: 20,
   },
   
 })

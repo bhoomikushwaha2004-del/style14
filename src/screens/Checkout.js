@@ -1,9 +1,10 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import NoItem from '../components/NoItem'
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import NoItem from '../components/NoItem';
+import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
+import ItemList from '../components/ItemList'
 
 const Checkout = () => {
   const navigation = useNavigation();
@@ -63,42 +64,7 @@ const Checkout = () => {
   )
 }
 
-const ItemList = ({ item }) => {
-  return (
-    <View style={styles.card}>
 
-      <View style={styles.row}>
-        <Image source={{ uri: item.image }} style={styles.img} />
-
-        <View style={styles.info}>
-          <Text numberOfLines={1} style={styles.title}>
-            {item.title}
-          </Text>
-
-          <Text style={styles.rating}>
-            ⭐ {item.rating?.rate}
-          </Text>
-
-          <View style={styles.priceBox}>
-            <Text style={styles.price}>
-              ₹{item.price.toFixed(2)}
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      {/* Divider */}
-      <View style={styles.divider} />
-
-      {/* Total */}
-      <View style={styles.totalRow}>
-        <Text style={styles.totalText}>Total Order (1):</Text>
-        <Text style={styles.totalPrice}>₹{item.price}</Text>
-      </View>
-
-    </View>
-  );
-};
 
 export default Checkout
 

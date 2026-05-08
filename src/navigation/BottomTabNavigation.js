@@ -1,16 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ShopPage from '../screens/ShopPage';
-import HomePage from '../screens/HomePage';
-import SearchBar from '../components/SearchBar';
-import Icon from 'react-native-vector-icons/Feather';
-import CartIcon from 'react-native-vector-icons/Ionicons';
-import BackIcon from 'react-native-vector-icons/Ionicons';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Checkout from '../screens/Checkout';
+import Icon from 'react-native-vector-icons/Feather';
 import { useSelector } from 'react-redux';
-import DrawerNavigation from './DrawerNavigation';
+import Checkout from '../screens/Checkout';
 import WishList from '../screens/WishList';
+import DrawerNavigation from './DrawerNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,18 +29,13 @@ const getTabBarIcon = (routeName, focused, color, size) => {
 };
 
 export default function BottomTabNavigation(props) {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   const selector = useSelector(state => state.cart.items);
-  console.log(selector, 'cart');
+  // console.log(selector, 'cart');
 
   const wishlistSelector = useSelector(state => state.cart.wishlist);
 
-  // const homenvg = () => {
-  //   navigation.navigate('bottomTab', {
-  //     screen: 'home',
-  //   });
-  // };
 
   return (
     <>
@@ -125,11 +114,7 @@ export default function BottomTabNavigation(props) {
             headerTitle: 'Checkout',
           }}
         />
-        <Tab.Screen
-          name="search"
-          component={SearchBar}
-          options={{ title: 'Search' }}
-        />
+        
       </Tab.Navigator>
     </>
   );

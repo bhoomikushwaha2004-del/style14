@@ -1,14 +1,12 @@
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import { useNavigation, useRoute } from '@react-navigation/native'
-import { useDispatch, useSelector } from 'react-redux'
-import CartIcon from 'react-native-vector-icons/Ionicons' 
-import {addItems, removeCart} from '../redux/slice'
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import CartIcon from 'react-native-vector-icons/Ionicons';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItems, removeCart } from '../redux/slice';
+import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
 const ShopPage = () => {
-    const navigation = useNavigation()
-    const[cart,setCart] = useState([])
     const dispatch = useDispatch()
 
     const route = useRoute();
@@ -20,26 +18,13 @@ const ShopPage = () => {
     const isAdded = selector.find(cartItem => cartItem.id === item.id)
 
     const addToCart=(item)=>{
-        // const updatedCart=[...cart,item]
-        // setCart(updatedCart)
-
-        dispatch(addItems(item))
-
-        // navigation.navigate('bottomTab',{
-        //     screen:'home',
-        //     params:{item,cart}})
+    dispatch(addItems(item))
     }
 
     const removeFromCart = id => {
       dispatch(removeCart(id))
     }
 
-    // const goToCart=(item)=>{
-
-    //     navigation.navigate('bottomTab',{
-    //         screen:'checkout',
-    //         params:{item,cart}})
-    // }
 
     if(!item) {
       return <Text>No item found</Text>
@@ -80,16 +65,6 @@ const ShopPage = () => {
 
       {/* Btn */}
       <View style={styles.btnCont}>
-        {/* { selector.find(cartItem => cartItem.id === item.id) ? (
-            <TouchableOpacity style={styles.addedbtn} onPress={()=>goToCart(item)} >
-                    <Image source={require('../assets/goToCart.png')} style={styles.gotoCartimg}/>
-               </TouchableOpacity>
-        ):(
-            <TouchableOpacity style={styles.addcartbtn} onPress={()=>addToCart(item)}>
-                   <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />
-                    <Text style={styles.addtoCartTxt}>Add to Cart</Text>
-                </TouchableOpacity>
-        )} */}
         { isAdded ? (
           <TouchableOpacity style={styles.removecartbtn} onPress={()=>removeFromCart(item.id)} >
                     <CartIcon name='cart-outline' size={24} color={'white'} style={styles.addtocartIcon}  />

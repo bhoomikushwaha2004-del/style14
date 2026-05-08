@@ -1,27 +1,26 @@
-import {
-  FlatList,
-  Image,
-  Modal,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, { useState } from 'react';
-import Coupon from 'react-native-vector-icons/FontAwesome5';
 import { useRoute } from '@react-navigation/native';
-import { removeCart, handleQuantity } from '../redux/slice';
+import React, { useState } from 'react';
+import {
+    FlatList,
+    Image,
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
+import Cross from 'react-native-vector-icons/Entypo';
+import Coupon from 'react-native-vector-icons/FontAwesome5';
 import { useDispatch, useSelector } from 'react-redux';
-import DeleteIcon from 'react-native-vector-icons/MaterialIcons';
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
-import Cross from 'react-native-vector-icons/Entypo'
+import CartItems from '../components/CartItems';
+import OrderDetails from '../components/OrderDetails';
+import { handleQuantity, removeCart } from '../redux/slice';
+import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
 const PlaceOrder = () => {
   const route = useRoute();
   const [showModal, setShowModal] = useState(false);
 
-  // const { selector } = route.params;
 
   const dispatch = useDispatch();
 
@@ -33,13 +32,7 @@ const PlaceOrder = () => {
     let quantity = q <= 1 ? 1 : q;
 
     dispatch(handleQuantity({ id, quantity }));
-    // console.log(manageQuantity, 'managequantity');
   };
-
-  // const totalPrice = cartItems.reduce((sum, item) => {
-  //   const qty = item.quantity ? item.quantity : 1;
-  //   return sum + item.price * qty;
-  // }, 0);
 
 
   const finalCart = cartItems.map(cartItem => {
@@ -134,186 +127,10 @@ const PlaceOrder = () => {
   );
 };
 
-const CartItems = ({ item, manageQuantity, dispatch, removeCart }) => {
-  return (
-    <>
-      <View style={styles.contentCont}>
-        <View style={styles.row}>
-          <Image source={{ uri: item.image }} style={styles.img} />
-
-          <View style={styles.infoCont}>
-            <Text style={styles.title} numberOfLines={1}>
-              {item.title}
-            </Text>
-
-            <Text style={styles.desc} numberOfLines={1}>
-              {item.description}
-            </Text>
-
-            <View style={styles.qty}>
-              <TouchableOpacity
-                onPress={() =>
-                  manageQuantity(item.id, (item.quantity || 1) - 1)
-                }
-                style={styles.plsbtn}
-              >
-                <Text>{'-'}</Text>
-              </TouchableOpacity>
-
-              <Text style={styles.qtyNo}>{item.quantity || 1}</Text>
-
-              <TouchableOpacity
-                onPress={() =>
-                  manageQuantity(item.id, (item.quantity || 1) + 1)
-                }
-                style={styles.plsbtn}
-              >
-                <Text>{'+'}</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.priceCont}>
-              <Text>₹ {(item.price * (item.quantity || 1)).toFixed(2)}</Text>
-
-              <TouchableOpacity onPress={() => dispatch(removeCart(item.id))}>
-                <DeleteIcon name="delete" size={24} color={'red'} />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </View>
-    </>
-  );
-};
-
-const OrderDetails = ({ totalPrice, coupon }) => {
-  return (
-    <SafeAreaView style={styles.detailsCard}>
-      {/* Coupon */}
-      <View style={styles.rowBetween}>
-        <Text>{coupon}</Text>
-        <Text style={styles.bold}>Apply Coupons</Text>
-        <Text style={styles.red}>Select</Text>
-      </View>
-
-      <View style={styles.divider} />
-
-      {/* Payment Details */}
-      <Text style={styles.heading}>Order Payment Details</Text>
-
-      <View style={styles.rowBetween}>
-        <Text>Order Amounts</Text>
-        <Text style={styles.bold}>₹{totalPrice.toFixed(2)}</Text>
-      </View>
-
-      <View style={styles.rowBetween}>
-        <Text>Convenience</Text>
-        <Text style={styles.red}>Apply Coupon</Text>
-      </View>
-
-      <View style={styles.rowBetween}>
-        <Text>Delivery Fee</Text>
-        <Text style={styles.red}>Free</Text>
-      </View>
-
-      <View style={styles.divider} />
-
-      {/* Total */}
-      <View style={styles.rowBetween}>
-        <Text style={styles.bold}>Order Total</Text>
-        <Text style={styles.bold}>₹{totalPrice.toFixed(2)}</Text>
-      </View>
-
-      <Text style={styles.redSmall}>EMI Available</Text>
-    </SafeAreaView>
-  );
-};
 
 export default PlaceOrder;
 
 const styles = StyleSheet.create({
-  contentCont: {
-    paddingTop: 37,
-    paddingHorizontal: 17,
-    backgroundColor: COLORS.white,
-    elevation: 20,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  img: {
-    height: 153,
-    width: 123,
-    borderRadius: RADIUS.sm,
-    resizeMode: 'contain',
-  },
-  infoCont: {
-    paddingLeft: 21,
-    paddingTop: 7,
-    paddingBottom: 16,
-    paddingRight: 40,
-  },
-  title: {
-    fontSize: FONT_SIZE.l,
-    fontWeight: 'bold',
-    width: 200,
-  },
-  desc: {
-    paddingTop: 10,
-    fontSize: FONT_SIZE.m,
-    width: 200,
-  },
-  qty: {
-    top: 8,
-    flexDirection: 'row',
-    width: 60,
-    backgroundColor: '#F2F2F2',
-    borderRadius: RADIUS.sm,
-  },
-  plsbtn: {
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-  },
-  qtyNo: {
-    paddingTop: 5,
-  },
-  priceCont: {
-    top: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  detailsCard: {
-    backgroundColor: COLORS.white,
-    padding: SPACING.m,
-  },
-  rowBetween: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 6,
-  },
-  heading: {
-    fontSize: FONT_SIZE.l,
-    fontWeight: 'bold',
-    paddingVertical: 10,
-  },
-  bold: {
-    fontWeight: 'bold',
-  },
-  red: {
-    color: COLORS.primary,
-    fontWeight: 'bold',
-  },
-  redSmall: {
-    color: COLORS.primary,
-    fontSize: FONT_SIZE.s,
-    paddingTop: 4,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: '#eee',
-    marginVertical: SPACING.sm,
-  },
   footer: {
     position: 'absolute',
     bottom: 0,

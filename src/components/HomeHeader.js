@@ -1,11 +1,10 @@
-import { Image,  SafeAreaView,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { COLORS, SPACING, FONT_SIZE, RADIUS, COMMON } from '../styles';
-import Search from 'react-native-vector-icons/Fontisto'
-import Mic from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
-import { micEvents,SpeechToText } from 'react-native-speech-convertor'
-import Demo from './Demo'
+import React, { useEffect, useState } from 'react';
+import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { micEvents, SpeechToText } from 'react-native-speech-convertor';
+import Search from 'react-native-vector-icons/Fontisto';
+import Mic from 'react-native-vector-icons/MaterialIcons';
+import { COLORS, FONT_SIZE, RADIUS, SPACING } from '../styles';
 
 const HomeHeader = ({ handleSearch }) => {
   const navigation = useNavigation()
