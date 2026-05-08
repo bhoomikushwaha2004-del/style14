@@ -5,13 +5,11 @@ import SignUp from '../screens/SignUp';
 import ForgetPassword from '../screens/ForgetPassword';
 import GetStarted from '../screens/GetStarted';
 import BottomTabNavigation from '../navigation/BottomTabNavigation';
-import Checkout from '../screens/Checkout';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';
 import PlaceOrder from '../screens/PlaceOrder';
 import ShopPage from '../screens/ShopPage';
 import CartIcon from 'react-native-vector-icons/Ionicons';
-import DrawerNavigation from './DrawerNavigation';
 import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
@@ -19,9 +17,6 @@ const Stack = createNativeStackNavigator();
 export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
   const navigation = useNavigation();
 
-  const cartnvg = () => {
-    navigation.navigate('cart');
-  };
 
   const checkoutnvg = () => {
     navigation.navigate('bottomTab', {
@@ -75,21 +70,52 @@ export default function StackNavigation({ isLoggedIn, setIsLoggedIn }) {
       <Stack.Screen
         name="cart"
         component={ShopPage}
-        options={{ headerShown: true }}
+        options={{
+            title: 'Cart',
+            headerShown: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity>
+                <CartIcon name="cart-outline" size={24} />
+              </TouchableOpacity>
+            ),
+
+            headerTitle: '',
+          }}
       />
 
       <Stack.Screen
         name="bag"
         component={PlaceOrder}
+        options={{
+            headerShown: true,
+            headerTitle: 'Shopping Bag',
+            headerLeft: () => (
+              <TouchableOpacity onPress={checkoutnvg}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign: 'center',
+          }}
       />
 
       <Stack.Screen
         name="profile"
         component={Profile}
         options={{
-          title:'Profile',
-          headerTitleAlign:'center'
-        }}
+            // headerShown:false
+            headerTitle: 'Profile',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <BackIcon name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+            headerTitleAlign: 'center',
+          }}
       />
     </>
   )}
